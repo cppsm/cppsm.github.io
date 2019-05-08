@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="stylesheet" href="github.css">
+<link rel="stylesheet" href="styles.css">
+<meta charset="utf-8">
+<title>C++ submodule manager</title>
+</head>
+<body class="markdown-body">
+<h1 id="≡-c-submodule-manager"><a href="#contents">≡</a> <a href="#">C++ submodule manager</a></h1>
+<p>Poor man&#39;s submodule management, build scripts, and CI integration for simple,
+&quot;conventional&quot; C++ libraries, executable tests, and executable programs on top
+of</p>
+<ul>
+<li><a href="https://cmake.org/">CMake</a>,</li>
+<li><a href="https://git-scm.com/">git</a>,</li>
+<li><a href="https://travis-ci.org/">Travis CI</a>, and</li>
+<li><a href="https://codecov.io/">Codecov</a>.</li>
+</ul>
+<p>The idea is to minimize boilerplate by relying on simple conventions over
+excessive configuration.</p>
+<p>See
+<a href="https://github.com/topics/cppsm">GitHub repositories with the <code>#cppsm</code> topic</a>.</p>
+<p><a href="https://github.com/cppsm">C++ submodule manager GitHub organization</a>
+subprojects:</p>
+<ul>
+<li><a href="https://github.com/cppsm/cppsm.github.io">C++ submodule manager documentation</a></li>
+<li><a href="https://github.com/cppsm/cppsm-cli">C++ submodule manager command-line interface</a></li>
+<li><a href="https://github.com/cppsm/cppsm-boilerplate">C++ submodule manager boilerplate</a></li>
+</ul>
+<h2><a id="contents"></a> <a href="#contents">≡</a> <a href="#contents">Contents</a></h2>
+<ul>
+<li><a href="#install">Install</a></li>
+<li><a href="#synopsis">Synopsis</a></li>
+<li><a href="#project-structure">Project structure</a></li>
+<li><a href="#cmake">CMake</a><ul>
+<li><a href="#conventional-cmake"><code>conventional.cmake</code></a><ul>
+<li><a href="#add_conventional_executable"><code>add_conventional_executable(name)</code></a></li>
+<li><a href="#add_conventional_executable_tests"><code>add_conventional_executable_tests(...)</code></a></li>
+<li><a href="#add_conventional_library"><code>add_conventional_library(name)</code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#travis">Travis</a><ul>
+<li><a href="#configuration">Configuration</a><ul>
+<li><a href="#codecov"><code>CODECOV</code></a></li>
+<li><a href="#xtrace"><code>XTRACE</code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2><a id="install"></a> <a href="#contents">≡</a> <a href="#install">Install</a></h2>
+<p>Clone the <code>cppsm-cli</code> somewhere:</p>
+<pre><code class="language-bash">git clone https://github.com/cppsm/cppsm-cli.git</code></pre>
+<p>Add to your <code>.bash_profile</code>:</p>
+<pre><code class="language-bash">CPPSM=&quot;path to cppsm-cli directory&quot;
+export PATH=&quot;$CPPSM/bin:$PATH&quot;
+. &quot;$CPPSM/bash_completion&quot;</code></pre>
+<p>For code formatting you need to have both
+<a href="https://clang.llvm.org/docs/ClangFormat.html"><code>clang-format</code></a> and
+<a href="https://prettier.io/"><code>prettier</code></a> commands in path.</p>
+<p>For the optional auto completion of git urls you must have both
+<a href="https://curl.haxx.se/"><code>curl</code></a> and <a href="https://stedolan.github.io/jq/"><code>jq</code></a>
+commands in path.</p>
+<h2><a id="synopsis"></a> <a href="#contents">≡</a> <a href="#synopsis">Synopsis</a></h2>
+<p>Create a new project:</p>
+<pre><code class="language-bash">mkdir PROJECT &amp;&amp; cd &quot;$_&quot;
+git init
+cppsm init</code></pre>
+<p>Try the hello world example (after <code>init</code>):</p>
+<pre><code class="language-bash">cppsm hello
+cppsm test
+.build*/internals/hello</code></pre>
+<p>Start hacking:</p>
+<pre><code class="language-bash">emacs internals/program/hello.cpp &amp;
+cppsm test-watch</code></pre>
+<p>Format project files inplace:</p>
+<pre><code class="language-bash">cppsm format</code></pre>
+<p>Clone an existing project:</p>
+<pre><code class="language-bash">cppsm clone URL BRANCH</code></pre>
+<p>Or clone an existing project using plain git:</p>
+<pre><code class="language-bash">git clone -b BRANCH URL/NAME.git
+cd NAME
+git submodule update --init     # NOTE: non-recursive</code></pre>
+<p>Add a required library:</p>
+<pre><code class="language-bash">cppsm add requires URL/NAME.git BRANCH</code></pre>
+<p>Remove a previously required library:</p>
+<pre><code class="language-bash">cppsm remove requires/NAME/BRANCH</code></pre>
+<p>Upgrade all required libraries:</p>
+<pre><code class="language-bash">cppsm upgrade</code></pre>
+<h2><a id="project-structure"></a> <a href="#contents">≡</a> <a href="#project-structure">Project structure</a></h2>
+<p>At the root of a project there are three directories as follows:</p>
+<ul>
+<li>The <code>equipment</code> directory may contain any number of <em>project submodules</em> that
+the project internally depends upon.</li>
+<li>The <code>internals</code> directory may contain one or more <em>target directories</em> that
+are internal to the project.</li>
+<li>The <code>provides</code> directory may contain one or more <em>target directories</em> that are
+provided for dependant projects.</li>
+<li>The <code>requires</code> directory may contain any number of <em>project submodules</em> that
+the provided targets depend upon.</li>
+</ul>
+<p>In other words, both <code>internals</code> and <code>provides</code> may contain one or more target
+directories. In case only a single <code>internal</code> or <code>provides</code> target directory is
+needed, there is no need to create a nested directory.</p>
+<p>A single <em>target directory</em> may simultaneously contain</p>
+<ul>
+<li>a library in the <code>include/${name}</code> and <code>library</code> directories,</li>
+<li>an executable test in the <code>testing</code> directory, and</li>
+<li>an executable program in the <code>program</code> directory.</li>
+</ul>
+<p>Try the <code>cppsm hello</code> script. It generates a simple example project that has
+essentially the following structure:</p>
+<pre><code>CMakeLists.txt
+equipment/
+  testing.cpp/
+    v1/
+      provides/
+        CMakeLists.txt
+        include/
+          testing_v1/
+            test_synopsis.hpp
+            test.hpp
+        library/
+          test.cpp
+internals/
+  CMakeLists.txt
+  testing/
+    message_test.cpp
+  program/
+    hello.cpp
+provides/
+  CMakeLists.txt
+  include/
+    message_v1/
+      hello.hpp
+  library/
+    hello.cpp</code></pre><p>Note that the include directories are versioned as are CMake target names and
+C++ namespace names. This allows multiple major versions of a library to be used
+simultaneously.</p>
+<h2><a id="cmake"></a> <a href="#contents">≡</a> <a href="#cmake">CMake</a></h2>
+<p>CMake boilerplate is provided for simple libraries, tests, and executables.</p>
+<h3><a id="conventional-cmake"></a> <a href="#contents">≡</a> <a href="#conventional-cmake"><code>conventional.cmake</code></a></h3>
+<h4><a id="add_conventional_executable"></a> <a href="#contents">≡</a> <a href="#add_conventional_executable"><code>add_conventional_executable(name)</code></a></h4>
+<p>Adds an executable target. Assumes that the target directory has the following
+structure:</p>
+<pre><code>CMakeLists.txt
+program/
+  *.(cpp|hpp)</code></pre><p>Add dependencies using <code>target_link_libraries</code> separately.</p>
+<h4><a id="add_conventional_executable_tests"></a> <a href="#contents">≡</a> <a href="#add_conventional_executable_tests"><code>add_conventional_executable_tests(...)</code></a></h4>
+<p>Adds an executable test target per <code>.cpp</code> file. Assumes that the target
+directory has the following structure:</p>
+<pre><code>CMakeLists.txt
+testing/
+  *.cpp</code></pre><p>The arguments given to <code>add_conventional_executable_tests</code> are passed to
+<code>target_link_libraries</code> for each added test target.</p>
+<h4><a id="add_conventional_library"></a> <a href="#contents">≡</a> <a href="#add_conventional_library"><code>add_conventional_library(name)</code></a></h4>
+<p>Adds a library target. Assumes that the target directory has the following
+structure:</p>
+<pre><code>CMakeLists.txt
+include/
+  ${name}/
+    *.hpp
+library/
+  *.(cpp|hpp)</code></pre><p>Note that inside <code>include</code> there is a directory with the target <code>${name}</code> (which
+should also include the major version) to differentiate between the header files
+of different targets (and their major versions).</p>
+<p>Add dependencies using <code>target_link_libraries</code> separately.</p>
+<h2><a id="travis"></a> <a href="#contents">≡</a> <a href="#travis">Travis</a></h2>
+<p>A <a href="https://travis-ci.org/">Travis CI</a> configuration file is provided to build
+and test both <code>Debug</code> and <code>Release</code> builds on various OS and compiler
+configurations:</p>
+<ul>
+<li>Linux<ul>
+<li>GCC (8)</li>
+<li>Clang (7)</li>
+</ul>
+</li>
+<li>OS X<ul>
+<li>GCC (8)</li>
+<li>Apple Clang (10)</li>
+</ul>
+</li>
+<li>Windows<ul>
+<li>Visual Studio (2017)</li>
+<li>MinGW GCC (8)</li>
+</ul>
+</li>
+</ul>
+<p>Just add your project to Travis CI.</p>
+<h3><a id="configuration"></a> <a href="#contents">≡</a> <a href="#configuration">Configuration</a></h3>
+<h4><a id="codecov"></a> <a href="#contents">≡</a> <a href="#codecov"><code>CODECOV</code></a></h4>
+<p>By default the CI scripts do not generate and push code coverage results to
+<a href="https://codecov.io/">Codecov</a>. Set <code>CODECOV=1</code> to enable code coverage.</p>
+<h4><a id="xtrace"></a> <a href="#contents">≡</a> <a href="#xtrace"><code>XTRACE</code></a></h4>
+<p>By default the CI scripts do not <code>set -x</code> to enable Bash xtrace to avoid
+unnecessary verbosity. Set <code>XTRACE=1</code> to enable Bash xtrace.</p>
+
+</body>
+</html>
