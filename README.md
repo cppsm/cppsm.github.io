@@ -35,6 +35,9 @@ subprojects:
 - [Travis](#travis)
   - [Configuration](#configuration)
     - [`CODECOV`](#codecov)
+    - [`NUMBER_OF_PROCESSORS`](#number_of_processors)
+    - [`N_PARALLEL_BUILD`](#n_parallel_build)
+    - [`N_PARALLEL_TEST`](#n_parallel_test)
     - [`XTRACE`](#xtrace)
 
 ## <a id="install"></a> [≡](#contents) [Install](#install)
@@ -251,6 +254,24 @@ Just add your project to Travis CI.
 
 By default the CI scripts do not generate and push code coverage results to
 [Codecov](https://codecov.io/). Set `CODECOV=1` to enable code coverage.
+
+#### <a id="number_of_processors"></a> [≡](#contents) [`NUMBER_OF_PROCESSORS`](#number_of_processors)
+
+By default the number of processors is auto detected and parallelism is set to
+match the number of processors, but `NUMBER_OF_PROCESSORS` can be set explicitly
+to override the default.
+
+#### <a id="n_parallel_build"></a> [≡](#contents) [`N_PARALLEL_BUILD`](#n_parallel_build)
+
+By default builds are performed with level of parallelism set to the
+[`NUMBER_OF_PROCESSORS`](#number_of_processors), but `N_PARALLEL_BUILD` can be
+set explicitly to override the default.
+
+#### <a id="n_parallel_test"></a> [≡](#contents) [`N_PARALLEL_TEST`](#n_parallel_test)
+
+By default tests are run with level of parallelism set to the
+[`NUMBER_OF_PROCESSORS`](#number_of_processors), but `N_PARALLEL_TEST` can be
+set explicitly to override the default.
 
 #### <a id="xtrace"></a> [≡](#contents) [`XTRACE`](#xtrace)
 
