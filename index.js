@@ -45,6 +45,7 @@ ${s}
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/${hljsVersion}/highlight.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/${hljsVersion}/languages/bash.min.js"></script>
 <script type="text/javascript" src="init-hljs.js"></script>
+<script type="text/javascript" src="tooltips.js"></script>
 </body>
 </html>`
   )
