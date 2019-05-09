@@ -34,11 +34,11 @@ subprojects:
     - [`add_conventional_library(name)`](#add_conventional_library)
 - [Travis](#travis)
   - [Configuration](#configuration)
-    - [`CODECOV`](#codecov)
-    - [`NUMBER_OF_PROCESSORS`](#number_of_processors)
-    - [`N_PARALLEL_BUILD`](#n_parallel_build)
-    - [`N_PARALLEL_TEST`](#n_parallel_test)
-    - [`XTRACE`](#xtrace)
+    - [`CODECOV=0|1`](#codecov)
+    - [`NUMBER_OF_PROCESSORS=1|2|...`](#number_of_processors)
+    - [`N_PARALLEL_BUILD=1|2|...`](#n_parallel_build)
+    - [`N_PARALLEL_TEST=1|2|...`](#n_parallel_test)
+    - [`XTRACE=0|1`](#xtrace)
 
 ## <a id="install"></a> [≡](#contents) [Install](#install)
 
@@ -250,30 +250,30 @@ Just add your project to Travis CI.
 
 ### <a id="configuration"></a> [≡](#contents) [Configuration](#configuration)
 
-#### <a id="codecov"></a> [≡](#contents) [`CODECOV`](#codecov)
+#### <a id="codecov"></a> [≡](#contents) [`CODECOV=0|1`](#codecov)
 
 By default the CI scripts do not generate and push code coverage results to
 [Codecov](https://codecov.io/). Set `CODECOV=1` to enable code coverage.
 
-#### <a id="number_of_processors"></a> [≡](#contents) [`NUMBER_OF_PROCESSORS`](#number_of_processors)
+#### <a id="number_of_processors"></a> [≡](#contents) [`NUMBER_OF_PROCESSORS=1|2|...`](#number_of_processors)
 
 By default the number of processors is auto detected and parallelism is set to
 match the number of processors, but `NUMBER_OF_PROCESSORS` can be set explicitly
 to override the default.
 
-#### <a id="n_parallel_build"></a> [≡](#contents) [`N_PARALLEL_BUILD`](#n_parallel_build)
+#### <a id="n_parallel_build"></a> [≡](#contents) [`N_PARALLEL_BUILD=1|2|...`](#n_parallel_build)
 
 By default builds are performed with level of parallelism set to the
 [`NUMBER_OF_PROCESSORS`](#number_of_processors), but `N_PARALLEL_BUILD` can be
 set explicitly to override the default.
 
-#### <a id="n_parallel_test"></a> [≡](#contents) [`N_PARALLEL_TEST`](#n_parallel_test)
+#### <a id="n_parallel_test"></a> [≡](#contents) [`N_PARALLEL_TEST=1|2|...`](#n_parallel_test)
 
 By default tests are run with level of parallelism set to the
 [`NUMBER_OF_PROCESSORS`](#number_of_processors), but `N_PARALLEL_TEST` can be
 set explicitly to override the default.
 
-#### <a id="xtrace"></a> [≡](#contents) [`XTRACE`](#xtrace)
+#### <a id="xtrace"></a> [≡](#contents) [`XTRACE=0|1`](#xtrace)
 
 By default the CI scripts do not `set -x` to enable Bash xtrace to avoid
 unnecessary verbosity. Set `XTRACE=1` to enable Bash xtrace.
