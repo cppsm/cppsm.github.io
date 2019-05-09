@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "docs": "node index.js",
-    "watch": "concurrently \"watch-run -d 50 -i -p '*.md' npm run docs\" \"livereload .\""
+    "watch": "concurrently \"watch-run -d 50 -i -p '*.md,index.js' npm run docs\" \"livereload .\""
   },
   "repository": {
     "type": "git",
