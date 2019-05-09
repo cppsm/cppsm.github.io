@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<link rel="stylesheet" href="github.css">
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" type="text/css" href="github.css">
+<link rel="stylesheet" type="text/css" href="styles.css">
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/googlecode.min.css">
 <meta charset="utf-8">
 <title>C++ submodule manager</title>
 </head>
@@ -56,9 +57,9 @@ subprojects:</p>
 </ul>
 <h2><a id="install"></a> <a href="#contents">≡</a> <a href="#install">Install</a></h2>
 <p>Clone the <code>cppsm-cli</code> somewhere:</p>
-<pre><code class="language-bash">git clone https://github.com/cppsm/cppsm-cli.git</code></pre>
+<pre><code class="hljs lang-bash">git clone https://github.com/cppsm/cppsm-cli.git</code></pre>
 <p>Add to your <code>.bash_profile</code>:</p>
-<pre><code class="language-bash">CPPSM=&quot;path to cppsm-cli directory&quot;
+<pre><code class="hljs lang-bash">CPPSM=&quot;path to cppsm-cli directory&quot;
 export PATH=&quot;$CPPSM/bin:$PATH&quot;
 . &quot;$CPPSM/bash_completion&quot;</code></pre>
 <p>For code formatting you need to have both
@@ -69,30 +70,30 @@ export PATH=&quot;$CPPSM/bin:$PATH&quot;
 commands in path.</p>
 <h2><a id="synopsis"></a> <a href="#contents">≡</a> <a href="#synopsis">Synopsis</a></h2>
 <p>Create a new project:</p>
-<pre><code class="language-bash">mkdir PROJECT &amp;&amp; cd &quot;$_&quot;
+<pre><code class="hljs lang-bash">mkdir PROJECT &amp;&amp; cd &quot;$_&quot;
 git init
 cppsm init</code></pre>
 <p>Try the hello world example (after <code>init</code>):</p>
-<pre><code class="language-bash">cppsm hello
+<pre><code class="hljs lang-bash">cppsm hello
 cppsm test
 .build*/internals/hello</code></pre>
 <p>Start hacking:</p>
-<pre><code class="language-bash">emacs internals/program/hello.cpp &amp;
+<pre><code class="hljs lang-bash">emacs internals/program/hello.cpp &amp;
 cppsm test-watch</code></pre>
 <p>Format project files inplace:</p>
-<pre><code class="language-bash">cppsm format</code></pre>
+<pre><code class="hljs lang-bash">cppsm format</code></pre>
 <p>Clone an existing project:</p>
-<pre><code class="language-bash">cppsm clone URL BRANCH</code></pre>
+<pre><code class="hljs lang-bash">cppsm clone URL BRANCH</code></pre>
 <p>Or clone an existing project using plain git:</p>
-<pre><code class="language-bash">git clone -b BRANCH URL/NAME.git
+<pre><code class="hljs lang-bash">git clone -b BRANCH URL/NAME.git
 cd NAME
 git submodule update --init     # NOTE: non-recursive</code></pre>
 <p>Add a required library:</p>
-<pre><code class="language-bash">cppsm add requires URL/NAME.git BRANCH</code></pre>
+<pre><code class="hljs lang-bash">cppsm add requires URL/NAME.git BRANCH</code></pre>
 <p>Remove a previously required library:</p>
-<pre><code class="language-bash">cppsm remove requires/NAME/BRANCH</code></pre>
+<pre><code class="hljs lang-bash">cppsm remove requires/NAME/BRANCH</code></pre>
 <p>Upgrade all required libraries:</p>
-<pre><code class="language-bash">cppsm upgrade</code></pre>
+<pre><code class="hljs lang-bash">cppsm upgrade</code></pre>
 <h2><a id="project-structure"></a> <a href="#contents">≡</a> <a href="#project-structure">Project structure</a></h2>
 <p>At the root of a project there are three directories as follows:</p>
 <ul>
@@ -213,5 +214,8 @@ set explicitly to override the default.</p>
 <p>By default the CI scripts do not <code>set -x</code> to enable Bash xtrace to avoid
 unnecessary verbosity. Set <code>XTRACE=1</code> to enable Bash xtrace.</p>
 
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/bash.min.js"></script>
+<script type="text/javascript" src="init-hljs.js"></script>
 </body>
 </html>
