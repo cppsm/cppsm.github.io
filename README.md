@@ -234,14 +234,14 @@ and test both `Debug` and `Release` builds on various OS and compiler
 configurations:
 
 - Linux
-  - GCC (8)
   - Clang (7)
-- OS X
   - GCC (8)
+- OS X
   - Apple Clang (10)
+  - GCC (8)
 - Windows
-  - Visual Studio (2017)
   - MinGW GCC (8)
+  - Visual Studio (2017)
 
 Just add your project to Travis CI.
 
