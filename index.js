@@ -1,7 +1,7 @@
 const fs = require('fs')
 const marked = require('marked')
 
-const sourcePath = 'README.md'
+const sourcePath = 'index.md'
 const targetPath = 'index.html'
 
 const hljsStyle = 'googlecode'
