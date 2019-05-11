@@ -44,6 +44,7 @@ excessive configuration.</p>
 <li><a href="#travis">Travis</a><ul>
 <li><a href="#configuration">Configuration</a><ul>
 <li><a href="#codecov"><code>CODECOV=0|1</code></a></li>
+<li><a href="#install_wait"><code>INSTALL_WAIT=0|1</code></a></li>
 <li><a href="#number_of_processors"><code>NUMBER_OF_PROCESSORS=1|2|...</code></a></li>
 <li><a href="#n_parallel_build"><code>N_PARALLEL_BUILD=1|2|...</code></a></li>
 <li><a href="#n_parallel_test"><code>N_PARALLEL_TEST=1|2|...</code></a></li>
@@ -195,6 +196,10 @@ Travis CI.</p>
 <h4><a id="codecov"></a> <a href="#contents">≡</a> <a href="#codecov"><code>CODECOV=0|1</code></a></h4>
 <p>By default the CI scripts do not generate and push code coverage results to
 <a href="https://codecov.io/">Codecov</a>. Set <code>CODECOV=1</code> to enable code coverage.</p>
+<h4><a id="install_wait"></a> <a href="#contents">≡</a> <a href="#install_wait"><code>INSTALL_WAIT=0|1</code></a></h4>
+<p>By default installation of additional packages is performed concurrently with
+builds when possible. Set <code>INSTALL_WAIT=1</code> to wait for installations to complete
+before starting any builds.</p>
 <h4><a id="number_of_processors"></a> <a href="#contents">≡</a> <a href="#number_of_processors"><code>NUMBER_OF_PROCESSORS=1|2|...</code></a></h4>
 <p>By default the number of processors is auto detected and parallelism is set to
 match the number of processors, but <code>NUMBER_OF_PROCESSORS</code> can be set explicitly

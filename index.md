@@ -33,6 +33,7 @@ See [repositories with the `#cppsm` topic](https://github.com/topics/cppsm).
 - [Travis](#travis)
   - [Configuration](#configuration)
     - [`CODECOV=0|1`](#codecov)
+    - [`INSTALL_WAIT=0|1`](#install_wait)
     - [`NUMBER_OF_PROCESSORS=1|2|...`](#number_of_processors)
     - [`N_PARALLEL_BUILD=1|2|...`](#n_parallel_build)
     - [`N_PARALLEL_TEST=1|2|...`](#n_parallel_test)
@@ -248,6 +249,12 @@ Travis CI.
 
 By default the CI scripts do not generate and push code coverage results to
 [Codecov](https://codecov.io/). Set `CODECOV=1` to enable code coverage.
+
+#### <a id="install_wait"></a> [≡](#contents) [`INSTALL_WAIT=0|1`](#install_wait)
+
+By default installation of additional packages is performed concurrently with
+builds when possible. Set `INSTALL_WAIT=1` to wait for installations to complete
+before starting any builds.
 
 #### <a id="number_of_processors"></a> [≡](#contents) [`NUMBER_OF_PROCESSORS=1|2|...`](#number_of_processors)
 
