@@ -148,21 +148,21 @@ simultaneously.</p>
 <p>CMake boilerplate is provided for simple libraries, tests, and executables.</p>
 <h3><a id="conventional-cmake"></a> <a href="#contents">≡</a> <a href="#conventional-cmake"><code>conventional.cmake</code></a></h3>
 <h4><a id="add_conventional_executable"></a> <a href="#contents">≡</a> <a href="#add_conventional_executable"><code>add_conventional_executable(name)</code></a></h4>
-<p>Adds an executable target. Assumes that the target directory has the following
-structure:</p>
+<p>Adds an executable target with the given name. Assumes that the target directory
+has implementation files matching the pattern <code>program/*.{cpp,hpp}</code>.</p>
 <pre><code>CMakeLists.txt
 program/
-  *.(cpp|hpp)</code></pre><p>Add dependencies using <code>target_link_libraries</code> separately.</p>
+  *.{cpp,hpp}</code></pre><p>Add dependencies using <code>target_link_libraries</code> separately.</p>
 <h4><a id="add_conventional_executable_tests"></a> <a href="#contents">≡</a> <a href="#add_conventional_executable_tests"><code>add_conventional_executable_tests(...)</code></a></h4>
-<p>Adds an executable test target per <code>.cpp</code> file. Assumes that the target
-directory has the following structure:</p>
+<p>Adds an executable test target per file matching pattern <code>testing/*.cpp</code>. The
+arguments given to <code>add_conventional_executable_tests</code> are passed to
+<code>target_link_libraries</code> for each added test target.</p>
 <pre><code>CMakeLists.txt
 testing/
-  *.cpp</code></pre><p>The arguments given to <code>add_conventional_executable_tests</code> are passed to
-<code>target_link_libraries</code> for each added test target.</p>
-<h4><a id="add_conventional_library"></a> <a href="#contents">≡</a> <a href="#add_conventional_library"><code>add_conventional_library(name)</code></a></h4>
-<p>Adds a library target. Assumes that the target directory has the following
-structure:</p>
+  *.cpp</code></pre><h4><a id="add_conventional_library"></a> <a href="#contents">≡</a> <a href="#add_conventional_library"><code>add_conventional_library(name)</code></a></h4>
+<p>Adds a library target with the given name. Assumes that the target directory has
+public header files matching the pattern <code>include/${name}/*.hpp</code> and
+implementation files matching the pattern <code>library/*.{cpp,hpp}</code>.</p>
 <pre><code>CMakeLists.txt
 include/
   ${name}/
@@ -171,11 +171,11 @@ library/
   *.(cpp|hpp)</code></pre><p>Note that inside <code>include</code> there is a directory with the target <code>${name}</code> (which
 should also include the major version) to differentiate between the header files
 of different targets (and their major versions).</p>
-<p>Add dependencies using <code>target_link_libraries</code> separately.</p>
 <h2><a id="travis"></a> <a href="#contents">≡</a> <a href="#travis">Travis</a></h2>
 <p>A <a href="https://travis-ci.org/">Travis CI</a> configuration file is provided to build
-and test both <code>Debug</code> and <code>Release</code> builds on various OS and compiler
-configurations:</p>
+and test both <code>Debug</code> and <code>Release</code> builds on various OS (Linux, OS X, Windows)
+and compiler configurations (Clang, GCC, Visual C++). Just add your project to
+Travis CI.</p>
 <ul>
 <li>Linux<ul>
 <li>Clang (7)</li>
@@ -189,11 +189,10 @@ configurations:</p>
 </li>
 <li>Windows<ul>
 <li>MinGW GCC (8)</li>
-<li>Visual Studio (2017)</li>
+<li>Visual C++ (2017)</li>
 </ul>
 </li>
 </ul>
-<p>Just add your project to Travis CI.</p>
 <h3><a id="configuration"></a> <a href="#contents">≡</a> <a href="#configuration">Configuration</a></h3>
 <h4><a id="codecov"></a> <a href="#contents">≡</a> <a href="#codecov"><code>CODECOV=0|1</code></a></h4>
 <p>By default the CI scripts do not generate and push code coverage results to

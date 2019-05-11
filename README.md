@@ -191,31 +191,30 @@ CMake boilerplate is provided for simple libraries, tests, and executables.
 
 #### <a id="add_conventional_executable"></a> [≡](#contents) [`add_conventional_executable(name)`](#add_conventional_executable)
 
-Adds an executable target. Assumes that the target directory has the following
-structure:
+Adds an executable target with the given name. Assumes that the target directory
+has implementation files matching the pattern `program/*.{cpp,hpp}`.
 
     CMakeLists.txt
     program/
-      *.(cpp|hpp)
+      *.{cpp,hpp}
 
 Add dependencies using `target_link_libraries` separately.
 
 #### <a id="add_conventional_executable_tests"></a> [≡](#contents) [`add_conventional_executable_tests(...)`](#add_conventional_executable_tests)
 
-Adds an executable test target per `.cpp` file. Assumes that the target
-directory has the following structure:
+Adds an executable test target per file matching pattern `testing/*.cpp`. The
+arguments given to `add_conventional_executable_tests` are passed to
+`target_link_libraries` for each added test target.
 
     CMakeLists.txt
     testing/
       *.cpp
 
-The arguments given to `add_conventional_executable_tests` are passed to
-`target_link_libraries` for each added test target.
-
 #### <a id="add_conventional_library"></a> [≡](#contents) [`add_conventional_library(name)`](#add_conventional_library)
 
-Adds a library target. Assumes that the target directory has the following
-structure:
+Adds a library target with the given name. Assumes that the target directory has
+public header files matching the pattern `include/${name}/*.hpp` and
+implementation files matching the pattern `library/*.{cpp,hpp}`.
 
     CMakeLists.txt
     include/
@@ -228,13 +227,12 @@ Note that inside `include` there is a directory with the target `${name}` (which
 should also include the major version) to differentiate between the header files
 of different targets (and their major versions).
 
-Add dependencies using `target_link_libraries` separately.
-
 ## <a id="travis"></a> [≡](#contents) [Travis](#travis)
 
 A [Travis CI](https://travis-ci.org/) configuration file is provided to build
-and test both `Debug` and `Release` builds on various OS and compiler
-configurations:
+and test both `Debug` and `Release` builds on various OS (Linux, OS X, Windows)
+and compiler configurations (Clang, GCC, Visual C++). Just add your project to
+Travis CI.
 
 - Linux
   - Clang (7)
@@ -244,9 +242,7 @@ configurations:
   - GCC (8)
 - Windows
   - MinGW GCC (8)
-  - Visual Studio (2017)
-
-Just add your project to Travis CI.
+  - Visual C++ (2017)
 
 ### <a id="configuration"></a> [≡](#contents) [Configuration](#configuration)
 
