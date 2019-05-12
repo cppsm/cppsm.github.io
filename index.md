@@ -31,14 +31,16 @@ See [repositories with the `#cppsm` topic](https://github.com/topics/cppsm).
     - [`add_conventional_executable_tests(...)`](#add_conventional_executable_tests)
     - [`add_conventional_library(name)`](#add_conventional_library)
 - [Travis CI](#travis-ci)
-  - [Configuration](#configuration)
-    - [`CODECOV=0|1`](#codecov)
-    - [`INSTALL_WAIT=0|1`](#install_wait)
-    - [`NUMBER_OF_PROCESSORS=1|2|...`](#number_of_processors)
-    - [`N_PARALLEL_BUILD=1|2|...`](#n_parallel_build)
-    - [`N_PARALLEL_TEST=1|2|...`](#n_parallel_test)
-    - [`N_PARALLEL_UPDATE=1|2|...`](#n_parallel_update)
-    - [`XTRACE=0|1`](#xtrace)
+  - [`CODECOV=0|1`](#codecov)
+  - [`FORMAT_CHECK=1|0`](#format_check)
+  - [`INSTALL_WAIT=0|1`](#install_wait)
+- [Variables](#variables)
+  - [`GIT_QUIET=1|0`](#git_quiet)
+  - [`NUMBER_OF_PROCESSORS=1|2|...`](#number_of_processors)
+  - [`N_PARALLEL_BUILD=1|2|...`](#n_parallel_build)
+  - [`N_PARALLEL_TEST=1|2|...`](#n_parallel_test)
+  - [`N_PARALLEL_UPDATE=1|2|...`](#n_parallel_update)
+  - [`XTRACE=0|1`](#xtrace)
 
 ## <a id="install"></a> [≡](#contents) [Install](#install)
 
@@ -229,10 +231,11 @@ of different targets (and their major versions).
 
 ## <a id="travis-ci"></a> [≡](#contents) [Travis CI](#travis-ci)
 
-A [Travis CI](https://travis-ci-ci.org/) configuration file is provided to build
-and test both `Debug` and `Release` builds on various OS (Linux, OS X, Windows)
-and compiler configurations (Clang, GCC, Visual C++). Just add your project to
-Travis CI.
+A [Travis CI](https://travis-ci-ci.org/)
+[configuration file](https://github.com/cppsm/cppsm-cli/blob/master/.travis.yml)
+is provided to build and test both `Debug` and `Release` builds on various OS
+(Linux, OS X, Windows) and compiler configurations (Clang, GCC, Visual C++).
+Just add your project to Travis CI.
 
 - Linux
   - Clang (7)
@@ -244,48 +247,68 @@ Travis CI.
   - MinGW GCC (8)
   - Visual C++ (2017)
 
-### <a id="configuration"></a> [≡](#contents) [Configuration](#configuration)
+### <a id="codecov"></a> [≡](#contents) [`CODECOV=0|1`](#codecov)
 
-#### <a id="codecov"></a> [≡](#contents) [`CODECOV=0|1`](#codecov)
+By default the
+[CI script](https://github.com/cppsm/cppsm-cli/blob/master/travis-ci) does not
+generate and push code coverage results to [Codecov](https://codecov.io/). Set
+`CODECOV=1` to enable code coverage.
 
-By default the CI scripts do not generate and push code coverage results to
-[Codecov](https://codecov.io/). Set `CODECOV=1` to enable code coverage.
+### <a id="format_check"></a> [≡](#contents) [`FORMAT_CHECK=1|0`](#format_check)
 
-#### <a id="install_wait"></a> [≡](#contents) [`INSTALL_WAIT=0|1`](#install_wait)
+By default the
+[CI script](https://github.com/cppsm/cppsm-cli/blob/master/travis-ci) checks
+that source files have been formatted as with `cppsm format`. Set
+`FORMAT_CHECK=0` explicitly to disable the format check.
 
-By default installation of additional packages is performed concurrently with
-builds when possible. Set `INSTALL_WAIT=1` to wait for installations to complete
-before starting any builds.
+### <a id="install_wait"></a> [≡](#contents) [`INSTALL_WAIT=0|1`](#install_wait)
 
-#### <a id="number_of_processors"></a> [≡](#contents) [`NUMBER_OF_PROCESSORS=1|2|...`](#number_of_processors)
+By default the
+[CI script](https://github.com/cppsm/cppsm-cli/blob/master/travis-ci) performs
+installation of additional packages concurrently with builds when possible. Set
+`INSTALL_WAIT=1` to wait for installations to complete before starting any
+builds.
+
+## <a id="variables"></a> [≡](#contents) [Variables](#variables)
+
+Several environment variables can be set to change the default behavior of one
+or more C++ submodule manager commands. These variables can be used both on the
+[CI](#travis-ci) and also when using `cppsm` commands locally.
+
+### <a id="git_quiet"></a> [≡](#contents) [`GIT_QUIET=1|0`](#git_quiet)
+
+By default [Git](https://git-scm.com/) commands are invoked with the `--quiet`
+flag to reduce noise. Set `GIT_QUIET=0` to see git command output.
+
+### <a id="number_of_processors"></a> [≡](#contents) [`NUMBER_OF_PROCESSORS=1|2|...`](#number_of_processors)
 
 By default the number of processors is auto detected and parallelism is set to
-match the number of processors, but `NUMBER_OF_PROCESSORS` can be set explicitly
-to override the default.
+match the number of processors. Set `NUMBER_OF_PROCESSORS` explicitly to desired
+number to override the default.
 
-#### <a id="n_parallel_build"></a> [≡](#contents) [`N_PARALLEL_BUILD=1|2|...`](#n_parallel_build)
+### <a id="n_parallel_build"></a> [≡](#contents) [`N_PARALLEL_BUILD=1|2|...`](#n_parallel_build)
 
 By default builds are performed with level of parallelism set to the
-[`NUMBER_OF_PROCESSORS`](#number_of_processors), but `N_PARALLEL_BUILD` can be
-set explicitly to override the default.
+[`NUMBER_OF_PROCESSORS`](#number_of_processors). Set `N_PARALLEL_BUILD`
+explicitly to desired number to override the default.
 
-#### <a id="n_parallel_test"></a> [≡](#contents) [`N_PARALLEL_TEST=1|2|...`](#n_parallel_test)
+### <a id="n_parallel_test"></a> [≡](#contents) [`N_PARALLEL_TEST=1|2|...`](#n_parallel_test)
 
 By default tests are run with level of parallelism set to the
-[`NUMBER_OF_PROCESSORS`](#number_of_processors), but `N_PARALLEL_TEST` can be
-set explicitly to override the default.
+[`NUMBER_OF_PROCESSORS`](#number_of_processors). Set `N_PARALLEL_TEST`
+explicitly to desired number to override the default.
 
-#### <a id="n_parallel_update"></a> [≡](#contents) [`N_PARALLEL_UPDATE=1|2|...`](#n_parallel_update)
+### <a id="n_parallel_update"></a> [≡](#contents) [`N_PARALLEL_UPDATE=1|2|...`](#n_parallel_update)
 
 By default
 [Git submodule updates](https://git-scm.com/docs/git-submodule#Documentation/git-submodule.txt---jobsltngt)
 are run with level of parallelism set to the
-[`NUMBER_OF_PROCESSORS`](#number_of_processors), but `N_PARALLEL_UPDATE` can be
-set explicitly to override the default.
+[`NUMBER_OF_PROCESSORS`](#number_of_processors). Set `N_PARALLEL_UPDATE`
+explicitly to desired number to override the default.
 
-#### <a id="xtrace"></a> [≡](#contents) [`XTRACE=0|1`](#xtrace)
+### <a id="xtrace"></a> [≡](#contents) [`XTRACE=0|1`](#xtrace)
 
-By default the CI scripts do not
+By default scripts do not
 [`set -x`](https://www.gnu.org/software/bash/manual/bash.html#The-Set-Builtin)
-to enable Bash xtrace to avoid unnecessary verbosity. Set `XTRACE=1` to enable
-Bash xtrace.
+to enable Bash xtrace to avoid unnecessary noise. Set `XTRACE=1` to enable Bash
+xtrace.

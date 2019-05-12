@@ -43,16 +43,18 @@ excessive configuration.</p>
 </ul>
 </li>
 <li><a href="#travis-ci">Travis CI</a><ul>
-<li><a href="#configuration">Configuration</a><ul>
 <li><a href="#codecov"><code>CODECOV=0|1</code></a></li>
+<li><a href="#format_check"><code>FORMAT_CHECK=1|0</code></a></li>
 <li><a href="#install_wait"><code>INSTALL_WAIT=0|1</code></a></li>
+</ul>
+</li>
+<li><a href="#variables">Variables</a><ul>
+<li><a href="#git_quiet"><code>GIT_QUIET=1|0</code></a></li>
 <li><a href="#number_of_processors"><code>NUMBER_OF_PROCESSORS=1|2|...</code></a></li>
 <li><a href="#n_parallel_build"><code>N_PARALLEL_BUILD=1|2|...</code></a></li>
 <li><a href="#n_parallel_test"><code>N_PARALLEL_TEST=1|2|...</code></a></li>
 <li><a href="#n_parallel_update"><code>N_PARALLEL_UPDATE=1|2|...</code></a></li>
 <li><a href="#xtrace"><code>XTRACE=0|1</code></a></li>
-</ul>
-</li>
 </ul>
 </li>
 </ul>
@@ -173,10 +175,11 @@ library/
 should also include the major version) to differentiate between the header files
 of different targets (and their major versions).</p>
 <h2><a id="travis-ci"></a> <a href="#contents">≡</a> <a href="#travis-ci">Travis CI</a></h2>
-<p>A <a target="_blank" href="https://travis-ci-ci.org/">Travis CI <i class="fas fa-xs fa-external-link-alt"></i></a> configuration file is provided to build
-and test both <code>Debug</code> and <code>Release</code> builds on various OS (Linux, OS X, Windows)
-and compiler configurations (Clang, GCC, Visual C++). Just add your project to
-Travis CI.</p>
+<p>A <a target="_blank" href="https://travis-ci-ci.org/">Travis CI <i class="fas fa-xs fa-external-link-alt"></i></a>
+<a target="_blank" href="https://github.com/cppsm/cppsm-cli/blob/master/.travis.yml">configuration file <i class="fas fa-xs fa-external-link-alt"></i></a>
+is provided to build and test both <code>Debug</code> and <code>Release</code> builds on various OS
+(Linux, OS X, Windows) and compiler configurations (Clang, GCC, Visual C++).
+Just add your project to Travis CI.</p>
 <ul>
 <li>Linux<ul>
 <li>Clang (7)</li>
@@ -194,37 +197,52 @@ Travis CI.</p>
 </ul>
 </li>
 </ul>
-<h3><a id="configuration"></a> <a href="#contents">≡</a> <a href="#configuration">Configuration</a></h3>
-<h4><a id="codecov"></a> <a href="#contents">≡</a> <a href="#codecov"><code>CODECOV=0|1</code></a></h4>
-<p>By default the CI scripts do not generate and push code coverage results to
-<a target="_blank" href="https://codecov.io/">Codecov <i class="fas fa-xs fa-external-link-alt"></i></a>. Set <code>CODECOV=1</code> to enable code coverage.</p>
-<h4><a id="install_wait"></a> <a href="#contents">≡</a> <a href="#install_wait"><code>INSTALL_WAIT=0|1</code></a></h4>
-<p>By default installation of additional packages is performed concurrently with
-builds when possible. Set <code>INSTALL_WAIT=1</code> to wait for installations to complete
-before starting any builds.</p>
-<h4><a id="number_of_processors"></a> <a href="#contents">≡</a> <a href="#number_of_processors"><code>NUMBER_OF_PROCESSORS=1|2|...</code></a></h4>
+<h3><a id="codecov"></a> <a href="#contents">≡</a> <a href="#codecov"><code>CODECOV=0|1</code></a></h3>
+<p>By default the
+<a target="_blank" href="https://github.com/cppsm/cppsm-cli/blob/master/travis-ci">CI script <i class="fas fa-xs fa-external-link-alt"></i></a> does not
+generate and push code coverage results to <a target="_blank" href="https://codecov.io/">Codecov <i class="fas fa-xs fa-external-link-alt"></i></a>. Set
+<code>CODECOV=1</code> to enable code coverage.</p>
+<h3><a id="format_check"></a> <a href="#contents">≡</a> <a href="#format_check"><code>FORMAT_CHECK=1|0</code></a></h3>
+<p>By default the
+<a target="_blank" href="https://github.com/cppsm/cppsm-cli/blob/master/travis-ci">CI script <i class="fas fa-xs fa-external-link-alt"></i></a> checks
+that source files have been formatted as with <code>cppsm format</code>. Set
+<code>FORMAT_CHECK=0</code> explicitly to disable the format check.</p>
+<h3><a id="install_wait"></a> <a href="#contents">≡</a> <a href="#install_wait"><code>INSTALL_WAIT=0|1</code></a></h3>
+<p>By default the
+<a target="_blank" href="https://github.com/cppsm/cppsm-cli/blob/master/travis-ci">CI script <i class="fas fa-xs fa-external-link-alt"></i></a> performs
+installation of additional packages concurrently with builds when possible. Set
+<code>INSTALL_WAIT=1</code> to wait for installations to complete before starting any
+builds.</p>
+<h2><a id="variables"></a> <a href="#contents">≡</a> <a href="#variables">Variables</a></h2>
+<p>Several environment variables can be set to change the default behavior of one
+or more C++ submodule manager commands. These variables can be used both on the
+<a href="#travis-ci">CI</a> and also when using <code>cppsm</code> commands locally.</p>
+<h3><a id="git_quiet"></a> <a href="#contents">≡</a> <a href="#git_quiet"><code>GIT_QUIET=1|0</code></a></h3>
+<p>By default <a target="_blank" href="https://git-scm.com/">Git <i class="fas fa-xs fa-external-link-alt"></i></a> commands are invoked with the <code>--quiet</code>
+flag to reduce noise. Set <code>GIT_QUIET=0</code> to see git command output.</p>
+<h3><a id="number_of_processors"></a> <a href="#contents">≡</a> <a href="#number_of_processors"><code>NUMBER_OF_PROCESSORS=1|2|...</code></a></h3>
 <p>By default the number of processors is auto detected and parallelism is set to
-match the number of processors, but <code>NUMBER_OF_PROCESSORS</code> can be set explicitly
-to override the default.</p>
-<h4><a id="n_parallel_build"></a> <a href="#contents">≡</a> <a href="#n_parallel_build"><code>N_PARALLEL_BUILD=1|2|...</code></a></h4>
+match the number of processors. Set <code>NUMBER_OF_PROCESSORS</code> explicitly to desired
+number to override the default.</p>
+<h3><a id="n_parallel_build"></a> <a href="#contents">≡</a> <a href="#n_parallel_build"><code>N_PARALLEL_BUILD=1|2|...</code></a></h3>
 <p>By default builds are performed with level of parallelism set to the
-<a href="#number_of_processors"><code>NUMBER_OF_PROCESSORS</code></a>, but <code>N_PARALLEL_BUILD</code> can be
-set explicitly to override the default.</p>
-<h4><a id="n_parallel_test"></a> <a href="#contents">≡</a> <a href="#n_parallel_test"><code>N_PARALLEL_TEST=1|2|...</code></a></h4>
+<a href="#number_of_processors"><code>NUMBER_OF_PROCESSORS</code></a>. Set <code>N_PARALLEL_BUILD</code>
+explicitly to desired number to override the default.</p>
+<h3><a id="n_parallel_test"></a> <a href="#contents">≡</a> <a href="#n_parallel_test"><code>N_PARALLEL_TEST=1|2|...</code></a></h3>
 <p>By default tests are run with level of parallelism set to the
-<a href="#number_of_processors"><code>NUMBER_OF_PROCESSORS</code></a>, but <code>N_PARALLEL_TEST</code> can be
-set explicitly to override the default.</p>
-<h4><a id="n_parallel_update"></a> <a href="#contents">≡</a> <a href="#n_parallel_update"><code>N_PARALLEL_UPDATE=1|2|...</code></a></h4>
+<a href="#number_of_processors"><code>NUMBER_OF_PROCESSORS</code></a>. Set <code>N_PARALLEL_TEST</code>
+explicitly to desired number to override the default.</p>
+<h3><a id="n_parallel_update"></a> <a href="#contents">≡</a> <a href="#n_parallel_update"><code>N_PARALLEL_UPDATE=1|2|...</code></a></h3>
 <p>By default
 <a target="_blank" href="https://git-scm.com/docs/git-submodule#Documentation/git-submodule.txt---jobsltngt">Git submodule updates <i class="fas fa-xs fa-external-link-alt"></i></a>
 are run with level of parallelism set to the
-<a href="#number_of_processors"><code>NUMBER_OF_PROCESSORS</code></a>, but <code>N_PARALLEL_UPDATE</code> can be
-set explicitly to override the default.</p>
-<h4><a id="xtrace"></a> <a href="#contents">≡</a> <a href="#xtrace"><code>XTRACE=0|1</code></a></h4>
-<p>By default the CI scripts do not
+<a href="#number_of_processors"><code>NUMBER_OF_PROCESSORS</code></a>. Set <code>N_PARALLEL_UPDATE</code>
+explicitly to desired number to override the default.</p>
+<h3><a id="xtrace"></a> <a href="#contents">≡</a> <a href="#xtrace"><code>XTRACE=0|1</code></a></h3>
+<p>By default scripts do not
 <a target="_blank" href="https://www.gnu.org/software/bash/manual/bash.html#The-Set-Builtin"><code>set -x</code> <i class="fas fa-xs fa-external-link-alt"></i></a>
-to enable Bash xtrace to avoid unnecessary verbosity. Set <code>XTRACE=1</code> to enable
-Bash xtrace.</p>
+to enable Bash xtrace to avoid unnecessary noise. Set <code>XTRACE=1</code> to enable Bash
+xtrace.</p>
 
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/bash.min.js"></script>
