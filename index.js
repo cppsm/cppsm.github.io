@@ -24,11 +24,17 @@ Object.prototype.pipe = function(fn) {
 
 const esc = s => s.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&')
 
+const externalLink = '<i class="fas fa-xs fa-external-link-alt"></i>'
+
 fs.readFileSync(sourcePath)
   .toString()
   .pipe(s => marked(String(s)))
   .replace(/ id="a-[^"]*"/g, '')
   .replace(/ +$/gm, '')
+  .replace(
+    /<a href="(http[^"]*)">(([^<]|<[^/]|<[/][^a])*)<[/]a>/g,
+    `<a target="_blank" href="$1">$2 ${externalLink}</a>`
+  )
   .replace(/<code class="language-([a-z]*)">/g, '<code class="hljs lang-$1">')
   .pipe(
     s => `<!DOCTYPE html>
@@ -37,6 +43,7 @@ fs.readFileSync(sourcePath)
 <link rel="stylesheet" type="text/css" href="github.css">
 <link rel="stylesheet" type="text/css" href="styles.css">
 <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/${hljsVersion}/styles/${hljsStyle}.min.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
 <meta charset="utf-8">
 <title>C++ submodule manager</title>
 </head>

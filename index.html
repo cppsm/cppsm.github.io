@@ -4,6 +4,7 @@
 <link rel="stylesheet" type="text/css" href="github.css">
 <link rel="stylesheet" type="text/css" href="styles.css">
 <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/googlecode.min.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
 <meta charset="utf-8">
 <title>C++ submodule manager</title>
 </head>
@@ -13,19 +14,19 @@
 &quot;conventional&quot; C++ libraries, executable tests, and executable programs on top
 of</p>
 <ul>
-<li><a href="https://cmake.org/">CMake</a>,</li>
-<li><a href="https://git-scm.com/">git</a>,</li>
-<li><a href="https://travis-ci.org/">Travis CI</a>, and</li>
-<li><a href="https://codecov.io/">Codecov</a>.</li>
+<li><a target="_blank" href="https://cmake.org/">CMake <i class="fas fa-xs fa-external-link-alt"></i></a>,</li>
+<li><a target="_blank" href="https://git-scm.com/">git <i class="fas fa-xs fa-external-link-alt"></i></a>,</li>
+<li><a target="_blank" href="https://travis-ci.org/">Travis CI <i class="fas fa-xs fa-external-link-alt"></i></a>, and</li>
+<li><a target="_blank" href="https://codecov.io/">Codecov <i class="fas fa-xs fa-external-link-alt"></i></a>.</li>
 </ul>
 <p>The idea is to minimize boilerplate by relying on simple conventions over
 excessive configuration.</p>
-<p>See <a href="https://github.com/topics/cppsm">repositories with the <code>#cppsm</code> topic</a>.</p>
-<p><a href="https://github.com/cppsm">GitHub organization</a> subprojects:</p>
+<p>See <a target="_blank" href="https://github.com/topics/cppsm">repositories with the <code>#cppsm</code> topic <i class="fas fa-xs fa-external-link-alt"></i></a>.</p>
+<p><a target="_blank" href="https://github.com/cppsm">GitHub organization <i class="fas fa-xs fa-external-link-alt"></i></a> subprojects:</p>
 <ul>
-<li><a href="https://github.com/cppsm/cppsm.github.io/issues">Issues</a></li>
-<li><a href="https://github.com/cppsm/cppsm-cli">Command-line interface</a></li>
-<li><a href="https://github.com/cppsm/cppsm-boilerplate">Per project boilerplate</a></li>
+<li><a target="_blank" href="https://github.com/cppsm/cppsm.github.io/issues">Issues <i class="fas fa-xs fa-external-link-alt"></i></a></li>
+<li><a target="_blank" href="https://github.com/cppsm/cppsm-cli">Command-line interface <i class="fas fa-xs fa-external-link-alt"></i></a></li>
+<li><a target="_blank" href="https://github.com/cppsm/cppsm-boilerplate">Per project boilerplate <i class="fas fa-xs fa-external-link-alt"></i></a></li>
 </ul>
 <h2><a id="contents"></a> <a href="#contents">≡</a> <a href="#contents">Contents</a></h2>
 <ul>
@@ -62,10 +63,10 @@ excessive configuration.</p>
 export PATH=&quot;$CPPSM/bin:$PATH&quot;
 . &quot;$CPPSM/bash_completion&quot;</code></pre>
 <p>For code formatting you need to have both
-<a href="https://clang.llvm.org/docs/ClangFormat.html"><code>clang-format</code></a> and
-<a href="https://prettier.io/"><code>prettier</code></a> commands in path.</p>
+<a target="_blank" href="https://clang.llvm.org/docs/ClangFormat.html"><code>clang-format</code> <i class="fas fa-xs fa-external-link-alt"></i></a> and
+<a target="_blank" href="https://prettier.io/"><code>prettier</code> <i class="fas fa-xs fa-external-link-alt"></i></a> commands in path.</p>
 <p>For the optional auto completion of git urls you must have both
-<a href="https://curl.haxx.se/"><code>curl</code></a> and <a href="https://stedolan.github.io/jq/"><code>jq</code></a>
+<a target="_blank" href="https://curl.haxx.se/"><code>curl</code> <i class="fas fa-xs fa-external-link-alt"></i></a> and <a target="_blank" href="https://stedolan.github.io/jq/"><code>jq</code> <i class="fas fa-xs fa-external-link-alt"></i></a>
 commands in path.</p>
 <h2><a id="synopsis"></a> <a href="#contents">≡</a> <a href="#synopsis">Synopsis</a></h2>
 <p>Create a new project:</p>
@@ -171,7 +172,7 @@ library/
 should also include the major version) to differentiate between the header files
 of different targets (and their major versions).</p>
 <h2><a id="travis"></a> <a href="#contents">≡</a> <a href="#travis">Travis</a></h2>
-<p>A <a href="https://travis-ci.org/">Travis CI</a> configuration file is provided to build
+<p>A <a target="_blank" href="https://travis-ci.org/">Travis CI <i class="fas fa-xs fa-external-link-alt"></i></a> configuration file is provided to build
 and test both <code>Debug</code> and <code>Release</code> builds on various OS (Linux, OS X, Windows)
 and compiler configurations (Clang, GCC, Visual C++). Just add your project to
 Travis CI.</p>
@@ -195,7 +196,7 @@ Travis CI.</p>
 <h3><a id="configuration"></a> <a href="#contents">≡</a> <a href="#configuration">Configuration</a></h3>
 <h4><a id="codecov"></a> <a href="#contents">≡</a> <a href="#codecov"><code>CODECOV=0|1</code></a></h4>
 <p>By default the CI scripts do not generate and push code coverage results to
-<a href="https://codecov.io/">Codecov</a>. Set <code>CODECOV=1</code> to enable code coverage.</p>
+<a target="_blank" href="https://codecov.io/">Codecov <i class="fas fa-xs fa-external-link-alt"></i></a>. Set <code>CODECOV=1</code> to enable code coverage.</p>
 <h4><a id="install_wait"></a> <a href="#contents">≡</a> <a href="#install_wait"><code>INSTALL_WAIT=0|1</code></a></h4>
 <p>By default installation of additional packages is performed concurrently with
 builds when possible. Set <code>INSTALL_WAIT=1</code> to wait for installations to complete
