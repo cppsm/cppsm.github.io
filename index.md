@@ -276,5 +276,7 @@ set explicitly to override the default.
 
 #### <a id="xtrace"></a> [≡](#contents) [`XTRACE=0|1`](#xtrace)
 
-By default the CI scripts do not `set -x` to enable Bash xtrace to avoid
-unnecessary verbosity. Set `XTRACE=1` to enable Bash xtrace.
+By default the CI scripts do not
+[`set -x`](https://www.gnu.org/software/bash/manual/bash.html#The-Set-Builtin)
+to enable Bash xtrace to avoid unnecessary verbosity. Set `XTRACE=1` to enable
+Bash xtrace.
