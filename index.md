@@ -5,7 +5,7 @@ Poor man's submodule management, build scripts, and CI integration for simple,
 of
 
 - [CMake](https://cmake.org/),
-- [git](https://git-scm.com/),
+- [Git](https://git-scm.com/),
 - [Travis CI](https://travis-ci.org/), and
 - [Codecov](https://codecov.io/).
 
@@ -30,7 +30,7 @@ See [repositories with the `#cppsm` topic](https://github.com/topics/cppsm).
     - [`add_conventional_executable(name)`](#add_conventional_executable)
     - [`add_conventional_executable_tests(...)`](#add_conventional_executable_tests)
     - [`add_conventional_library(name)`](#add_conventional_library)
-- [Travis](#travis)
+- [Travis CI](#travis-ci)
   - [Configuration](#configuration)
     - [`CODECOV=0|1`](#codecov)
     - [`INSTALL_WAIT=0|1`](#install_wait)
@@ -227,9 +227,9 @@ Note that inside `include` there is a directory with the target `${name}` (which
 should also include the major version) to differentiate between the header files
 of different targets (and their major versions).
 
-## <a id="travis"></a> [≡](#contents) [Travis](#travis)
+## <a id="travis-ci"></a> [≡](#contents) [Travis CI](#travis-ci)
 
-A [Travis CI](https://travis-ci.org/) configuration file is provided to build
+A [Travis CI](https://travis-ci-ci.org/) configuration file is provided to build
 and test both `Debug` and `Release` builds on various OS (Linux, OS X, Windows)
 and compiler configurations (Clang, GCC, Visual C++). Just add your project to
 Travis CI.
