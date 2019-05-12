@@ -147,7 +147,7 @@ needed, there is no need to create a nested directory.
 A single _target directory_ may simultaneously contain
 
 - a library in the `include/${name}` and `library` directories,
-- an executable test in the `testing` directory, and
+- any number of executable tests in the `testing` directory, and
 - an executable program in the `program` directory.
 
 Try the `cppsm hello` script. It generates a simple example project that has
