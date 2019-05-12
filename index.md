@@ -37,6 +37,7 @@ See [repositories with the `#cppsm` topic](https://github.com/topics/cppsm).
     - [`NUMBER_OF_PROCESSORS=1|2|...`](#number_of_processors)
     - [`N_PARALLEL_BUILD=1|2|...`](#n_parallel_build)
     - [`N_PARALLEL_TEST=1|2|...`](#n_parallel_test)
+    - [`N_PARALLEL_UPDATE=1|2|...`](#n_parallel_update)
     - [`XTRACE=0|1`](#xtrace)
 
 ## <a id="install"></a> [≡](#contents) [Install](#install)
@@ -272,6 +273,14 @@ set explicitly to override the default.
 
 By default tests are run with level of parallelism set to the
 [`NUMBER_OF_PROCESSORS`](#number_of_processors), but `N_PARALLEL_TEST` can be
+set explicitly to override the default.
+
+#### <a id="n_parallel_update"></a> [≡](#contents) [`N_PARALLEL_UPDATE=1|2|...`](#n_parallel_update)
+
+By default
+[Git submodule updates](https://git-scm.com/docs/git-submodule#Documentation/git-submodule.txt---jobsltngt)
+are run with level of parallelism set to the
+[`NUMBER_OF_PROCESSORS`](#number_of_processors), but `N_PARALLEL_UPDATE` can be
 set explicitly to override the default.
 
 #### <a id="xtrace"></a> [≡](#contents) [`XTRACE=0|1`](#xtrace)

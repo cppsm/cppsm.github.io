@@ -49,6 +49,7 @@ excessive configuration.</p>
 <li><a href="#number_of_processors"><code>NUMBER_OF_PROCESSORS=1|2|...</code></a></li>
 <li><a href="#n_parallel_build"><code>N_PARALLEL_BUILD=1|2|...</code></a></li>
 <li><a href="#n_parallel_test"><code>N_PARALLEL_TEST=1|2|...</code></a></li>
+<li><a href="#n_parallel_update"><code>N_PARALLEL_UPDATE=1|2|...</code></a></li>
 <li><a href="#xtrace"><code>XTRACE=0|1</code></a></li>
 </ul>
 </li>
@@ -212,6 +213,12 @@ set explicitly to override the default.</p>
 <h4><a id="n_parallel_test"></a> <a href="#contents">≡</a> <a href="#n_parallel_test"><code>N_PARALLEL_TEST=1|2|...</code></a></h4>
 <p>By default tests are run with level of parallelism set to the
 <a href="#number_of_processors"><code>NUMBER_OF_PROCESSORS</code></a>, but <code>N_PARALLEL_TEST</code> can be
+set explicitly to override the default.</p>
+<h4><a id="n_parallel_update"></a> <a href="#contents">≡</a> <a href="#n_parallel_update"><code>N_PARALLEL_UPDATE=1|2|...</code></a></h4>
+<p>By default
+<a target="_blank" href="https://git-scm.com/docs/git-submodule#Documentation/git-submodule.txt---jobsltngt">Git submodule updates <i class="fas fa-xs fa-external-link-alt"></i></a>
+are run with level of parallelism set to the
+<a href="#number_of_processors"><code>NUMBER_OF_PROCESSORS</code></a>, but <code>N_PARALLEL_UPDATE</code> can be
 set explicitly to override the default.</p>
 <h4><a id="xtrace"></a> <a href="#contents">≡</a> <a href="#xtrace"><code>XTRACE=0|1</code></a></h4>
 <p>By default the CI scripts do not
