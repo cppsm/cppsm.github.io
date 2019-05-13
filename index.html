@@ -30,9 +30,29 @@ excessive configuration.</p>
 </ul>
 <h2><a id="contents"></a> <a href="#contents">≡</a> <a href="#contents">Contents</a></h2>
 <ul>
-<li><a href="#install">Install</a></li>
-<li><a href="#synopsis">Synopsis</a></li>
 <li><a href="#project-structure">Project structure</a></li>
+<li><a href="#cppsm-command"><code>cppsm</code> command</a><ul>
+<li><a href="#installation">Installation</a></li>
+<li><a href="#quick-tour">Quick tour</a></li>
+<li><a href="#subcommands">Subcommands</a><ul>
+<li><a href="#cppsm-add"><code>cppsm add (requires|equipment) url branch</code></a></li>
+<li><a href="#cppsm-build"><code>cppsm build</code></a></li>
+<li><a href="#cppsm-build-watch"><code>cppsm build-watch</code></a></li>
+<li><a href="#cppsm-clone"><code>cppsm clone url branch</code></a></li>
+<li><a href="#cppsm-format"><code>cppsm format</code></a></li>
+<li><a href="#cppsm-hello"><code>cppsm hello</code></a></li>
+<li><a href="#cppsm-init"><code>cppsm init</code></a></li>
+<li><a href="#cppsm-list"><code>cppsm list</code></a></li>
+<li><a href="#cppsm-remove"><code>cppsm remove path</code></a></li>
+<li><a href="#cppsm-setup"><code>cppsm setup</code></a></li>
+<li><a href="#cppsm-test"><code>cppsm test</code></a></li>
+<li><a href="#cppsm-test-watch"><code>cppsm test-watch</code></a></li>
+<li><a href="#cppsm-update"><code>cppsm update</code></a></li>
+<li><a href="#cppsm-upgrade"><code>cppsm upgrade</code></a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li><a href="#cmake">CMake</a><ul>
 <li><a href="#conventional-cmake"><code>conventional.cmake</code></a><ul>
 <li><a href="#add_conventional_executable"><code>add_conventional_executable(name)</code></a></li>
@@ -49,6 +69,7 @@ excessive configuration.</p>
 </ul>
 </li>
 <li><a href="#variables">Variables</a><ul>
+<li><a href="#ctest_output_on_failure"><code>CTEST_OUTPUT_ON_FAILURE=1|0</code></a></li>
 <li><a href="#git_quiet"><code>GIT_QUIET=1|0</code></a></li>
 <li><a href="#number_of_processors"><code>NUMBER_OF_PROCESSORS=1|2|...</code></a></li>
 <li><a href="#n_parallel_build"><code>N_PARALLEL_BUILD=1|2|...</code></a></li>
@@ -58,45 +79,6 @@ excessive configuration.</p>
 </ul>
 </li>
 </ul>
-<h2><a id="install"></a> <a href="#contents">≡</a> <a href="#install">Install</a></h2>
-<p>Clone the <code>cppsm-cli</code> somewhere:</p>
-<pre><code class="hljs lang-bash">git clone https://github.com/cppsm/cppsm-cli.git</code></pre>
-<p>Add to your <code>.bash_profile</code>:</p>
-<pre><code class="hljs lang-bash">CPPSM=&quot;path to cppsm-cli directory&quot;
-export PATH=&quot;$CPPSM/bin:$PATH&quot;
-. &quot;$CPPSM/bash_completion&quot;</code></pre>
-<p>For code formatting you need to have both
-<a target="_blank" href="https://clang.llvm.org/docs/ClangFormat.html"><code>clang-format</code> <i class="fas fa-xs fa-external-link-alt"></i></a> and
-<a target="_blank" href="https://prettier.io/"><code>prettier</code> <i class="fas fa-xs fa-external-link-alt"></i></a> commands in path.</p>
-<p>For the optional auto completion of git urls you must have both
-<a target="_blank" href="https://curl.haxx.se/"><code>curl</code> <i class="fas fa-xs fa-external-link-alt"></i></a> and <a target="_blank" href="https://stedolan.github.io/jq/"><code>jq</code> <i class="fas fa-xs fa-external-link-alt"></i></a>
-commands in path.</p>
-<h2><a id="synopsis"></a> <a href="#contents">≡</a> <a href="#synopsis">Synopsis</a></h2>
-<p>Create a new project:</p>
-<pre><code class="hljs lang-bash">mkdir PROJECT &amp;&amp; cd &quot;$_&quot;
-git init
-cppsm init</code></pre>
-<p>Try the hello world example (after <code>init</code>):</p>
-<pre><code class="hljs lang-bash">cppsm hello
-cppsm test
-.build*/internals/hello</code></pre>
-<p>Start hacking:</p>
-<pre><code class="hljs lang-bash">emacs internals/program/hello.cpp &amp;
-cppsm test-watch</code></pre>
-<p>Format project files inplace:</p>
-<pre><code class="hljs lang-bash">cppsm format</code></pre>
-<p>Clone an existing project:</p>
-<pre><code class="hljs lang-bash">cppsm clone URL BRANCH</code></pre>
-<p>Or clone an existing project using plain git:</p>
-<pre><code class="hljs lang-bash">git clone -b BRANCH URL/NAME.git
-cd NAME
-git submodule update --init     # NOTE: non-recursive</code></pre>
-<p>Add a required library:</p>
-<pre><code class="hljs lang-bash">cppsm add requires URL/NAME.git BRANCH</code></pre>
-<p>Remove a previously required library:</p>
-<pre><code class="hljs lang-bash">cppsm remove requires/NAME/BRANCH</code></pre>
-<p>Upgrade all required libraries:</p>
-<pre><code class="hljs lang-bash">cppsm upgrade</code></pre>
 <h2><a id="project-structure"></a> <a href="#contents">≡</a> <a href="#project-structure">Project structure</a></h2>
 <p>At the root of a project there are three directories as follows:</p>
 <ul>
@@ -147,6 +129,130 @@ provides/
     hello.cpp</code></pre><p>Note that the include directories are versioned as are CMake target names and
 C++ namespace names. This allows multiple major versions of a library to be used
 simultaneously.</p>
+<h2><a id="cppsm-command"></a> <a href="#contents">≡</a> <a href="#cppsm-command"><code>cppsm</code> command</a></h2>
+<p>The <code>cppsm</code> command automates various operations on projects adhering to the C++
+submodule manager conventions.</p>
+<h3><a id="installation"></a> <a href="#contents">≡</a> <a href="#installation">Installation</a></h3>
+<p>To install the <code>cppsm</code> command you need to clone its
+<a target="_blank" href="https://github.com/cppsm/cppsm-cli">repository <i class="fas fa-xs fa-external-link-alt"></i></a> and add it to your <code>PATH</code>.</p>
+<p>Clone the <code>cppsm-cli</code> somewhere:</p>
+<pre><code class="hljs lang-bash">git clone https://github.com/cppsm/cppsm-cli.git</code></pre>
+<p>Add to your <code>.bash_profile</code>:</p>
+<pre><code class="hljs lang-bash">CPPSM=&quot;path to cppsm-cli directory&quot;
+export PATH=&quot;$CPPSM/bin:$PATH&quot;
+. &quot;$CPPSM/bash_completion&quot;</code></pre>
+<p>For code formatting you need to have both
+<a target="_blank" href="https://clang.llvm.org/docs/ClangFormat.html"><code>clang-format</code> <i class="fas fa-xs fa-external-link-alt"></i></a> and
+<a target="_blank" href="https://prettier.io/"><code>prettier</code> <i class="fas fa-xs fa-external-link-alt"></i></a> commands in path.</p>
+<p>For the optional auto completion of git urls you must have both
+<a target="_blank" href="https://curl.haxx.se/"><code>curl</code> <i class="fas fa-xs fa-external-link-alt"></i></a> and <a target="_blank" href="https://stedolan.github.io/jq/"><code>jq</code> <i class="fas fa-xs fa-external-link-alt"></i></a>
+commands in path.</p>
+<h3><a id="quick-tour"></a> <a href="#contents">≡</a> <a href="#quick-tour">Quick tour</a></h3>
+<p>Here is a quick tour of basic <code>cppsm</code> functionality.</p>
+<p>Create a new project:</p>
+<pre><code class="hljs lang-bash">mkdir PROJECT &amp;&amp; cd &quot;$_&quot;
+git init
+cppsm init</code></pre>
+<p>Try the hello world example (after <code>init</code>):</p>
+<pre><code class="hljs lang-bash">cppsm hello
+cppsm test
+.build*/internals/hello</code></pre>
+<p>Start hacking:</p>
+<pre><code class="hljs lang-bash">emacs internals/program/hello.cpp &amp;
+cppsm test-watch</code></pre>
+<p>Format project files inplace:</p>
+<pre><code class="hljs lang-bash">cppsm format</code></pre>
+<p>Clone an existing project:</p>
+<pre><code class="hljs lang-bash">cppsm clone URL BRANCH</code></pre>
+<p>Or clone an existing project using plain git:</p>
+<pre><code class="hljs lang-bash">git clone -b BRANCH URL/NAME.git
+cd NAME
+git submodule update --init     # NOTE: non-recursive</code></pre>
+<p>Add a required library:</p>
+<pre><code class="hljs lang-bash">cppsm add requires URL/NAME.git BRANCH</code></pre>
+<p>Remove a previously required library:</p>
+<pre><code class="hljs lang-bash">cppsm remove requires/NAME/BRANCH</code></pre>
+<p>Upgrade all required libraries:</p>
+<pre><code class="hljs lang-bash">cppsm upgrade</code></pre>
+<h3><a id="subcommands"></a> <a href="#contents">≡</a> <a href="#subcommands">Subcommands</a></h3>
+<p>Below is reference documentation for each <code>cppsm</code> subcommand. Each subcommand
+also prints out short instructions to the console in case the invocation is
+incorrect.</p>
+<h4><a id="cppsm-add"></a> <a href="#contents">≡</a> <a href="#cppsm-add"><code>cppsm add (requires|equipment) url branch</code></a></h4>
+<p>Adds a new cppsm compatible submodule and recursively the submodules it requires
+to the project. This command is idempotent and can be run to e.g. add new
+transitive dependencies after updating submodules.</p>
+<h4><a id="cppsm-build"></a> <a href="#contents">≡</a> <a href="#cppsm-build"><code>cppsm build</code></a></h4>
+<p>Sets up a build directory and builds the project. See
+<a href="#cppsm-setup"><code>cppsm setup</code></a> for the flags.</p>
+<h4><a id="cppsm-build-watch"></a> <a href="#contents">≡</a> <a href="#cppsm-build-watch"><code>cppsm build-watch</code></a></h4>
+<p>Sets up a build directory, builds the project, and starts a file system watch to
+build the project on any changes to project files. See
+<a href="#cppsm-setup"><code>cppsm setup</code></a> for the flags.</p>
+<h4><a id="cppsm-clone"></a> <a href="#contents">≡</a> <a href="#cppsm-clone"><code>cppsm clone url branch</code></a></h4>
+<p>Clones the specified cppsm compatible repository and its dependencies.</p>
+<h4><a id="cppsm-format"></a> <a href="#contents">≡</a> <a href="#cppsm-format"><code>cppsm format</code></a></h4>
+<p>Formats project files inplace using
+<a target="_blank" href="https://clang.llvm.org/docs/ClangFormat.html">clang-format <i class="fas fa-xs fa-external-link-alt"></i></a> and
+<a target="_blank" href="https://prettier.io/">prettier <i class="fas fa-xs fa-external-link-alt"></i></a>.</p>
+<h4><a id="cppsm-hello"></a> <a href="#contents">≡</a> <a href="#cppsm-hello"><code>cppsm hello</code></a></h4>
+<p>Creates an example &quot;Hello, world!&quot; program in a freshly initialized project
+directory.</p>
+<h4><a id="cppsm-init"></a> <a href="#contents">≡</a> <a href="#cppsm-init"><code>cppsm init</code></a></h4>
+<p>Initializes a new C++ project with cppsm configuration files or updates an
+existing project to use the latest configuration files. Run <code>cppsm init</code> in the
+top-level directory of a fresh git project.</p>
+<h4><a id="cppsm-list"></a> <a href="#contents">≡</a> <a href="#cppsm-list"><code>cppsm list</code></a></h4>
+<p>Prints out a dependency tree of submodules. This command exits with an error
+code in case any problems are found in the dependency tree.</p>
+<h4><a id="cppsm-remove"></a> <a href="#contents">≡</a> <a href="#cppsm-remove"><code>cppsm remove path</code></a></h4>
+<p>Removes a previously required submodule. Note that this command does not remove
+submodules transitively.</p>
+<h4><a id="cppsm-setup"></a> <a href="#contents">≡</a> <a href="#cppsm-setup"><code>cppsm setup</code></a></h4>
+<p>Sets up a build directory. The build directory name is determined based on the
+options.</p>
+<p>Options:</p>
+<ul>
+<li><p><code>CMAKE_BUILD_TYPE=Debug|Release</code></p>
+<ul>
+<li><a target="_blank" href="https://cmake.org/cmake/help/latest/variable/CMAKE_BUILD_TYPE.html">Specifies which configuration to use <i class="fas fa-xs fa-external-link-alt"></i></a>.</li>
+</ul>
+</li>
+<li><p><code>CC=cc|gcc|clang|...</code></p>
+<ul>
+<li><a target="_blank" href="https://cmake.org/cmake/help/latest/envvar/CC.html">Specifies which C compiler to use <i class="fas fa-xs fa-external-link-alt"></i></a>.</li>
+</ul>
+</li>
+<li><p><code>CXX=c++|g++|clang++|...</code></p>
+<ul>
+<li><a target="_blank" href="https://cmake.org/cmake/help/latest/envvar/CXX.html">Specifies which C++ compiler to use <i class="fas fa-xs fa-external-link-alt"></i></a>.</li>
+</ul>
+</li>
+<li><p><code>CLEAN=0|1</code></p>
+<ul>
+<li>Specifies that the build directory should be recreated from scratch.</li>
+</ul>
+</li>
+<li><p><code>COVERAGE=0|1</code></p>
+<ul>
+<li>Specifies that the build should be configured to generate coverage
+information. Currently this option is only supported on GCC and Clang.</li>
+</ul>
+</li>
+</ul>
+<h4><a id="cppsm-test"></a> <a href="#contents">≡</a> <a href="#cppsm-test"><code>cppsm test</code></a></h4>
+<p>Sets up a build directory, builds the project, and runs the tests. See
+<a href="#cppsm-setup"><code>cppsm setup</code></a> for the flags.</p>
+<h4><a id="cppsm-test-watch"></a> <a href="#contents">≡</a> <a href="#cppsm-test-watch"><code>cppsm test-watch</code></a></h4>
+<p>Sets up a build directory, builds the project, runs the tests, and starts a file
+system watch to build and test the project on any changes to project files. See
+<a href="#cppsm-setup"><code>cppsm setup</code></a> for the flags.</p>
+<h4><a id="cppsm-update"></a> <a href="#contents">≡</a> <a href="#cppsm-update"><code>cppsm update</code></a></h4>
+<p>Pulls the current git branch and updates all cppsm managed submodules to the
+versions in the branch.</p>
+<h4><a id="cppsm-upgrade"></a> <a href="#contents">≡</a> <a href="#cppsm-upgrade"><code>cppsm upgrade</code></a></h4>
+<p>Upgrades all cppsm managed submodules to latest remote versions and runs
+<code>cppsm init</code> to update configuration files.</p>
 <h2><a id="cmake"></a> <a href="#contents">≡</a> <a href="#cmake">CMake</a></h2>
 <p>CMake boilerplate is provided for simple libraries, tests, and executables.</p>
 <h3><a id="conventional-cmake"></a> <a href="#contents">≡</a> <a href="#conventional-cmake"><code>conventional.cmake</code></a></h3>
@@ -217,6 +323,10 @@ builds.</p>
 <p>Several environment variables can be set to change the default behavior of one
 or more C++ submodule manager commands. These variables can be used both on the
 <a href="#travis-ci">CI</a> and also when using <code>cppsm</code> commands locally.</p>
+<h3><a id="ctest_output_on_failure"></a> <a href="#contents">≡</a> <a href="#ctest_output_on_failure"><code>CTEST_OUTPUT_ON_FAILURE=1|0</code></a></h3>
+<p>By default CTest is configured to
+<a target="_blank" href="https://cmake.org/cmake/help/latest/envvar/CTEST_OUTPUT_ON_FAILURE.html">log output in case a test fails <i class="fas fa-xs fa-external-link-alt"></i></a>.
+Set <code>CTEST_OUTPUT_ON_FAILURE=0</code> explicitly to override the default.</p>
 <h3><a id="git_quiet"></a> <a href="#contents">≡</a> <a href="#git_quiet"><code>GIT_QUIET=1|0</code></a></h3>
 <p>By default <a target="_blank" href="https://git-scm.com/">Git <i class="fas fa-xs fa-external-link-alt"></i></a> commands are invoked with the <code>--quiet</code>
 flag to reduce noise. Set <code>GIT_QUIET=0</code> to see git command output.</p>
