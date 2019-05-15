@@ -33,7 +33,10 @@ fs.readFileSync(sourcePath)
   .replace(/ +$/gm, '')
   .replace(
     /<a href="(http[^"]*)">(([^<]|<[^/]|<[/][^a])*)<[/]a>/g,
-    `<a target="_blank" href="$1">$2 ${externalLink}</a>`
+    (match, href, content) =>
+      content.startsWith('<img ')
+        ? `<a target="_blank" href="${href}">${content}</a>`
+        : `<a target="_blank" href="${href}">${content} ${externalLink}</a>`
   )
   .replace(/<code class="language-([a-z]*)">/g, '<code class="hljs lang-$1">')
   .pipe(

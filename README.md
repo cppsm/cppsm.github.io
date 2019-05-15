@@ -1,4 +1,4 @@
-# [≡](#contents) [C++ submodule manager](#)
+# [≡](#contents) [C++ submodule manager](#) &middot; [![Gitter](https://badges.gitter.im/cppsm/community.svg)](https://gitter.im/cppsm/community)
 
 Poor man's submodule management, build scripts, and CI integration for simple,
 "conventional" C++ libraries, executable tests, and executable programs.

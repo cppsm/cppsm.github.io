@@ -1,4 +1,4 @@
-# [≡](#contents) [C++ submodule manager](#)
+# [≡](#contents) [C++ submodule manager](#) &middot; [![Gitter](https://badges.gitter.im/cppsm/community.svg)](https://gitter.im/cppsm/community)
 
 Poor man's submodule management, build scripts, and CI integration for simple,
 "conventional" C++ libraries, executable tests, and executable programs on top
@@ -27,15 +27,15 @@ See [repositories with the `#cppsm` topic](https://github.com/topics/cppsm).
   - [Installation](#installation)
   - [Quick tour](#quick-tour)
   - [Subcommands](#subcommands)
-    - [`cppsm add (requires|equipment) url branch`](#cppsm-add)
+    - [`cppsm add (requires|equipment) <url> <branch>`](#cppsm-add)
     - [`cppsm build`](#cppsm-build)
     - [`cppsm build-watch`](#cppsm-build-watch)
-    - [`cppsm clone url branch`](#cppsm-clone)
+    - [`cppsm clone <url> <branch>`](#cppsm-clone)
     - [`cppsm format`](#cppsm-format)
     - [`cppsm hello`](#cppsm-hello)
     - [`cppsm init`](#cppsm-init)
     - [`cppsm list`](#cppsm-list)
-    - [`cppsm remove path`](#cppsm-remove)
+    - [`cppsm remove <path>`](#cppsm-remove)
     - [`cppsm setup`](#cppsm-setup)
       - [`CMAKE_BUILD_TYPE=Debug|Release`](#cmake_build_type)
       - [`CC=cc|gcc|clang|...`](#cc)
@@ -59,6 +59,7 @@ See [repositories with the `#cppsm` topic](https://github.com/topics/cppsm).
   - [`CTEST_OUTPUT_ON_FAILURE=1|0`](#ctest_output_on_failure)
   - [`QUIET=1|0`](#quiet)
     - [`GIT_QUIET=QUIET`](#git_quiet)
+    - [`MSBUILD_VERBOSITY=QUIET|MINIMAL|NORMAL|DETAILED|DIAGNOSTIC`](#msbuild_verbosity)
   - [`NUMBER_OF_PROCESSORS=1|2|...`](#number_of_processors)
     - [`N_PARALLEL_BUILD=NUMBER_OF_PROCESSORS`](#n_parallel_build)
     - [`N_PARALLEL_TEST=NUMBER_OF_PROCESSORS`](#n_parallel_test)
@@ -225,7 +226,7 @@ Below is reference documentation for each `cppsm` subcommand. Each subcommand
 also prints out short instructions to the console in case the invocation is
 incorrect.
 
-#### <a id="cppsm-add"></a> [≡](#contents) [`cppsm add (requires|equipment) url branch`](#cppsm-add)
+#### <a id="cppsm-add"></a> [≡](#contents) [`cppsm add (requires|equipment) <url> <branch>`](#cppsm-add)
 
 Adds a new cppsm compatible submodule and recursively the submodules it requires
 to the project. This command is idempotent and can be run to e.g. add new
@@ -234,15 +235,15 @@ transitive dependencies after updating submodules.
 #### <a id="cppsm-build"></a> [≡](#contents) [`cppsm build`](#cppsm-build)
 
 Sets up a build directory and builds the project. See
-[`cppsm setup`](#cppsm-setup) for the flags.
+[`cppsm setup`](#cppsm-setup) for the configuration variables.
 
 #### <a id="cppsm-build-watch"></a> [≡](#contents) [`cppsm build-watch`](#cppsm-build-watch)
 
 Sets up a build directory, builds the project, and starts a file system watch to
 build the project on any changes to project files. See
-[`cppsm setup`](#cppsm-setup) for the flags.
+[`cppsm setup`](#cppsm-setup) for the configuration variables.
 
-#### <a id="cppsm-clone"></a> [≡](#contents) [`cppsm clone url branch`](#cppsm-clone)
+#### <a id="cppsm-clone"></a> [≡](#contents) [`cppsm clone <url> <branch>`](#cppsm-clone)
 
 Clones the specified cppsm compatible repository and its dependencies.
 
@@ -268,7 +269,7 @@ top-level directory of a fresh git project.
 Prints out a dependency tree of submodules. This command exits with an error
 code in case any problems are found in the dependency tree.
 
-#### <a id="cppsm-remove"></a> [≡](#contents) [`cppsm remove path`](#cppsm-remove)
+#### <a id="cppsm-remove"></a> [≡](#contents) [`cppsm remove <path>`](#cppsm-remove)
 
 Removes a previously required submodule. Note that this command does not remove
 submodules transitively.
@@ -276,9 +277,9 @@ submodules transitively.
 #### <a id="cppsm-setup"></a> [≡](#contents) [`cppsm setup`](#cppsm-setup)
 
 Sets up a build directory. The build directory name is determined based on the
-options.
+configuration variables.
 
-Options:
+Configuration variables:
 
 - <a id="cmake_build_type"></a>[`CMAKE_BUILD_TYPE=Debug|Release`](#cmake_build_type)
   [specifies which configuration to use](https://cmake.org/cmake/help/latest/variable/CMAKE_BUILD_TYPE.html).
@@ -287,25 +288,26 @@ Options:
   [specifies which C compiler to use](https://cmake.org/cmake/help/latest/envvar/CC.html).
 
 - <a id="cxx"></a>[`CXX=c++|g++|clang++|...`](#cxx)
-  [Specifies which C++ compiler to use](https://cmake.org/cmake/help/latest/envvar/CXX.html).
+  [specifies which C++ compiler to use](https://cmake.org/cmake/help/latest/envvar/CXX.html).
 
-- <a id="clean"></a>[`CLEAN=0|1`](#clean) specifies that the build directory
+- <a id="clean"></a>[`CLEAN=0|1`](#clean) specifies whether the build directory
   should be recreated from scratch.
 
-- <a id="coverage"></a>[`COVERAGE=0|1`](#coverage) specifies that the build
-  should be configured to generate coverage information. Currently this option
-  is only supported on GCC and Clang.
+- <a id="coverage"></a>[`COVERAGE=0|1`](#coverage) specifies whether the build
+  should be configured to generate coverage information. Currently this code
+  coverage is only supported on [GCC](https://gcc.gnu.org/) and
+  [Clang](https://clang.llvm.org/).
 
 #### <a id="cppsm-test"></a> [≡](#contents) [`cppsm test`](#cppsm-test)
 
 Sets up a build directory, builds the project, and runs the tests. See
-[`cppsm setup`](#cppsm-setup) for the flags.
+[`cppsm setup`](#cppsm-setup) for the configuration variables.
 
 #### <a id="cppsm-test-watch"></a> [≡](#contents) [`cppsm test-watch`](#cppsm-test-watch)
 
 Sets up a build directory, builds the project, runs the tests, and starts a file
 system watch to build and test the project on any changes to project files. See
-[`cppsm setup`](#cppsm-setup) for the flags.
+[`cppsm setup`](#cppsm-setup) for the configuration variables.
 
 #### <a id="cppsm-update"></a> [≡](#contents) [`cppsm update`](#cppsm-update)
 
@@ -366,18 +368,20 @@ of different targets (and their major versions).
 A [Travis CI](https://travis-ci-ci.org/)
 [configuration file](https://github.com/cppsm/cppsm-cli/blob/master/.travis.yml)
 is provided to build and test both `Debug` and `Release` builds on various OS
-(Linux, OS X, Windows) and compiler configurations (Clang, GCC, Visual C++).
-Just add your project to Travis CI.
+(Linux, OS X, Windows) and compiler configurations
+([Clang](https://clang.llvm.org/), [GCC](https://gcc.gnu.org/),
+[Visual C++](https://docs.microsoft.com/en-us/cpp/)). Just add your project to
+Travis CI.
 
 - Linux
-  - Clang (7)
-  - GCC (8)
+  - [Clang](https://clang.llvm.org/) (7)
+  - [GCC](https://gcc.gnu.org/) (8)
 - OS X
-  - Apple Clang (10)
-  - GCC (8)
+  - Apple [Clang](https://clang.llvm.org/) (10)
+  - [GCC](https://gcc.gnu.org/) (8)
 - Windows
-  - MinGW GCC (8)
-  - Visual C++ (2017)
+  - [MinGW](http://www.mingw.org/) [GCC](https://gcc.gnu.org/) (8)
+  - [Visual C++](https://docs.microsoft.com/en-us/cpp/) (2017)
 
 ### <a id="codecov"></a> [≡](#contents) [`CODECOV=0|1`](#codecov)
 
@@ -415,11 +419,20 @@ Set `CTEST_OUTPUT_ON_FAILURE=0` explicitly to override the default.
 
 ### <a id="quiet"></a> [≡](#contents) [`QUIET=1|0`](#quiet)
 
-By default various commands are invoked with quiet flags to reduce noise. Set
+By default various commands are invoked with quiet settings to reduce noise. Set
 `QUIET=0` explicitly to see more output from various commands.
 
-- <a id="git_quiet"></a>[`GIT_QUIET=QUIET`](#git_quiet) controls `--quiet` flag
-  for [Git](https://git-scm.com/) commands.
+- <a id="git_quiet"></a>[`GIT_QUIET=QUIET`](#git_quiet) controls the `--quiet`
+  switch for [Git](https://git-scm.com/) commands.
+
+- <a
+  id="msbuild_verbosity"></a>[`MSBUILD_VERBOSITY=QUIET|MINIMAL|NORMAL|DETAILED|DIAGNOSTIC`](#msbuild_verbosity)
+  controls the
+  [`/VERBOSITY`](https://docs.microsoft.com/en-us/visualstudio/msbuild/msbuild-command-line-reference)
+  switch for
+  [MSBuild](https://docs.microsoft.com/en-us/visualstudio/msbuild/msbuild). If
+  `MSBUILD_VERBOSITY` is not explicitly set and `QUIET=1` then
+  `MSBUILD_VERBOSITY` will be set to `QUIET`.
 
 ### <a id="number_of_processors"></a> [≡](#contents) [`NUMBER_OF_PROCESSORS=1|2|...`](#number_of_processors)
 
@@ -428,14 +441,16 @@ based on the number of processors. Set `NUMBER_OF_PROCESSORS` explicitly to
 desired number to override the default.
 
 - <a id="n_parallel_build"></a>[`N_PARALLEL_BUILD=NUMBER_OF_PROCESSORS`](#n_parallel_build)
-  controls level of build parallelism.
+  controls the
+  [`--parallel` option of `cmake --build`](https://cmake.org/cmake/help/latest/manual/cmake.1.html#build-a-project).
 
 - <a id="n_parallel_test"></a>[`N_PARALLEL_TEST=NUMBER_OF_PROCESSORS`](#n_parallel_test)
-  controls level of test parallelism.
+  controls the
+  [`--parallel` option of `ctest`](https://cmake.org/cmake/help/latest/manual/ctest.1.html#options).
 
 - <a id="n_parallel_update"></a>[`N_PARALLEL_UPDATE=NUMBER_OF_PROCESSORS`](#n_parallel_update)
-  controls level of parallelism for
-  [Git submodule updates](https://git-scm.com/docs/git-submodule#Documentation/git-submodule.txt---jobsltngt).
+  controls the
+  [`--jobs` option of `git submodule update`](https://git-scm.com/docs/git-submodule#Documentation/git-submodule.txt---jobsltngt).
 
 ### <a id="trace"></a> [≡](#contents) [`TRACE=0|1`](#trace)
 

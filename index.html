@@ -9,7 +9,7 @@
 <title>C++ submodule manager</title>
 </head>
 <body class="markdown-body">
-<h1 id="≡-c-submodule-manager"><a href="#contents">≡</a> <a href="#">C++ submodule manager</a></h1>
+<h1 id="≡-c-submodule-manager--gitter"><a href="#contents">≡</a> <a href="#">C++ submodule manager</a> &middot; <a target="_blank" href="https://gitter.im/cppsm/community"><img src="https://badges.gitter.im/cppsm/community.svg" alt="Gitter"></a></h1>
 <p>Poor man&#39;s submodule management, build scripts, and CI integration for simple,
 &quot;conventional&quot; C++ libraries, executable tests, and executable programs on top
 of</p>
@@ -35,15 +35,15 @@ excessive configuration.</p>
 <li><a href="#installation">Installation</a></li>
 <li><a href="#quick-tour">Quick tour</a></li>
 <li><a href="#subcommands">Subcommands</a><ul>
-<li><a href="#cppsm-add"><code>cppsm add (requires|equipment) url branch</code></a></li>
+<li><a href="#cppsm-add"><code>cppsm add (requires|equipment) &lt;url&gt; &lt;branch&gt;</code></a></li>
 <li><a href="#cppsm-build"><code>cppsm build</code></a></li>
 <li><a href="#cppsm-build-watch"><code>cppsm build-watch</code></a></li>
-<li><a href="#cppsm-clone"><code>cppsm clone url branch</code></a></li>
+<li><a href="#cppsm-clone"><code>cppsm clone &lt;url&gt; &lt;branch&gt;</code></a></li>
 <li><a href="#cppsm-format"><code>cppsm format</code></a></li>
 <li><a href="#cppsm-hello"><code>cppsm hello</code></a></li>
 <li><a href="#cppsm-init"><code>cppsm init</code></a></li>
 <li><a href="#cppsm-list"><code>cppsm list</code></a></li>
-<li><a href="#cppsm-remove"><code>cppsm remove path</code></a></li>
+<li><a href="#cppsm-remove"><code>cppsm remove &lt;path&gt;</code></a></li>
 <li><a href="#cppsm-setup"><code>cppsm setup</code></a><ul>
 <li><a href="#cmake_build_type"><code>CMAKE_BUILD_TYPE=Debug|Release</code></a></li>
 <li><a href="#cc"><code>CC=cc|gcc|clang|...</code></a></li>
@@ -79,6 +79,7 @@ excessive configuration.</p>
 <li><a href="#ctest_output_on_failure"><code>CTEST_OUTPUT_ON_FAILURE=1|0</code></a></li>
 <li><a href="#quiet"><code>QUIET=1|0</code></a><ul>
 <li><a href="#git_quiet"><code>GIT_QUIET=QUIET</code></a></li>
+<li><a href="#msbuild_verbosity"><code>MSBUILD_VERBOSITY=QUIET|MINIMAL|NORMAL|DETAILED|DIAGNOSTIC</code></a></li>
 </ul>
 </li>
 <li><a href="#number_of_processors"><code>NUMBER_OF_PROCESSORS=1|2|...</code></a><ul>
@@ -193,18 +194,18 @@ git submodule update --init     # NOTE: non-recursive</code></pre>
 <p>Below is reference documentation for each <code>cppsm</code> subcommand. Each subcommand
 also prints out short instructions to the console in case the invocation is
 incorrect.</p>
-<h4><a id="cppsm-add"></a> <a href="#contents">≡</a> <a href="#cppsm-add"><code>cppsm add (requires|equipment) url branch</code></a></h4>
+<h4><a id="cppsm-add"></a> <a href="#contents">≡</a> <a href="#cppsm-add"><code>cppsm add (requires|equipment) &lt;url&gt; &lt;branch&gt;</code></a></h4>
 <p>Adds a new cppsm compatible submodule and recursively the submodules it requires
 to the project. This command is idempotent and can be run to e.g. add new
 transitive dependencies after updating submodules.</p>
 <h4><a id="cppsm-build"></a> <a href="#contents">≡</a> <a href="#cppsm-build"><code>cppsm build</code></a></h4>
 <p>Sets up a build directory and builds the project. See
-<a href="#cppsm-setup"><code>cppsm setup</code></a> for the flags.</p>
+<a href="#cppsm-setup"><code>cppsm setup</code></a> for the configuration variables.</p>
 <h4><a id="cppsm-build-watch"></a> <a href="#contents">≡</a> <a href="#cppsm-build-watch"><code>cppsm build-watch</code></a></h4>
 <p>Sets up a build directory, builds the project, and starts a file system watch to
 build the project on any changes to project files. See
-<a href="#cppsm-setup"><code>cppsm setup</code></a> for the flags.</p>
-<h4><a id="cppsm-clone"></a> <a href="#contents">≡</a> <a href="#cppsm-clone"><code>cppsm clone url branch</code></a></h4>
+<a href="#cppsm-setup"><code>cppsm setup</code></a> for the configuration variables.</p>
+<h4><a id="cppsm-clone"></a> <a href="#contents">≡</a> <a href="#cppsm-clone"><code>cppsm clone &lt;url&gt; &lt;branch&gt;</code></a></h4>
 <p>Clones the specified cppsm compatible repository and its dependencies.</p>
 <h4><a id="cppsm-format"></a> <a href="#contents">≡</a> <a href="#cppsm-format"><code>cppsm format</code></a></h4>
 <p>Formats project files inplace using
@@ -220,13 +221,13 @@ top-level directory of a fresh git project.</p>
 <h4><a id="cppsm-list"></a> <a href="#contents">≡</a> <a href="#cppsm-list"><code>cppsm list</code></a></h4>
 <p>Prints out a dependency tree of submodules. This command exits with an error
 code in case any problems are found in the dependency tree.</p>
-<h4><a id="cppsm-remove"></a> <a href="#contents">≡</a> <a href="#cppsm-remove"><code>cppsm remove path</code></a></h4>
+<h4><a id="cppsm-remove"></a> <a href="#contents">≡</a> <a href="#cppsm-remove"><code>cppsm remove &lt;path&gt;</code></a></h4>
 <p>Removes a previously required submodule. Note that this command does not remove
 submodules transitively.</p>
 <h4><a id="cppsm-setup"></a> <a href="#contents">≡</a> <a href="#cppsm-setup"><code>cppsm setup</code></a></h4>
 <p>Sets up a build directory. The build directory name is determined based on the
-options.</p>
-<p>Options:</p>
+configuration variables.</p>
+<p>Configuration variables:</p>
 <ul>
 <li><p><a id="cmake_build_type"></a><a href="#cmake_build_type"><code>CMAKE_BUILD_TYPE=Debug|Release</code></a>
 <a target="_blank" href="https://cmake.org/cmake/help/latest/variable/CMAKE_BUILD_TYPE.html">specifies which configuration to use <i class="fas fa-xs fa-external-link-alt"></i></a>.</p>
@@ -235,23 +236,24 @@ options.</p>
 <a target="_blank" href="https://cmake.org/cmake/help/latest/envvar/CC.html">specifies which C compiler to use <i class="fas fa-xs fa-external-link-alt"></i></a>.</p>
 </li>
 <li><p><a id="cxx"></a><a href="#cxx"><code>CXX=c++|g++|clang++|...</code></a>
-<a target="_blank" href="https://cmake.org/cmake/help/latest/envvar/CXX.html">Specifies which C++ compiler to use <i class="fas fa-xs fa-external-link-alt"></i></a>.</p>
+<a target="_blank" href="https://cmake.org/cmake/help/latest/envvar/CXX.html">specifies which C++ compiler to use <i class="fas fa-xs fa-external-link-alt"></i></a>.</p>
 </li>
-<li><p><a id="clean"></a><a href="#clean"><code>CLEAN=0|1</code></a> specifies that the build directory
+<li><p><a id="clean"></a><a href="#clean"><code>CLEAN=0|1</code></a> specifies whether the build directory
 should be recreated from scratch.</p>
 </li>
-<li><p><a id="coverage"></a><a href="#coverage"><code>COVERAGE=0|1</code></a> specifies that the build
-should be configured to generate coverage information. Currently this option
-is only supported on GCC and Clang.</p>
+<li><p><a id="coverage"></a><a href="#coverage"><code>COVERAGE=0|1</code></a> specifies whether the build
+should be configured to generate coverage information. Currently this code
+coverage is only supported on <a target="_blank" href="https://gcc.gnu.org/">GCC <i class="fas fa-xs fa-external-link-alt"></i></a> and
+<a target="_blank" href="https://clang.llvm.org/">Clang <i class="fas fa-xs fa-external-link-alt"></i></a>.</p>
 </li>
 </ul>
 <h4><a id="cppsm-test"></a> <a href="#contents">≡</a> <a href="#cppsm-test"><code>cppsm test</code></a></h4>
 <p>Sets up a build directory, builds the project, and runs the tests. See
-<a href="#cppsm-setup"><code>cppsm setup</code></a> for the flags.</p>
+<a href="#cppsm-setup"><code>cppsm setup</code></a> for the configuration variables.</p>
 <h4><a id="cppsm-test-watch"></a> <a href="#contents">≡</a> <a href="#cppsm-test-watch"><code>cppsm test-watch</code></a></h4>
 <p>Sets up a build directory, builds the project, runs the tests, and starts a file
 system watch to build and test the project on any changes to project files. See
-<a href="#cppsm-setup"><code>cppsm setup</code></a> for the flags.</p>
+<a href="#cppsm-setup"><code>cppsm setup</code></a> for the configuration variables.</p>
 <h4><a id="cppsm-update"></a> <a href="#contents">≡</a> <a href="#cppsm-update"><code>cppsm update</code></a></h4>
 <p>Pulls the current git branch and updates all cppsm managed submodules to the
 versions in the branch.</p>
@@ -289,22 +291,24 @@ of different targets (and their major versions).</p>
 <p>A <a target="_blank" href="https://travis-ci-ci.org/">Travis CI <i class="fas fa-xs fa-external-link-alt"></i></a>
 <a target="_blank" href="https://github.com/cppsm/cppsm-cli/blob/master/.travis.yml">configuration file <i class="fas fa-xs fa-external-link-alt"></i></a>
 is provided to build and test both <code>Debug</code> and <code>Release</code> builds on various OS
-(Linux, OS X, Windows) and compiler configurations (Clang, GCC, Visual C++).
-Just add your project to Travis CI.</p>
+(Linux, OS X, Windows) and compiler configurations
+(<a target="_blank" href="https://clang.llvm.org/">Clang <i class="fas fa-xs fa-external-link-alt"></i></a>, <a target="_blank" href="https://gcc.gnu.org/">GCC <i class="fas fa-xs fa-external-link-alt"></i></a>,
+<a target="_blank" href="https://docs.microsoft.com/en-us/cpp/">Visual C++ <i class="fas fa-xs fa-external-link-alt"></i></a>). Just add your project to
+Travis CI.</p>
 <ul>
 <li>Linux<ul>
-<li>Clang (7)</li>
-<li>GCC (8)</li>
+<li><a target="_blank" href="https://clang.llvm.org/">Clang <i class="fas fa-xs fa-external-link-alt"></i></a> (7)</li>
+<li><a target="_blank" href="https://gcc.gnu.org/">GCC <i class="fas fa-xs fa-external-link-alt"></i></a> (8)</li>
 </ul>
 </li>
 <li>OS X<ul>
-<li>Apple Clang (10)</li>
-<li>GCC (8)</li>
+<li>Apple <a target="_blank" href="https://clang.llvm.org/">Clang <i class="fas fa-xs fa-external-link-alt"></i></a> (10)</li>
+<li><a target="_blank" href="https://gcc.gnu.org/">GCC <i class="fas fa-xs fa-external-link-alt"></i></a> (8)</li>
 </ul>
 </li>
 <li>Windows<ul>
-<li>MinGW GCC (8)</li>
-<li>Visual C++ (2017)</li>
+<li><a target="_blank" href="http://www.mingw.org/">MinGW <i class="fas fa-xs fa-external-link-alt"></i></a> <a target="_blank" href="https://gcc.gnu.org/">GCC <i class="fas fa-xs fa-external-link-alt"></i></a> (8)</li>
+<li><a target="_blank" href="https://docs.microsoft.com/en-us/cpp/">Visual C++ <i class="fas fa-xs fa-external-link-alt"></i></a> (2017)</li>
 </ul>
 </li>
 </ul>
@@ -333,11 +337,21 @@ or more C++ submodule manager commands. These variables can be used both on the
 <a target="_blank" href="https://cmake.org/cmake/help/latest/envvar/CTEST_OUTPUT_ON_FAILURE.html">log output in case a test fails <i class="fas fa-xs fa-external-link-alt"></i></a>.
 Set <code>CTEST_OUTPUT_ON_FAILURE=0</code> explicitly to override the default.</p>
 <h3><a id="quiet"></a> <a href="#contents">≡</a> <a href="#quiet"><code>QUIET=1|0</code></a></h3>
-<p>By default various commands are invoked with quiet flags to reduce noise. Set
+<p>By default various commands are invoked with quiet settings to reduce noise. Set
 <code>QUIET=0</code> explicitly to see more output from various commands.</p>
 <ul>
-<li><a id="git_quiet"></a><a href="#git_quiet"><code>GIT_QUIET=QUIET</code></a> controls <code>--quiet</code> flag
-for <a target="_blank" href="https://git-scm.com/">Git <i class="fas fa-xs fa-external-link-alt"></i></a> commands.</li>
+<li><p><a id="git_quiet"></a><a href="#git_quiet"><code>GIT_QUIET=QUIET</code></a> controls the <code>--quiet</code>
+switch for <a target="_blank" href="https://git-scm.com/">Git <i class="fas fa-xs fa-external-link-alt"></i></a> commands.</p>
+</li>
+<li><p><a
+id="msbuild_verbosity"></a><a href="#msbuild_verbosity"><code>MSBUILD_VERBOSITY=QUIET|MINIMAL|NORMAL|DETAILED|DIAGNOSTIC</code></a>
+controls the
+<a target="_blank" href="https://docs.microsoft.com/en-us/visualstudio/msbuild/msbuild-command-line-reference"><code>/VERBOSITY</code> <i class="fas fa-xs fa-external-link-alt"></i></a>
+switch for
+<a target="_blank" href="https://docs.microsoft.com/en-us/visualstudio/msbuild/msbuild">MSBuild <i class="fas fa-xs fa-external-link-alt"></i></a>. If
+<code>MSBUILD_VERBOSITY</code> is not explicitly set and <code>QUIET=1</code> then
+<code>MSBUILD_VERBOSITY</code> will be set to <code>QUIET</code>.</p>
+</li>
 </ul>
 <h3><a id="number_of_processors"></a> <a href="#contents">≡</a> <a href="#number_of_processors"><code>NUMBER_OF_PROCESSORS=1|2|...</code></a></h3>
 <p>By default the number of processors is auto detected and parallelism is set
@@ -345,14 +359,16 @@ based on the number of processors. Set <code>NUMBER_OF_PROCESSORS</code> explici
 desired number to override the default.</p>
 <ul>
 <li><p><a id="n_parallel_build"></a><a href="#n_parallel_build"><code>N_PARALLEL_BUILD=NUMBER_OF_PROCESSORS</code></a>
-controls level of build parallelism.</p>
+controls the
+<a target="_blank" href="https://cmake.org/cmake/help/latest/manual/cmake.1.html#build-a-project"><code>--parallel</code> option of <code>cmake --build</code> <i class="fas fa-xs fa-external-link-alt"></i></a>.</p>
 </li>
 <li><p><a id="n_parallel_test"></a><a href="#n_parallel_test"><code>N_PARALLEL_TEST=NUMBER_OF_PROCESSORS</code></a>
-controls level of test parallelism.</p>
+controls the
+<a target="_blank" href="https://cmake.org/cmake/help/latest/manual/ctest.1.html#options"><code>--parallel</code> option of <code>ctest</code> <i class="fas fa-xs fa-external-link-alt"></i></a>.</p>
 </li>
 <li><p><a id="n_parallel_update"></a><a href="#n_parallel_update"><code>N_PARALLEL_UPDATE=NUMBER_OF_PROCESSORS</code></a>
-controls level of parallelism for
-<a target="_blank" href="https://git-scm.com/docs/git-submodule#Documentation/git-submodule.txt---jobsltngt">Git submodule updates <i class="fas fa-xs fa-external-link-alt"></i></a>.</p>
+controls the
+<a target="_blank" href="https://git-scm.com/docs/git-submodule#Documentation/git-submodule.txt---jobsltngt"><code>--jobs</code> option of <code>git submodule update</code> <i class="fas fa-xs fa-external-link-alt"></i></a>.</p>
 </li>
 </ul>
 <h3><a id="trace"></a> <a href="#contents">≡</a> <a href="#trace"><code>TRACE=0|1</code></a></h3>
