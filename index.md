@@ -37,6 +37,11 @@ See [repositories with the `#cppsm` topic](https://github.com/topics/cppsm).
     - [`cppsm list`](#cppsm-list)
     - [`cppsm remove path`](#cppsm-remove)
     - [`cppsm setup`](#cppsm-setup)
+      - [`CMAKE_BUILD_TYPE=Debug|Release`](#cmake_build_type)
+      - [`CC=cc|gcc|clang|...`](#cc)
+      - [`CXX=c++|g++|clang++|...`](#cxx)
+      - [`CLEAN=0|1`](#clean)
+      - [`COVERAGE=0|1`](#coverage)
     - [`cppsm test`](#cppsm-test)
     - [`cppsm test-watch`](#cppsm-test-watch)
     - [`cppsm update`](#cppsm-update)
@@ -52,12 +57,14 @@ See [repositories with the `#cppsm` topic](https://github.com/topics/cppsm).
   - [`INSTALL_WAIT=0|1`](#install_wait)
 - [Variables](#variables)
   - [`CTEST_OUTPUT_ON_FAILURE=1|0`](#ctest_output_on_failure)
-  - [`GIT_QUIET=1|0`](#git_quiet)
+  - [`QUIET=1|0`](#quiet)
+    - [`GIT_QUIET=QUIET`](#git_quiet)
   - [`NUMBER_OF_PROCESSORS=1|2|...`](#number_of_processors)
-  - [`N_PARALLEL_BUILD=1|2|...`](#n_parallel_build)
-  - [`N_PARALLEL_TEST=1|2|...`](#n_parallel_test)
-  - [`N_PARALLEL_UPDATE=1|2|...`](#n_parallel_update)
-  - [`XTRACE=0|1`](#xtrace)
+    - [`N_PARALLEL_BUILD=NUMBER_OF_PROCESSORS`](#n_parallel_build)
+    - [`N_PARALLEL_TEST=NUMBER_OF_PROCESSORS`](#n_parallel_test)
+    - [`N_PARALLEL_UPDATE=NUMBER_OF_PROCESSORS`](#n_parallel_update)
+  - [`TRACE=0|1`](#trace)
+    - [`XTRACE=TRACE`](#xtrace)
 
 ## <a id="project-structure"></a> [≡](#contents) [Project structure](#project-structure)
 
@@ -273,25 +280,21 @@ options.
 
 Options:
 
-- `CMAKE_BUILD_TYPE=Debug|Release`
+- <a id="cmake_build_type"></a>[`CMAKE_BUILD_TYPE=Debug|Release`](#cmake_build_type)
+  [specifies which configuration to use](https://cmake.org/cmake/help/latest/variable/CMAKE_BUILD_TYPE.html).
 
-  - [Specifies which configuration to use](https://cmake.org/cmake/help/latest/variable/CMAKE_BUILD_TYPE.html).
+- <a id="cc"></a>[`CC=cc|gcc|clang|...`](#cc)
+  [specifies which C compiler to use](https://cmake.org/cmake/help/latest/envvar/CC.html).
 
-- `CC=cc|gcc|clang|...`
+- <a id="cxx"></a>[`CXX=c++|g++|clang++|...`](#cxx)
+  [Specifies which C++ compiler to use](https://cmake.org/cmake/help/latest/envvar/CXX.html).
 
-  - [Specifies which C compiler to use](https://cmake.org/cmake/help/latest/envvar/CC.html).
+- <a id="clean"></a>[`CLEAN=0|1`](#clean) specifies that the build directory
+  should be recreated from scratch.
 
-- `CXX=c++|g++|clang++|...`
-
-  - [Specifies which C++ compiler to use](https://cmake.org/cmake/help/latest/envvar/CXX.html).
-
-- `CLEAN=0|1`
-
-  - Specifies that the build directory should be recreated from scratch.
-
-- `COVERAGE=0|1`
-  - Specifies that the build should be configured to generate coverage
-    information. Currently this option is only supported on GCC and Clang.
+- <a id="coverage"></a>[`COVERAGE=0|1`](#coverage) specifies that the build
+  should be configured to generate coverage information. Currently this option
+  is only supported on GCC and Clang.
 
 #### <a id="cppsm-test"></a> [≡](#contents) [`cppsm test`](#cppsm-test)
 
@@ -410,40 +413,35 @@ By default CTest is configured to
 [log output in case a test fails](https://cmake.org/cmake/help/latest/envvar/CTEST_OUTPUT_ON_FAILURE.html).
 Set `CTEST_OUTPUT_ON_FAILURE=0` explicitly to override the default.
 
-### <a id="git_quiet"></a> [≡](#contents) [`GIT_QUIET=1|0`](#git_quiet)
+### <a id="quiet"></a> [≡](#contents) [`QUIET=1|0`](#quiet)
 
-By default [Git](https://git-scm.com/) commands are invoked with the `--quiet`
-flag to reduce noise. Set `GIT_QUIET=0` to see git command output.
+By default various commands are invoked with quiet flags to reduce noise. Set
+`QUIET=0` explicitly to see more output from various commands.
+
+- <a id="git_quiet"></a>[`GIT_QUIET=QUIET`](#git_quiet) controls `--quiet` flag
+  for [Git](https://git-scm.com/) commands.
 
 ### <a id="number_of_processors"></a> [≡](#contents) [`NUMBER_OF_PROCESSORS=1|2|...`](#number_of_processors)
 
-By default the number of processors is auto detected and parallelism is set to
-match the number of processors. Set `NUMBER_OF_PROCESSORS` explicitly to desired
-number to override the default.
+By default the number of processors is auto detected and parallelism is set
+based on the number of processors. Set `NUMBER_OF_PROCESSORS` explicitly to
+desired number to override the default.
 
-### <a id="n_parallel_build"></a> [≡](#contents) [`N_PARALLEL_BUILD=1|2|...`](#n_parallel_build)
+- <a id="n_parallel_build"></a>[`N_PARALLEL_BUILD=NUMBER_OF_PROCESSORS`](#n_parallel_build)
+  controls level of build parallelism.
 
-By default builds are performed with level of parallelism set to the
-[`NUMBER_OF_PROCESSORS`](#number_of_processors). Set `N_PARALLEL_BUILD`
-explicitly to desired number to override the default.
+- <a id="n_parallel_test"></a>[`N_PARALLEL_TEST=NUMBER_OF_PROCESSORS`](#n_parallel_test)
+  controls level of test parallelism.
 
-### <a id="n_parallel_test"></a> [≡](#contents) [`N_PARALLEL_TEST=1|2|...`](#n_parallel_test)
+- <a id="n_parallel_update"></a>[`N_PARALLEL_UPDATE=NUMBER_OF_PROCESSORS`](#n_parallel_update)
+  controls level of parallelism for
+  [Git submodule updates](https://git-scm.com/docs/git-submodule#Documentation/git-submodule.txt---jobsltngt).
 
-By default tests are run with level of parallelism set to the
-[`NUMBER_OF_PROCESSORS`](#number_of_processors). Set `N_PARALLEL_TEST`
-explicitly to desired number to override the default.
+### <a id="trace"></a> [≡](#contents) [`TRACE=0|1`](#trace)
 
-### <a id="n_parallel_update"></a> [≡](#contents) [`N_PARALLEL_UPDATE=1|2|...`](#n_parallel_update)
+By default scripts do not output trace information to reduce noise. Set
+`TRACE=1` explicitly to see trace output.
 
-By default
-[Git submodule updates](https://git-scm.com/docs/git-submodule#Documentation/git-submodule.txt---jobsltngt)
-are run with level of parallelism set to the
-[`NUMBER_OF_PROCESSORS`](#number_of_processors). Set `N_PARALLEL_UPDATE`
-explicitly to desired number to override the default.
-
-### <a id="xtrace"></a> [≡](#contents) [`XTRACE=0|1`](#xtrace)
-
-By default scripts do not
-[`set -x`](https://www.gnu.org/software/bash/manual/bash.html#The-Set-Builtin)
-to enable Bash xtrace to avoid unnecessary noise. Set `XTRACE=1` to enable Bash
-xtrace.
+- <a id="xtrace"></a>[`XTRACE=TRACE`](#xtrace) controls whether to
+  [`set -x`](https://www.gnu.org/software/bash/manual/bash.html#The-Set-Builtin)
+  to enable Bash xtrace.

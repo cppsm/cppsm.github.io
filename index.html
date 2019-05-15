@@ -44,7 +44,14 @@ excessive configuration.</p>
 <li><a href="#cppsm-init"><code>cppsm init</code></a></li>
 <li><a href="#cppsm-list"><code>cppsm list</code></a></li>
 <li><a href="#cppsm-remove"><code>cppsm remove path</code></a></li>
-<li><a href="#cppsm-setup"><code>cppsm setup</code></a></li>
+<li><a href="#cppsm-setup"><code>cppsm setup</code></a><ul>
+<li><a href="#cmake_build_type"><code>CMAKE_BUILD_TYPE=Debug|Release</code></a></li>
+<li><a href="#cc"><code>CC=cc|gcc|clang|...</code></a></li>
+<li><a href="#cxx"><code>CXX=c++|g++|clang++|...</code></a></li>
+<li><a href="#clean"><code>CLEAN=0|1</code></a></li>
+<li><a href="#coverage"><code>COVERAGE=0|1</code></a></li>
+</ul>
+</li>
 <li><a href="#cppsm-test"><code>cppsm test</code></a></li>
 <li><a href="#cppsm-test-watch"><code>cppsm test-watch</code></a></li>
 <li><a href="#cppsm-update"><code>cppsm update</code></a></li>
@@ -70,12 +77,20 @@ excessive configuration.</p>
 </li>
 <li><a href="#variables">Variables</a><ul>
 <li><a href="#ctest_output_on_failure"><code>CTEST_OUTPUT_ON_FAILURE=1|0</code></a></li>
-<li><a href="#git_quiet"><code>GIT_QUIET=1|0</code></a></li>
-<li><a href="#number_of_processors"><code>NUMBER_OF_PROCESSORS=1|2|...</code></a></li>
-<li><a href="#n_parallel_build"><code>N_PARALLEL_BUILD=1|2|...</code></a></li>
-<li><a href="#n_parallel_test"><code>N_PARALLEL_TEST=1|2|...</code></a></li>
-<li><a href="#n_parallel_update"><code>N_PARALLEL_UPDATE=1|2|...</code></a></li>
-<li><a href="#xtrace"><code>XTRACE=0|1</code></a></li>
+<li><a href="#quiet"><code>QUIET=1|0</code></a><ul>
+<li><a href="#git_quiet"><code>GIT_QUIET=QUIET</code></a></li>
+</ul>
+</li>
+<li><a href="#number_of_processors"><code>NUMBER_OF_PROCESSORS=1|2|...</code></a><ul>
+<li><a href="#n_parallel_build"><code>N_PARALLEL_BUILD=NUMBER_OF_PROCESSORS</code></a></li>
+<li><a href="#n_parallel_test"><code>N_PARALLEL_TEST=NUMBER_OF_PROCESSORS</code></a></li>
+<li><a href="#n_parallel_update"><code>N_PARALLEL_UPDATE=NUMBER_OF_PROCESSORS</code></a></li>
+</ul>
+</li>
+<li><a href="#trace"><code>TRACE=0|1</code></a><ul>
+<li><a href="#xtrace"><code>XTRACE=TRACE</code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -213,31 +228,21 @@ submodules transitively.</p>
 options.</p>
 <p>Options:</p>
 <ul>
-<li><p><code>CMAKE_BUILD_TYPE=Debug|Release</code></p>
-<ul>
-<li><a target="_blank" href="https://cmake.org/cmake/help/latest/variable/CMAKE_BUILD_TYPE.html">Specifies which configuration to use <i class="fas fa-xs fa-external-link-alt"></i></a>.</li>
-</ul>
+<li><p><a id="cmake_build_type"></a><a href="#cmake_build_type"><code>CMAKE_BUILD_TYPE=Debug|Release</code></a>
+<a target="_blank" href="https://cmake.org/cmake/help/latest/variable/CMAKE_BUILD_TYPE.html">specifies which configuration to use <i class="fas fa-xs fa-external-link-alt"></i></a>.</p>
 </li>
-<li><p><code>CC=cc|gcc|clang|...</code></p>
-<ul>
-<li><a target="_blank" href="https://cmake.org/cmake/help/latest/envvar/CC.html">Specifies which C compiler to use <i class="fas fa-xs fa-external-link-alt"></i></a>.</li>
-</ul>
+<li><p><a id="cc"></a><a href="#cc"><code>CC=cc|gcc|clang|...</code></a>
+<a target="_blank" href="https://cmake.org/cmake/help/latest/envvar/CC.html">specifies which C compiler to use <i class="fas fa-xs fa-external-link-alt"></i></a>.</p>
 </li>
-<li><p><code>CXX=c++|g++|clang++|...</code></p>
-<ul>
-<li><a target="_blank" href="https://cmake.org/cmake/help/latest/envvar/CXX.html">Specifies which C++ compiler to use <i class="fas fa-xs fa-external-link-alt"></i></a>.</li>
-</ul>
+<li><p><a id="cxx"></a><a href="#cxx"><code>CXX=c++|g++|clang++|...</code></a>
+<a target="_blank" href="https://cmake.org/cmake/help/latest/envvar/CXX.html">Specifies which C++ compiler to use <i class="fas fa-xs fa-external-link-alt"></i></a>.</p>
 </li>
-<li><p><code>CLEAN=0|1</code></p>
-<ul>
-<li>Specifies that the build directory should be recreated from scratch.</li>
-</ul>
+<li><p><a id="clean"></a><a href="#clean"><code>CLEAN=0|1</code></a> specifies that the build directory
+should be recreated from scratch.</p>
 </li>
-<li><p><code>COVERAGE=0|1</code></p>
-<ul>
-<li>Specifies that the build should be configured to generate coverage
-information. Currently this option is only supported on GCC and Clang.</li>
-</ul>
+<li><p><a id="coverage"></a><a href="#coverage"><code>COVERAGE=0|1</code></a> specifies that the build
+should be configured to generate coverage information. Currently this option
+is only supported on GCC and Clang.</p>
 </li>
 </ul>
 <h4><a id="cppsm-test"></a> <a href="#contents">≡</a> <a href="#cppsm-test"><code>cppsm test</code></a></h4>
@@ -327,32 +332,37 @@ or more C++ submodule manager commands. These variables can be used both on the
 <p>By default CTest is configured to
 <a target="_blank" href="https://cmake.org/cmake/help/latest/envvar/CTEST_OUTPUT_ON_FAILURE.html">log output in case a test fails <i class="fas fa-xs fa-external-link-alt"></i></a>.
 Set <code>CTEST_OUTPUT_ON_FAILURE=0</code> explicitly to override the default.</p>
-<h3><a id="git_quiet"></a> <a href="#contents">≡</a> <a href="#git_quiet"><code>GIT_QUIET=1|0</code></a></h3>
-<p>By default <a target="_blank" href="https://git-scm.com/">Git <i class="fas fa-xs fa-external-link-alt"></i></a> commands are invoked with the <code>--quiet</code>
-flag to reduce noise. Set <code>GIT_QUIET=0</code> to see git command output.</p>
+<h3><a id="quiet"></a> <a href="#contents">≡</a> <a href="#quiet"><code>QUIET=1|0</code></a></h3>
+<p>By default various commands are invoked with quiet flags to reduce noise. Set
+<code>QUIET=0</code> explicitly to see more output from various commands.</p>
+<ul>
+<li><a id="git_quiet"></a><a href="#git_quiet"><code>GIT_QUIET=QUIET</code></a> controls <code>--quiet</code> flag
+for <a target="_blank" href="https://git-scm.com/">Git <i class="fas fa-xs fa-external-link-alt"></i></a> commands.</li>
+</ul>
 <h3><a id="number_of_processors"></a> <a href="#contents">≡</a> <a href="#number_of_processors"><code>NUMBER_OF_PROCESSORS=1|2|...</code></a></h3>
-<p>By default the number of processors is auto detected and parallelism is set to
-match the number of processors. Set <code>NUMBER_OF_PROCESSORS</code> explicitly to desired
-number to override the default.</p>
-<h3><a id="n_parallel_build"></a> <a href="#contents">≡</a> <a href="#n_parallel_build"><code>N_PARALLEL_BUILD=1|2|...</code></a></h3>
-<p>By default builds are performed with level of parallelism set to the
-<a href="#number_of_processors"><code>NUMBER_OF_PROCESSORS</code></a>. Set <code>N_PARALLEL_BUILD</code>
-explicitly to desired number to override the default.</p>
-<h3><a id="n_parallel_test"></a> <a href="#contents">≡</a> <a href="#n_parallel_test"><code>N_PARALLEL_TEST=1|2|...</code></a></h3>
-<p>By default tests are run with level of parallelism set to the
-<a href="#number_of_processors"><code>NUMBER_OF_PROCESSORS</code></a>. Set <code>N_PARALLEL_TEST</code>
-explicitly to desired number to override the default.</p>
-<h3><a id="n_parallel_update"></a> <a href="#contents">≡</a> <a href="#n_parallel_update"><code>N_PARALLEL_UPDATE=1|2|...</code></a></h3>
-<p>By default
-<a target="_blank" href="https://git-scm.com/docs/git-submodule#Documentation/git-submodule.txt---jobsltngt">Git submodule updates <i class="fas fa-xs fa-external-link-alt"></i></a>
-are run with level of parallelism set to the
-<a href="#number_of_processors"><code>NUMBER_OF_PROCESSORS</code></a>. Set <code>N_PARALLEL_UPDATE</code>
-explicitly to desired number to override the default.</p>
-<h3><a id="xtrace"></a> <a href="#contents">≡</a> <a href="#xtrace"><code>XTRACE=0|1</code></a></h3>
-<p>By default scripts do not
+<p>By default the number of processors is auto detected and parallelism is set
+based on the number of processors. Set <code>NUMBER_OF_PROCESSORS</code> explicitly to
+desired number to override the default.</p>
+<ul>
+<li><p><a id="n_parallel_build"></a><a href="#n_parallel_build"><code>N_PARALLEL_BUILD=NUMBER_OF_PROCESSORS</code></a>
+controls level of build parallelism.</p>
+</li>
+<li><p><a id="n_parallel_test"></a><a href="#n_parallel_test"><code>N_PARALLEL_TEST=NUMBER_OF_PROCESSORS</code></a>
+controls level of test parallelism.</p>
+</li>
+<li><p><a id="n_parallel_update"></a><a href="#n_parallel_update"><code>N_PARALLEL_UPDATE=NUMBER_OF_PROCESSORS</code></a>
+controls level of parallelism for
+<a target="_blank" href="https://git-scm.com/docs/git-submodule#Documentation/git-submodule.txt---jobsltngt">Git submodule updates <i class="fas fa-xs fa-external-link-alt"></i></a>.</p>
+</li>
+</ul>
+<h3><a id="trace"></a> <a href="#contents">≡</a> <a href="#trace"><code>TRACE=0|1</code></a></h3>
+<p>By default scripts do not output trace information to reduce noise. Set
+<code>TRACE=1</code> explicitly to see trace output.</p>
+<ul>
+<li><a id="xtrace"></a><a href="#xtrace"><code>XTRACE=TRACE</code></a> controls whether to
 <a target="_blank" href="https://www.gnu.org/software/bash/manual/bash.html#The-Set-Builtin"><code>set -x</code> <i class="fas fa-xs fa-external-link-alt"></i></a>
-to enable Bash xtrace to avoid unnecessary noise. Set <code>XTRACE=1</code> to enable Bash
-xtrace.</p>
+to enable Bash xtrace.</li>
+</ul>
 
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/bash.min.js"></script>
