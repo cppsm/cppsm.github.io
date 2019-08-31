@@ -38,6 +38,7 @@ See [repositories with the `#cppsm` topic](https://github.com/topics/cppsm).
     - [`cppsm remove <path>`](#cppsm-remove)
     - [`cppsm setup`](#cppsm-setup)
       - [`CMAKE_BUILD_TYPE=Debug|Release`](#cmake_build_type)
+      - [`CMAKE_GENERATOR=''|'...'`](#cmake_generator)
       - [`CC=cc|gcc|clang|...`](#cc)
       - [`CXX=c++|g++|clang++|...`](#cxx)
       - [`CLEAN=0|1`](#clean)
@@ -284,6 +285,9 @@ Configuration variables:
 - <a id="cmake_build_type"></a>[`CMAKE_BUILD_TYPE=Debug|Release`](#cmake_build_type)
   [specifies which configuration to use](https://cmake.org/cmake/help/latest/variable/CMAKE_BUILD_TYPE.html).
 
+- <a id="cmake_generator"></a>[`CMAKE_GENERATOR=''|'...'`](#cmake_generator)
+  [specifies which generator to use](https://cmake.org/cmake/help/latest/envvar/CMAKE_GENERATOR.html#envvar:CMAKE_GENERATOR).
+
 - <a id="cc"></a>[`CC=cc|gcc|clang|...`](#cc)
   [specifies which C compiler to use](https://cmake.org/cmake/help/latest/envvar/CC.html).
 
@@ -381,7 +385,7 @@ Travis CI.
   - [GCC](https://gcc.gnu.org/) (8)
 - Windows
   - [MinGW](http://www.mingw.org/) [GCC](https://gcc.gnu.org/) (8)
-  - [Visual C++](https://docs.microsoft.com/en-us/cpp/) (2017)
+  - [Visual C++](https://docs.microsoft.com/en-us/cpp/) (2017, 2019)
 
 ### <a id="codecov"></a> [≡](#contents) [`CODECOV=0|1`](#codecov)
 

@@ -46,6 +46,7 @@ excessive configuration.</p>
 <li><a href="#cppsm-remove"><code>cppsm remove &lt;path&gt;</code></a></li>
 <li><a href="#cppsm-setup"><code>cppsm setup</code></a><ul>
 <li><a href="#cmake_build_type"><code>CMAKE_BUILD_TYPE=Debug|Release</code></a></li>
+<li><a href="#cmake_generator"><code>CMAKE_GENERATOR=&#39;&#39;|&#39;...&#39;</code></a></li>
 <li><a href="#cc"><code>CC=cc|gcc|clang|...</code></a></li>
 <li><a href="#cxx"><code>CXX=c++|g++|clang++|...</code></a></li>
 <li><a href="#clean"><code>CLEAN=0|1</code></a></li>
@@ -232,6 +233,9 @@ configuration variables.</p>
 <li><p><a id="cmake_build_type"></a><a href="#cmake_build_type"><code>CMAKE_BUILD_TYPE=Debug|Release</code></a>
 <a target="_blank" href="https://cmake.org/cmake/help/latest/variable/CMAKE_BUILD_TYPE.html">specifies which configuration to use <i class="fas fa-xs fa-external-link-alt"></i></a>.</p>
 </li>
+<li><p><a id="cmake_generator"></a><a href="#cmake_generator"><code>CMAKE_GENERATOR=&#39;&#39;|&#39;...&#39;</code></a>
+<a target="_blank" href="https://cmake.org/cmake/help/latest/envvar/CMAKE_GENERATOR.html#envvar:CMAKE_GENERATOR">specifies which generator to use <i class="fas fa-xs fa-external-link-alt"></i></a>.</p>
+</li>
 <li><p><a id="cc"></a><a href="#cc"><code>CC=cc|gcc|clang|...</code></a>
 <a target="_blank" href="https://cmake.org/cmake/help/latest/envvar/CC.html">specifies which C compiler to use <i class="fas fa-xs fa-external-link-alt"></i></a>.</p>
 </li>
@@ -308,7 +312,7 @@ Travis CI.</p>
 </li>
 <li>Windows<ul>
 <li><a target="_blank" href="http://www.mingw.org/">MinGW <i class="fas fa-xs fa-external-link-alt"></i></a> <a target="_blank" href="https://gcc.gnu.org/">GCC <i class="fas fa-xs fa-external-link-alt"></i></a> (8)</li>
-<li><a target="_blank" href="https://docs.microsoft.com/en-us/cpp/">Visual C++ <i class="fas fa-xs fa-external-link-alt"></i></a> (2017)</li>
+<li><a target="_blank" href="https://docs.microsoft.com/en-us/cpp/">Visual C++ <i class="fas fa-xs fa-external-link-alt"></i></a> (2017, 2019)</li>
 </ul>
 </li>
 </ul>
