@@ -298,8 +298,8 @@ Configuration variables:
   should be recreated from scratch.
 
 - <a id="coverage"></a>[`COVERAGE=0|1`](#coverage) specifies whether the build
-  should be configured to generate coverage information. Currently this code
-  coverage is only supported on [GCC](https://gcc.gnu.org/) and
+  should be configured to generate coverage information. Currently code coverage
+  is only supported on [GCC](https://gcc.gnu.org/) and
   [Clang](https://clang.llvm.org/).
 
 #### <a id="cppsm-test"></a> [≡](#contents) [`cppsm test`](#cppsm-test)
