@@ -17,7 +17,7 @@ See [repositories with the `#cppsm` topic](https://github.com/topics/cppsm).
 [GitHub organization](https://github.com/cppsm) subprojects:
 
 - [Issues](https://github.com/cppsm/cppsm.github.io/issues)
-- [Command-line interface](https://github.com/cppsm/cppsm-cli)
+- [Command-line interface](https://github.com/cppsm/cppsm-cli) [![Build Status](https://travis-ci.org/cppsm/cppsm-cli.svg?branch=master)](https://travis-ci.org/cppsm/cppsm-cli) [![Code Coverage](https://img.shields.io/codecov/c/github/cppsm/cppsm-cli/master.svg)](https://codecov.io/github/cppsm/cppsm-cli?branch=master)
 - [Per project boilerplate](https://github.com/cppsm/cppsm-boilerplate)
 
 ## <a id="contents"></a> [≡](#contents) [Contents](#contents)
