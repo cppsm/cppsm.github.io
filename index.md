@@ -63,6 +63,7 @@ See [repositories with the `#cppsm` topic](https://github.com/topics/cppsm).
   - [`QUIET=1|0`](#quiet)
     - [`GIT_QUIET=QUIET`](#git_quiet)
     - [`MSBUILD_VERBOSITY=QUIET|MINIMAL|NORMAL|DETAILED|DIAGNOSTIC`](#msbuild_verbosity)
+    - [`XCODE_VERBOSITY=quiet|verbose`](#xcode_verbosity)
   - [`NUMBER_OF_PROCESSORS=1|2|...`](#number_of_processors)
     - [`N_PARALLEL_BUILD=NUMBER_OF_PROCESSORS`](#n_parallel_build)
     - [`N_PARALLEL_TEST=NUMBER_OF_PROCESSORS`](#n_parallel_test)
@@ -439,6 +440,10 @@ By default various commands are invoked with quiet settings to reduce noise. Set
   [MSBuild](https://docs.microsoft.com/en-us/visualstudio/msbuild/msbuild). If
   `MSBUILD_VERBOSITY` is not explicitly set and `QUIET=1` then
   `MSBUILD_VERBOSITY` will be set to `QUIET`.
+- <a id="xcode_verbosity"></a>[`XCODE_VERBOSITY=quiet|verbose`](#xcode_verbosity)
+  optionally passes either `-quiet` or `-verbose` flag to the `xcodebuild`
+  command. If `XCODE_VERBOSITY` is not explicitly set and `QUIET=1` then
+  `XCODE_VERBOSITY` will be set to `quiet`.
 
 ### <a id="number_of_processors"></a> [≡](#contents) [`NUMBER_OF_PROCESSORS=1|2|...`](#number_of_processors)
 

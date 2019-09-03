@@ -83,6 +83,7 @@ excessive configuration.</p>
 <li><a href="#quiet"><code>QUIET=1|0</code></a><ul>
 <li><a href="#git_quiet"><code>GIT_QUIET=QUIET</code></a></li>
 <li><a href="#msbuild_verbosity"><code>MSBUILD_VERBOSITY=QUIET|MINIMAL|NORMAL|DETAILED|DIAGNOSTIC</code></a></li>
+<li><a href="#xcode_verbosity"><code>XCODE_VERBOSITY=quiet|verbose</code></a></li>
 </ul>
 </li>
 <li><a href="#number_of_processors"><code>NUMBER_OF_PROCESSORS=1|2|...</code></a><ul>
@@ -357,6 +358,11 @@ switch for
 <a target="_blank" href="https://docs.microsoft.com/en-us/visualstudio/msbuild/msbuild">MSBuild <i class="fas fa-xs fa-external-link-alt"></i></a>. If
 <code>MSBUILD_VERBOSITY</code> is not explicitly set and <code>QUIET=1</code> then
 <code>MSBUILD_VERBOSITY</code> will be set to <code>QUIET</code>.</p>
+</li>
+<li><p><a id="xcode_verbosity"></a><a href="#xcode_verbosity"><code>XCODE_VERBOSITY=quiet|verbose</code></a>
+optionally passes either <code>-quiet</code> or <code>-verbose</code> flag to the <code>xcodebuild</code>
+command. If <code>XCODE_VERBOSITY</code> is not explicitly set and <code>QUIET=1</code> then
+<code>XCODE_VERBOSITY</code> will be set to <code>quiet</code>.</p>
 </li>
 </ul>
 <h3><a id="number_of_processors"></a> <a href="#contents">≡</a> <a href="#number_of_processors"><code>NUMBER_OF_PROCESSORS=1|2|...</code></a></h3>
