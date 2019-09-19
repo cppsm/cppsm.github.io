@@ -34,8 +34,11 @@ See [repositories with the `#cppsm` topic](https://github.com/topics/cppsm).
     - [`cppsm build-watch`](#cppsm-build-watch)
     - [`cppsm clone <url> <branch>`](#cppsm-clone)
     - [`cppsm format`](#cppsm-format)
-    - [`cppsm hello`](#cppsm-hello)
     - [`cppsm init`](#cppsm-init)
+      - [`NAME='...'`](#init-name)
+      - [`VERSION='v1'|'...'`](#init-version)
+    - [`cppsm init-hello`](#cppsm-init-hello)
+    - [`cppsm init-library`](#cppsm-init-library)
     - [`cppsm list`](#cppsm-list)
     - [`cppsm remove <path>`](#cppsm-remove)
     - [`cppsm setup`](#cppsm-setup)
@@ -94,8 +97,8 @@ A single _target directory_ may simultaneously contain
 - any number of executable tests in the `testing` directory, and
 - an executable program in the `program` directory.
 
-Try the `cppsm hello` script. It generates a simple example project that has
-essentially the following structure:
+Try the `cppsm init-hello` script. It generates a simple example project that
+has essentially the following structure:
 
     CMakeLists.txt
     equipment/
@@ -171,10 +174,10 @@ git init
 cppsm init
 ```
 
-Try the hello world example (after `init`):
+Try the hello world example:
 
 ```bash
-cppsm hello
+cppsm init-hello
 cppsm test
 .build*/internals/hello
 ```
@@ -257,16 +260,40 @@ Formats project files inplace using
 [clang-format](https://clang.llvm.org/docs/ClangFormat.html) and
 [prettier](https://prettier.io/).
 
-#### <a id="cppsm-hello"></a> [≡](#contents) [`cppsm hello`](#cppsm-hello)
-
-Creates an example "Hello, world!" program in a freshly initialized project
-directory.
-
 #### <a id="cppsm-init"></a> [≡](#contents) [`cppsm init`](#cppsm-init)
 
 Initializes a new C++ project with cppsm configuration files or updates an
 existing project to use the latest configuration files. Run `cppsm init` in the
 top-level directory of a fresh git project.
+
+Configuration variables:
+
+- <a id="init-name"></a>[`NAME='...'`](#init-name) specifies the base name for
+  the project and defaults to the name of the current directory.
+
+- <a id="init-version"></a>[`VERSION='v1'|'...'`](#init-version) specifies the
+  version suffix for the project.
+
+#### <a id="cppsm-init-hello"></a> [≡](#contents) [`cppsm init-hello`](#cppsm-init-hello)
+
+Creates an example "Hello, world!" program in a freshly initialized project
+directory.
+
+#### <a id="cppsm-init-library"></a> [≡](#contents) [`cppsm init-library`](#cppsm-init-library)
+
+Creates boilerplate for a simple library project with tests in a freshly
+initialized project directory.
+
+    CMakeLists.txt
+    internals/
+      CMakeLists.txt
+      testing/
+        compile_synopsis_test.cpp
+    provides/
+      CMakeLists.txt
+      include/
+        ${NAME}_${VERSION}/
+          synopsis.hpp
 
 #### <a id="cppsm-list"></a> [≡](#contents) [`cppsm list`](#cppsm-list)
 
