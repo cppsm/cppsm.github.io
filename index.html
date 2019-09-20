@@ -125,8 +125,8 @@ needed, there is no need to create a nested directory.</p>
 <li>any number of executable tests in the <code>testing</code> directory, and</li>
 <li>an executable program in the <code>program</code> directory.</li>
 </ul>
-<p>Try the <code>cppsm init-hello</code> script. It generates a simple example project that
-has essentially the following structure:</p>
+<p>Try the <a href="#cppsm-init-hello"><code>cppsm init-hello</code></a> script. It generates a simple
+example project that has essentially the following structure:</p>
 <pre><code>CMakeLists.txt
 equipment/
   testing.cpp/
@@ -292,7 +292,7 @@ system watch to build and test the project on any changes to project files. See
 versions in the branch.</p>
 <h4><a id="cppsm-upgrade"></a> <a href="#contents">≡</a> <a href="#cppsm-upgrade"><code>cppsm upgrade</code></a></h4>
 <p>Upgrades all cppsm managed submodules to latest remote versions and runs
-<code>cppsm init</code> to update configuration files.</p>
+<a href="#cppsm-init"><code>cppsm init</code></a> to update configuration files.</p>
 <h2><a id="cmake"></a> <a href="#contents">≡</a> <a href="#cmake">CMake</a></h2>
 <p>CMake boilerplate is provided for simple libraries, tests, and executables.</p>
 <h3><a id="conventional-cmake"></a> <a href="#contents">≡</a> <a href="#conventional-cmake"><code>conventional.cmake</code></a></h3>
@@ -301,11 +301,14 @@ versions in the branch.</p>
 has implementation files matching the pattern <code>program/*.{cpp,hpp}</code>.</p>
 <pre><code>CMakeLists.txt
 program/
-  *.{cpp,hpp}</code></pre><p>Add dependencies using <code>target_link_libraries</code> separately.</p>
+  *.{cpp,hpp}</code></pre><p>Add dependencies using
+<a target="_blank" href="https://cmake.org/cmake/help/latest/command/target_link_libraries.html"><code>target_link_libraries</code> <i class="fas fa-xs fa-external-link-alt"></i></a>
+separately.</p>
 <h4><a id="add_conventional_executable_tests"></a> <a href="#contents">≡</a> <a href="#add_conventional_executable_tests"><code>add_conventional_executable_tests(...)</code></a></h4>
 <p>Adds an executable test target per file matching pattern <code>testing/*.cpp</code>. The
 arguments given to <code>add_conventional_executable_tests</code> are passed to
-<code>target_link_libraries</code> for each added test target.</p>
+<a target="_blank" href="https://cmake.org/cmake/help/latest/command/target_link_libraries.html"><code>target_link_libraries</code> <i class="fas fa-xs fa-external-link-alt"></i></a>
+for each added test target.</p>
 <pre><code>CMakeLists.txt
 testing/
   *.cpp</code></pre><h4><a id="add_conventional_library"></a> <a href="#contents">≡</a> <a href="#add_conventional_library"><code>add_conventional_library(name)</code></a></h4>

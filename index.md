@@ -97,8 +97,8 @@ A single _target directory_ may simultaneously contain
 - any number of executable tests in the `testing` directory, and
 - an executable program in the `program` directory.
 
-Try the `cppsm init-hello` script. It generates a simple example project that
-has essentially the following structure:
+Try the [`cppsm init-hello`](#cppsm-init-hello) script. It generates a simple
+example project that has essentially the following structure:
 
     CMakeLists.txt
     equipment/
@@ -351,7 +351,7 @@ versions in the branch.
 #### <a id="cppsm-upgrade"></a> [≡](#contents) [`cppsm upgrade`](#cppsm-upgrade)
 
 Upgrades all cppsm managed submodules to latest remote versions and runs
-`cppsm init` to update configuration files.
+[`cppsm init`](#cppsm-init) to update configuration files.
 
 ## <a id="cmake"></a> [≡](#contents) [CMake](#cmake)
 
@@ -368,13 +368,16 @@ has implementation files matching the pattern `program/*.{cpp,hpp}`.
     program/
       *.{cpp,hpp}
 
-Add dependencies using `target_link_libraries` separately.
+Add dependencies using
+[`target_link_libraries`](https://cmake.org/cmake/help/latest/command/target_link_libraries.html)
+separately.
 
 #### <a id="add_conventional_executable_tests"></a> [≡](#contents) [`add_conventional_executable_tests(...)`](#add_conventional_executable_tests)
 
 Adds an executable test target per file matching pattern `testing/*.cpp`. The
 arguments given to `add_conventional_executable_tests` are passed to
-`target_link_libraries` for each added test target.
+[`target_link_libraries`](https://cmake.org/cmake/help/latest/command/target_link_libraries.html)
+for each added test target.
 
     CMakeLists.txt
     testing/
