@@ -132,10 +132,9 @@ example project that has essentially the following structure:
             CMakeLists.txt
             include/
               testing_v1/
-                test_synopsis.hpp
-                test.hpp
+                [...]
             library/
-              test.cpp
+              [...]
     internals/
       CMakeLists.txt
       testing/
