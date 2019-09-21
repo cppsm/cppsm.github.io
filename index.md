@@ -369,6 +369,10 @@ CMake boilerplate is provided for simple libraries, tests, and executables.
 
 ### <a id="conventional-cmake"></a> [≡](#contents) [`conventional.cmake`](#conventional-cmake)
 
+[`conventional.cmake`](https://github.com/cppsm/cppsm-boilerplate/blob/master/conventional.cmake)
+is a CMake script that (only) defines a number of CMake functions for targets
+and projects that adhere to the [project structure](#project-structure).
+
 #### <a id="add_conventional_executable"></a> [≡](#contents) [`add_conventional_executable(name)`](#add_conventional_executable)
 
 Adds an executable target with the given name. Assumes that the target directory
