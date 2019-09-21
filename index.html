@@ -32,7 +32,22 @@ excessive configuration.</p>
 </ul>
 <h2><a id="contents"></a> <a href="#contents">≡</a> <a href="#contents">Contents</a></h2>
 <ul>
-<li><a href="#project-structure">Project structure</a></li>
+<li><a href="#project-structure">Project structure</a><ul>
+<li><a href="#project-submodule">A project submodule</a><ul>
+<li><a href="#equipment-directory">The <code>equipment</code> directory</a></li>
+<li><a href="#internals-directory">The <code>internals</code> directory</a></li>
+<li><a href="#provides-directory">The <code>provides</code> directory</a></li>
+<li><a href="#requires-directory">The <code>requires</code> directory</a></li>
+</ul>
+</li>
+<li><a href="#target-directory">A target directory</a><ul>
+<li><a href="#library-target">A library</a></li>
+<li><a href="#testing-target">Any number of executable tests</a></li>
+<li><a href="#program-target">An executable program</a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li><a href="#cppsm-command"><code>cppsm</code> command</a><ul>
 <li><a href="#installation">Installation</a><ul>
 <li><a href="#for-optional-code-formatting">For optional code formatting</a></li>
@@ -110,25 +125,36 @@ excessive configuration.</p>
 </li>
 </ul>
 <h2><a id="project-structure"></a> <a href="#contents">≡</a> <a href="#project-structure">Project structure</a></h2>
-<p>At the root of a project there are three directories as follows:</p>
+<p>C++ submodule manager projects adhere to a particular structure that allows
+projects to be operated upon programmatically.</p>
+<p><a id="project-submodule"></a><a href="#project-submodule">A project submodule</a> (or
+project) contains four (optional) directories as follows:</p>
 <ul>
-<li>The <code>equipment</code> directory may contain any number of <em>project submodules</em> that
-the project internally depends upon.</li>
-<li>The <code>internals</code> directory may contain one or more <em>target directories</em> that
-are internal to the project.</li>
-<li>The <code>provides</code> directory may contain one or more <em>target directories</em> that are
-provided for dependant projects.</li>
-<li>The <code>requires</code> directory may contain any number of <em>project submodules</em> that
-the provided targets depend upon.</li>
+<li><a id="equipment-directory"></a><a href="#equipment-directory">The <code>equipment</code> directory</a>
+may contain any number of <em>project submodules</em> that the project internally
+depends upon.</li>
+<li><a id="internals-directory"></a><a href="#internals-directory">The <code>internals</code> directory</a>
+may contain one or more <em>target directories</em> that are internal to the project.</li>
+<li><a id="provides-directory"></a><a href="#provides-directory">The <code>provides</code> directory</a>
+may contain one or more <em>target directories</em> that are provided for dependant
+projects.</li>
+<li><a id="requires-directory"></a><a href="#requires-directory">The <code>requires</code> directory</a>
+may contain any number of <em>project submodules</em> that the provided targets
+depend upon.</li>
 </ul>
-<p>In other words, both <code>internals</code> and <code>provides</code> may contain one or more target
-directories. In case only a single <code>internal</code> or <code>provides</code> target directory is
-needed, there is no need to create a nested directory.</p>
-<p>A single <em>target directory</em> may simultaneously contain</p>
+<p>In other words, both <a href="#internals-directory"><code>internals</code></a> and
+<a href="#provides-directory"><code>provides</code></a> may contain one or more target directories. In
+case only a single target is needed, there is no need to create a nested
+directory structure inside of them.</p>
+<p><a id="target-directory"></a><a href="#target-directory">A target directory</a> may
+simultaneously contain:</p>
 <ul>
-<li>a library in the <code>include/${name}</code> and <code>library</code> directories,</li>
-<li>any number of executable tests in the <code>testing</code> directory, and</li>
-<li>an executable program in the <code>program</code> directory.</li>
+<li><a id="library-target"></a><a href="#library-target">A library</a> in the
+<code>include/${name}</code> and <code>library</code> directories.</li>
+<li><a id="testing-target"></a><a href="#testing-target">Any number of executable tests</a>
+in the <code>testing</code> directory.</li>
+<li><a id="program-target"></a><a href="#program-target">An executable program</a> in the
+<code>program</code> directory.</li>
 </ul>
 <p>Try the <a href="#cppsm-init-hello"><code>cppsm init-hello</code></a> script. It generates a simple
 example project that has essentially the following structure:</p>

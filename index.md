@@ -25,6 +25,15 @@ See [repositories with the `#cppsm` topic](https://github.com/topics/cppsm).
 ## <a id="contents"></a> [≡](#contents) [Contents](#contents)
 
 - [Project structure](#project-structure)
+  - [A project submodule](#project-submodule)
+    - [The `equipment` directory](#equipment-directory)
+    - [The `internals` directory](#internals-directory)
+    - [The `provides` directory](#provides-directory)
+    - [The `requires` directory](#requires-directory)
+  - [A target directory](#target-directory)
+    - [A library](#library-target)
+    - [Any number of executable tests](#testing-target)
+    - [An executable program](#program-target)
 - [`cppsm` command](#cppsm-command)
   - [Installation](#installation)
     - [For optional code formatting](#for-optional-code-formatting)
@@ -79,26 +88,38 @@ See [repositories with the `#cppsm` topic](https://github.com/topics/cppsm).
 
 ## <a id="project-structure"></a> [≡](#contents) [Project structure](#project-structure)
 
-At the root of a project there are three directories as follows:
+C++ submodule manager projects adhere to a particular structure that allows
+projects to be operated upon programmatically.
 
-- The `equipment` directory may contain any number of _project submodules_ that
-  the project internally depends upon.
-- The `internals` directory may contain one or more _target directories_ that
-  are internal to the project.
-- The `provides` directory may contain one or more _target directories_ that are
-  provided for dependant projects.
-- The `requires` directory may contain any number of _project submodules_ that
-  the provided targets depend upon.
+<a id="project-submodule"></a>[A project submodule](#project-submodule) (or
+project) contains four (optional) directories as follows:
 
-In other words, both `internals` and `provides` may contain one or more target
-directories. In case only a single `internal` or `provides` target directory is
-needed, there is no need to create a nested directory.
+- <a id="equipment-directory"></a>[The `equipment` directory](#equipment-directory)
+  may contain any number of _project submodules_ that the project internally
+  depends upon.
+- <a id="internals-directory"></a>[The `internals` directory](#internals-directory)
+  may contain one or more _target directories_ that are internal to the project.
+- <a id="provides-directory"></a>[The `provides` directory](#provides-directory)
+  may contain one or more _target directories_ that are provided for dependant
+  projects.
+- <a id="requires-directory"></a>[The `requires` directory](#requires-directory)
+  may contain any number of _project submodules_ that the provided targets
+  depend upon.
 
-A single _target directory_ may simultaneously contain
+In other words, both [`internals`](#internals-directory) and
+[`provides`](#provides-directory) may contain one or more target directories. In
+case only a single target is needed, there is no need to create a nested
+directory structure inside of them.
 
-- a library in the `include/${name}` and `library` directories,
-- any number of executable tests in the `testing` directory, and
-- an executable program in the `program` directory.
+<a id="target-directory"></a>[A target directory](#target-directory) may
+simultaneously contain:
+
+- <a id="library-target"></a>[A library](#library-target) in the
+  `include/${name}` and `library` directories.
+- <a id="testing-target"></a>[Any number of executable tests](#testing-target)
+  in the `testing` directory.
+- <a id="program-target"></a>[An executable program](#program-target) in the
+  `program` directory.
 
 Try the [`cppsm init-hello`](#cppsm-init-hello) script. It generates a simple
 example project that has essentially the following structure:
