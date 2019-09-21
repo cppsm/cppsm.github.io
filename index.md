@@ -27,6 +27,9 @@ See [repositories with the `#cppsm` topic](https://github.com/topics/cppsm).
 - [Project structure](#project-structure)
 - [`cppsm` command](#cppsm-command)
   - [Installation](#installation)
+    - [For optional code formatting](#for-optional-code-formatting)
+    - [For optional auto completion](#for-optional-auto-completion)
+    - [For optional watch commands](#for-optional-watch-commands)
   - [Quick tour](#quick-tour)
   - [Subcommands](#subcommands)
     - [`cppsm add (requires|equipment) <url> <branch>`](#cppsm-add)
@@ -154,13 +157,20 @@ export PATH="$CPPSM/bin:$PATH"
 . "$CPPSM/bash_completion"
 ```
 
-For code formatting you need to have both
-[`clang-format`](https://clang.llvm.org/docs/ClangFormat.html) and
-[`prettier`](https://prettier.io/) commands in path.
+Optional dependencies:
 
-For the optional auto completion of git urls you must have both
-[`curl`](https://curl.haxx.se/) and [`jq`](https://stedolan.github.io/jq/)
-commands in path.
+- <a id="for-optional-code-formatting"></a>[For optional code formatting](#for-optional-code-formatting)
+  you need to have both
+  [`clang-format`](https://clang.llvm.org/docs/ClangFormat.html) and
+  [`prettier`](https://prettier.io/) commands in path.
+
+- <a id="for-optional-auto-completion"></a>[For optional auto completion](#for-optional-auto-completion)
+  of git urls you must have both [`curl`](https://curl.haxx.se/) and
+  [`jq`](https://stedolan.github.io/jq/) commands in path.
+
+- <a id="for-optional-watch-commands"></a>[For optional watch commands](#for-optional-watch-commands)
+  you must have the [`fswatch`](http://emcrisostomo.github.io/fswatch/) command
+  in path.
 
 ### <a id="quick-tour"></a> [≡](#contents) [Quick tour](#quick-tour)
 

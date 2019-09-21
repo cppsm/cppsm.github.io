@@ -34,7 +34,12 @@ excessive configuration.</p>
 <ul>
 <li><a href="#project-structure">Project structure</a></li>
 <li><a href="#cppsm-command"><code>cppsm</code> command</a><ul>
-<li><a href="#installation">Installation</a></li>
+<li><a href="#installation">Installation</a><ul>
+<li><a href="#for-optional-code-formatting">For optional code formatting</a></li>
+<li><a href="#for-optional-auto-completion">For optional auto completion</a></li>
+<li><a href="#for-optional-watch-commands">For optional watch commands</a></li>
+</ul>
+</li>
 <li><a href="#quick-tour">Quick tour</a></li>
 <li><a href="#subcommands">Subcommands</a><ul>
 <li><a href="#cppsm-add"><code>cppsm add (requires|equipment) &lt;url&gt; &lt;branch&gt;</code></a></li>
@@ -166,12 +171,22 @@ submodule manager conventions.</p>
 <pre><code class="hljs lang-bash">CPPSM=&quot;path to cppsm-cli directory&quot;
 export PATH=&quot;$CPPSM/bin:$PATH&quot;
 . &quot;$CPPSM/bash_completion&quot;</code></pre>
-<p>For code formatting you need to have both
+<p>Optional dependencies:</p>
+<ul>
+<li><p><a id="for-optional-code-formatting"></a><a href="#for-optional-code-formatting">For optional code formatting</a>
+you need to have both
 <a target="_blank" href="https://clang.llvm.org/docs/ClangFormat.html"><code>clang-format</code> <i class="fas fa-xs fa-external-link-alt"></i></a> and
 <a target="_blank" href="https://prettier.io/"><code>prettier</code> <i class="fas fa-xs fa-external-link-alt"></i></a> commands in path.</p>
-<p>For the optional auto completion of git urls you must have both
-<a target="_blank" href="https://curl.haxx.se/"><code>curl</code> <i class="fas fa-xs fa-external-link-alt"></i></a> and <a target="_blank" href="https://stedolan.github.io/jq/"><code>jq</code> <i class="fas fa-xs fa-external-link-alt"></i></a>
-commands in path.</p>
+</li>
+<li><p><a id="for-optional-auto-completion"></a><a href="#for-optional-auto-completion">For optional auto completion</a>
+of git urls you must have both <a target="_blank" href="https://curl.haxx.se/"><code>curl</code> <i class="fas fa-xs fa-external-link-alt"></i></a> and
+<a target="_blank" href="https://stedolan.github.io/jq/"><code>jq</code> <i class="fas fa-xs fa-external-link-alt"></i></a> commands in path.</p>
+</li>
+<li><p><a id="for-optional-watch-commands"></a><a href="#for-optional-watch-commands">For optional watch commands</a>
+you must have the <a target="_blank" href="http://emcrisostomo.github.io/fswatch/"><code>fswatch</code> <i class="fas fa-xs fa-external-link-alt"></i></a> command
+in path.</p>
+</li>
+</ul>
 <h3><a id="quick-tour"></a> <a href="#contents">≡</a> <a href="#quick-tour">Quick tour</a></h3>
 <p>Here is a quick tour of basic <code>cppsm</code> functionality.</p>
 <p>Create a new project:</p>
