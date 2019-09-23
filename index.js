@@ -26,7 +26,8 @@ const esc = s => s.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&')
 
 const externalLink = '<i class="fas fa-xs fa-external-link-alt"></i>'
 
-fs.readFileSync(sourcePath)
+const html = fs
+  .readFileSync(sourcePath)
   .toString()
   .pipe(s => marked(String(s)))
   .replace(/ id="a-[^"]*"/g, '')
@@ -59,4 +60,22 @@ ${s}
 </body>
 </html>`
   )
-  .pipe(s => fs.writeFileSync(targetPath, s))
+
+fs.writeFileSync(targetPath, html)
+
+const idRE = /\bid\s*=\s*"([^"]+)"/g
+const ids = new Map()
+for (;;) {
+  const m = idRE.exec(html)
+  if (!m) break
+  if (ids.has(m[1])) console.warn(`Duplicate id '${m[1]}'`)
+  ids.set(m[1], 1)
+}
+
+const hhrefRE = /\bhref="#([^"]+)"/g
+for (;;) {
+  const m = hhrefRE.exec(html)
+  if (!m) break
+  if (!ids.has(m[1]))
+    console.warn(`Target of internal link '${m[1]}' does not exist.`)
+}

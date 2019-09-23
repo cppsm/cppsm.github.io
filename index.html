@@ -19,8 +19,8 @@ of</p>
 <li><a target="_blank" href="https://travis-ci.org/">Travis CI <i class="fas fa-xs fa-external-link-alt"></i></a>, and</li>
 <li><a target="_blank" href="https://codecov.io/">Codecov <i class="fas fa-xs fa-external-link-alt"></i></a>.</li>
 </ul>
-<p>The idea is to minimize boilerplate by relying on simple conventions over
-excessive configuration.</p>
+<p>The idea is to minimize boilerplate by relying on simple
+<a href="#conventions">conventions</a> over excessive configuration.</p>
 <p>See <a target="_blank" href="https://github.com/topics/cppsm">repositories with the <code>#cppsm</code> topic <i class="fas fa-xs fa-external-link-alt"></i></a>.</p>
 <p><a target="_blank" href="https://github.com/cppsm">GitHub organization <i class="fas fa-xs fa-external-link-alt"></i></a> subprojects:</p>
 <ul>
@@ -32,22 +32,6 @@ excessive configuration.</p>
 </ul>
 <h2><a id="contents"></a> <a href="#contents">≡</a> <a href="#contents">Contents</a></h2>
 <ul>
-<li><a href="#project-structure">Project structure</a><ul>
-<li><a href="#project-submodule">A project submodule</a><ul>
-<li><a href="#equipment-directory">The <code>equipment</code> directory</a></li>
-<li><a href="#internals-directory">The <code>internals</code> directory</a></li>
-<li><a href="#provides-directory">The <code>provides</code> directory</a></li>
-<li><a href="#requires-directory">The <code>requires</code> directory</a></li>
-</ul>
-</li>
-<li><a href="#target-directory">A target directory</a><ul>
-<li><a href="#library-target">A library</a></li>
-<li><a href="#testing-target">Any number of executable tests</a></li>
-<li><a href="#program-target">An executable program</a></li>
-</ul>
-</li>
-</ul>
-</li>
 <li><a href="#cppsm-command"><code>cppsm</code> command</a><ul>
 <li><a href="#installation">Installation</a><ul>
 <li><a href="#for-optional-code-formatting">For optional code formatting</a></li>
@@ -89,10 +73,16 @@ excessive configuration.</p>
 </ul>
 </li>
 <li><a href="#cmake">CMake</a><ul>
-<li><a href="#conventional-cmake"><code>conventional.cmake</code></a><ul>
+<li><a href="#conventional-project-cmake"><code>conventional-project.cmake</code></a><ul>
+<li><a href="#add_conventional_targets_under"><code>add_conventional_targets_under(directory)</code></a></li>
+<li><a href="#add_conventional_targets_provided_under"><code>add_conventional_targets_provided_under(directory)</code></a></li>
+<li><a href="#add_conventional_targets"><code>add_conventional_targets()</code></a></li>
+</ul>
+</li>
+<li><a href="#conventional-targets-cmake"><code>conventional-targets.cmake</code></a><ul>
 <li><a href="#add_conventional_executable"><code>add_conventional_executable(name)</code></a></li>
 <li><a href="#add_conventional_executable_tests"><code>add_conventional_executable_tests(...)</code></a></li>
-<li><a href="#add_conventional_library"><code>add_conventional_library(name)</code></a></li>
+<li><a href="#add_conventional_library"><code>add_conventional_library(${LIBRARY_NAME}_${LIBRARY_VERSION})</code></a></li>
 </ul>
 </li>
 </ul>
@@ -123,70 +113,37 @@ excessive configuration.</p>
 </li>
 </ul>
 </li>
+<li><a href="#conventions">Conventions</a><ul>
+<li><a href="#conventional-project-structure">Conventional project structure</a><ul>
+<li><a href="#project">A project</a><ul>
+<li><a href="#equipment-directory">The <code>equipment</code> directory</a></li>
+<li><a href="#internals-directory">The <code>internals</code> directory</a></li>
+<li><a href="#provides-directory">The <code>provides</code> directory</a></li>
+<li><a href="#requires-directory">The <code>requires</code> directory</a></li>
 </ul>
-<h2><a id="project-structure"></a> <a href="#contents">≡</a> <a href="#project-structure">Project structure</a></h2>
-<p>C++ submodule manager projects adhere to a particular structure that allows
-projects to be operated upon programmatically.</p>
-<p><a id="project-submodule"></a><a href="#project-submodule">A project submodule</a> (or
-project) contains four (optional) directories as follows:</p>
-<ul>
-<li><a id="equipment-directory"></a><a href="#equipment-directory">The <code>equipment</code> directory</a>
-may contain any number of <em>project submodules</em> that the project internally
-depends upon.</li>
-<li><a id="internals-directory"></a><a href="#internals-directory">The <code>internals</code> directory</a>
-may contain one or more <em>target directories</em> that are internal to the project.</li>
-<li><a id="provides-directory"></a><a href="#provides-directory">The <code>provides</code> directory</a>
-may contain one or more <em>target directories</em> that are provided for dependant
-projects.</li>
-<li><a id="requires-directory"></a><a href="#requires-directory">The <code>requires</code> directory</a>
-may contain any number of <em>project submodules</em> that the provided targets
-depend upon.</li>
+</li>
+<li><a href="#project-submodule">A project submodule</a></li>
+<li><a href="#target-directory">A target directory</a></li>
 </ul>
-<p>In other words, both <a href="#internals-directory"><code>internals</code></a> and
-<a href="#provides-directory"><code>provides</code></a> may contain one or more target directories. In
-case only a single target is needed, there is no need to create a nested
-directory structure inside of them.</p>
-<p><a id="target-directory"></a><a href="#target-directory">A target directory</a> may
-simultaneously contain:</p>
-<ul>
-<li><a id="library-target"></a><a href="#library-target">A library</a> in the
-<code>include/${name}</code> and <code>library</code> directories.</li>
-<li><a id="testing-target"></a><a href="#testing-target">Any number of executable tests</a>
-in the <code>testing</code> directory.</li>
-<li><a id="program-target"></a><a href="#program-target">An executable program</a> in the
-<code>program</code> directory.</li>
+</li>
+<li><a href="#conventional-target-structure">Conventional target structure</a><ul>
+<li><a href="#library-target">A library</a></li>
+<li><a href="#testing-target">Any number of executable tests</a></li>
+<li><a href="#program-target">An executable program</a></li>
 </ul>
-<p>Try the <a href="#cppsm-init-hello"><code>cppsm init-hello</code></a> script. It generates a simple
-example project that has essentially the following structure:</p>
-<pre><code>CMakeLists.txt
-equipment/
-  testing.cpp/
-    v1/
-      provides/
-        CMakeLists.txt
-        include/
-          testing_v1/
-            [...]
-        library/
-          [...]
-internals/
-  CMakeLists.txt
-  testing/
-    message_test.cpp
-  program/
-    hello.cpp
-provides/
-  CMakeLists.txt
-  include/
-    message_v1/
-      hello.hpp
-  library/
-    hello.cpp</code></pre><p>Note that the include directories are versioned as are CMake target names and
-C++ namespace names. This allows multiple major versions of a library to be used
-simultaneously.</p>
+</li>
+<li><a href="#conventional-project-versioning">Conventional project versioning</a><ul>
+<li><a href="#project-name"><code>${PROJECT_NAME}</code></a></li>
+<li><a href="#project-version"><code>${PROJECT_VERSION}</code></a></li>
+</ul>
+</li>
+<li><a href="#conventional-library-versioning">Conventional library versioning</a></li>
+</ul>
+</li>
+</ul>
 <h2><a id="cppsm-command"></a> <a href="#contents">≡</a> <a href="#cppsm-command"><code>cppsm</code> command</a></h2>
 <p>The <code>cppsm</code> command automates various operations on projects adhering to the C++
-submodule manager conventions.</p>
+submodule manager <a href="#conventions">conventions</a>.</p>
 <h3><a id="installation"></a> <a href="#contents">≡</a> <a href="#installation">Installation</a></h3>
 <p>To install the <code>cppsm</code> command you need to clone its
 <a target="_blank" href="https://github.com/cppsm/cppsm-cli">repository <i class="fas fa-xs fa-external-link-alt"></i></a> and add it to your <code>PATH</code>.</p>
@@ -276,7 +233,30 @@ version suffix for the project.</p>
 <h4><a id="cppsm-init-hello"></a> <a href="#contents">≡</a> <a href="#cppsm-init-hello"><code>cppsm init-hello</code></a></h4>
 <p>Creates an example &quot;Hello, world!&quot; program in a freshly initialized project
 directory.</p>
-<h4><a id="cppsm-init-library"></a> <a href="#contents">≡</a> <a href="#cppsm-init-library"><code>cppsm init-library</code></a></h4>
+<pre><code>CMakeLists.txt
+equipment/
+  testing.cpp/
+    v1/
+      provides/
+        CMakeLists.txt
+        include/
+          testing_v1/
+            [...]
+        library/
+          [...]
+internals/
+  CMakeLists.txt
+  testing/
+    message_test.cpp
+  program/
+    hello.cpp
+provides/
+  CMakeLists.txt
+  include/
+    message_v1/
+      hello.hpp
+  library/
+    hello.cpp</code></pre><h4><a id="cppsm-init-library"></a> <a href="#contents">≡</a> <a href="#cppsm-init-library"><code>cppsm init-library</code></a></h4>
 <p>Creates boilerplate for a simple library project with tests in a freshly
 initialized project directory.</p>
 <pre><code>CMakeLists.txt
@@ -287,7 +267,7 @@ internals/
 provides/
   CMakeLists.txt
   include/
-    ${NAME}_${VERSION}/
+    ${LIBRARY_NAME}_${LIBRARY_VERSION}/
       synopsis.hpp</code></pre><h4><a id="cppsm-list"></a> <a href="#contents">≡</a> <a href="#cppsm-list"><code>cppsm list</code></a></h4>
 <p>Prints out a dependency tree of submodules. This command exits with an error
 code in case any problems are found in the dependency tree.</p>
@@ -334,11 +314,54 @@ versions in the branch.</p>
 <p>Upgrades all cppsm managed submodules to latest remote versions and runs
 <a href="#cppsm-init"><code>cppsm init</code></a> to update configuration files.</p>
 <h2><a id="cmake"></a> <a href="#contents">≡</a> <a href="#cmake">CMake</a></h2>
-<p>CMake boilerplate is provided for simple libraries, tests, and executables.</p>
-<h3><a id="conventional-cmake"></a> <a href="#contents">≡</a> <a href="#conventional-cmake"><code>conventional.cmake</code></a></h3>
-<p><a target="_blank" href="https://github.com/cppsm/cppsm-boilerplate/blob/master/conventional.cmake"><code>conventional.cmake</code> <i class="fas fa-xs fa-external-link-alt"></i></a>
-is a CMake script that (only) defines a number of CMake functions for targets
-and projects that adhere to the <a href="#project-structure">project structure</a>.</p>
+<p>CMake boilerplate is provided for projects and simple libraries, tests, and
+executables.</p>
+<h3><a id="conventional-project-cmake"></a> <a href="#contents">≡</a> <a href="#conventional-project-cmake"><code>conventional-project.cmake</code></a></h3>
+<p><a target="_blank" href="https://github.com/cppsm/cppsm-boilerplate/blob/master/conventional-project.cmake"><code>conventional-project.cmake</code> <i class="fas fa-xs fa-external-link-alt"></i></a>
+is a CMake script that (only) defines a number of CMake functions for projects
+that adhere to the <a href="#conventional-project-structure">project structure</a>.</p>
+<p>Typically, when using the C++ submodule manager, one does not directly call
+these functions as they are called by the automatically generated boilerplate
+code.</p>
+<h4><a id="add_conventional_targets_under"></a> <a href="#contents">≡</a> <a href="#add_conventional_targets_under"><code>add_conventional_targets_under(directory)</code></a></h4>
+<p>Recursively descends into the specified directory tree stopping at directories
+containing a<code>CMakeLists.txt</code> script and adds those
+<a href="#target-directory">target directories</a> to the project with
+<a target="_blank" href="https://cmake.org/cmake/help/latest/command/add_subdirectory.html"><code>add_subdirectory</code> <i class="fas fa-xs fa-external-link-alt"></i></a>.</p>
+<h4><a id="add_conventional_targets_provided_under"></a> <a href="#contents">≡</a> <a href="#add_conventional_targets_provided_under"><code>add_conventional_targets_provided_under(directory)</code></a></h4>
+<p>Recursively descends into the specified directory tree stopping at
+<a href="#project-submodule">project submodule</a> directories and adds those submodules to
+the project.</p>
+<ul>
+<li>If a project submodule contains a <code>.cppsm</code> directory and a
+<a href="#provides-directory"><code>provides</code></a> directory, then the <code>provides</code> directory is
+added with the
+<a href="#add_conventional_targets_under"><code>add_conventional_targets_under</code></a> function.</li>
+</ul>
+<ul>
+<li>Otherwise when a project submodule contains a <code>CMakeLists.txt</code> script, then
+the directory is added to the project with
+<a target="_blank" href="https://cmake.org/cmake/help/latest/command/add_subdirectory.html"><code>add_subdirectory</code> <i class="fas fa-xs fa-external-link-alt"></i></a>.</li>
+</ul>
+<h4><a id="add_conventional_targets"></a> <a href="#contents">≡</a> <a href="#add_conventional_targets"><code>add_conventional_targets()</code></a></h4>
+<p>Adds conventional targets into a <a href="#project">project</a>.</p>
+<p>Specifically, calls</p>
+<ul>
+<li><a href="#requires-directory"><code>add_conventional_targets_provided_under(requires)</code></a>,
+and</li>
+<li><a href="#provides-directory"><code>add_conventional_targets_under(provides)</code></a></li>
+</ul>
+<p>and, when called from the top-level of a CMake source tree, also calls</p>
+<ul>
+<li><a href="#equipment-directory"><code>add_conventional_targets_provided_under(equipment)</code></a>,
+and</li>
+<li><a href="#internals-directory"><code>add_conventional_targets_under(internals)</code></a>.</li>
+</ul>
+<h3><a id="conventional-targets-cmake"></a> <a href="#contents">≡</a> <a href="#conventional-targets-cmake"><code>conventional-targets.cmake</code></a></h3>
+<p><a target="_blank" href="https://github.com/cppsm/cppsm-boilerplate/blob/master/conventional-targets.cmake"><code>conventional-targets.cmake</code> <i class="fas fa-xs fa-external-link-alt"></i></a>
+is a CMake script that (only) defines a number of CMake functions for defining
+target that adhere to the
+<a href="#conventional-target-structure">conventional target structure</a>.</p>
 <h4><a id="add_conventional_executable"></a> <a href="#contents">≡</a> <a href="#add_conventional_executable"><code>add_conventional_executable(name)</code></a></h4>
 <p>Adds an executable target with the given name. Assumes that the target directory
 has implementation files matching the pattern <code>program/*.{cpp,hpp}</code>.</p>
@@ -354,18 +377,21 @@ arguments given to <code>add_conventional_executable_tests</code> are passed to
 for each added test target.</p>
 <pre><code>CMakeLists.txt
 testing/
-  *.cpp</code></pre><h4><a id="add_conventional_library"></a> <a href="#contents">≡</a> <a href="#add_conventional_library"><code>add_conventional_library(name)</code></a></h4>
+  *.cpp</code></pre><h4><a id="add_conventional_library"></a> <a href="#contents">≡</a> <a href="#add_conventional_library"><code>add_conventional_library(${LIBRARY_NAME}_${LIBRARY_VERSION})</code></a></h4>
 <p>Adds a library target with the given name. Assumes that the target directory has
-public header files matching the pattern <code>include/${name}/*.hpp</code> and
-implementation files matching the pattern <code>library/*.{cpp,hpp}</code>.</p>
+public header files matching the pattern
+<a href="#conventional-library-versioning"><code>include/${LIBRARY_NAME}_${LIBRARY_VERSION}/*.hpp</code></a>
+and implementation files matching the pattern <code>library/*.{cpp,hpp}</code>.</p>
 <pre><code>CMakeLists.txt
 include/
-  ${name}/
+  ${LIBRARY_NAME}_${LIBRARY_VERSION}/
     *.hpp
 library/
-  *.(cpp|hpp)</code></pre><p>Note that inside <code>include</code> there is a directory with the target <code>${name}</code> (which
-should also include the major version) to differentiate between the header files
-of different targets (and their major versions).</p>
+  *.(cpp|hpp)</code></pre><p>Note that inside <code>include</code> there is a directory whose name
+<a href="#conventional-library-versioning"><code>${LIBRARY_NAME}_${LIBRARY_VERSION}</code></a>
+suggests that it should include both the library name and its major version. The
+intention of the directory is to differentiate between the header files of
+different targets (and their major versions).</p>
 <h2><a id="travis-ci"></a> <a href="#contents">≡</a> <a href="#travis-ci">Travis CI</a></h2>
 <p>A <a target="_blank" href="https://travis-ci-ci.org/">Travis CI <i class="fas fa-xs fa-external-link-alt"></i></a>
 <a target="_blank" href="https://github.com/cppsm/cppsm-cli/blob/master/.travis.yml">configuration file <i class="fas fa-xs fa-external-link-alt"></i></a>
@@ -409,8 +435,8 @@ installation of additional packages concurrently with builds when possible. Set
 builds.</p>
 <h2><a id="variables"></a> <a href="#contents">≡</a> <a href="#variables">Variables</a></h2>
 <p>Several environment variables can be set to change the default behavior of one
-or more C++ submodule manager commands. These variables can be used both on the
-<a href="#travis-ci">CI</a> and also when using <code>cppsm</code> commands locally.</p>
+or more cppsm commands. These variables can be used both on the <a href="#travis-ci">CI</a>
+and also when using <code>cppsm</code> commands locally.</p>
 <h3><a id="ctest_output_on_failure"></a> <a href="#contents">≡</a> <a href="#ctest_output_on_failure"><code>CTEST_OUTPUT_ON_FAILURE=1|0</code></a></h3>
 <p>By default CTest is configured to
 <a target="_blank" href="https://cmake.org/cmake/help/latest/envvar/CTEST_OUTPUT_ON_FAILURE.html">log output in case a test fails <i class="fas fa-xs fa-external-link-alt"></i></a>.
@@ -463,6 +489,94 @@ controls the
 <a target="_blank" href="https://www.gnu.org/software/bash/manual/bash.html#The-Set-Builtin"><code>set -x</code> <i class="fas fa-xs fa-external-link-alt"></i></a>
 to enable Bash xtrace.</li>
 </ul>
+<h2><a id="conventions"></a> <a href="#contents">≡</a> <a href="#conventions">Conventions</a></h2>
+<p>C++ submodule manager projects adhere to conventions to make it simpler to
+operate on projects and targets programmatically and also to make room for both
+independently developed projects and different versions of a single project to
+coexist.</p>
+<p>In order to understand how these conventions translate into practice, it can be
+helpful to play with an example. The <a href="#cppsm-init-hello"><code>cppsm init-hello</code></a>
+script is written for this purpose to generate a simple example project.</p>
+<h3><a id="conventional-project-structure"></a> <a href="#contents">≡</a> <a href="#conventional-project-structure">Conventional project structure</a></h3>
+<p>Every cppsm project must conform to the project structure, whose rules are
+codified into functions defined in the
+<a href="#conventional-project-cmake"><code>conventional-project.cmake</code></a> script and many of
+the <a href="#subcommands">subcommands</a> of the <a href="#cppsm-command"><code>cppsm</code> command</a>.</p>
+<p><a id="project"></a><a href="#project">A project</a> contains a <code>.cppsm</code> subdirectory
+(containing the <a target="_blank" href="https://github.com/cppsm/cppsm-boilerplate">boilerplate <i class="fas fa-xs fa-external-link-alt"></i></a> files)
+and four optional directories as follows:</p>
+<ul>
+<li><a id="equipment-directory"></a><a href="#equipment-directory">The <code>equipment</code> directory</a>
+may contain any number of <a href="#project-submodule"><em>project submodules</em></a> that the
+project internally depends upon.</li>
+<li><a id="internals-directory"></a><a href="#internals-directory">The <code>internals</code> directory</a>
+may contain any number of <a href="#target-directory"><em>target directories</em></a> that are
+internal to the project.</li>
+<li><a id="provides-directory"></a><a href="#provides-directory">The <code>provides</code> directory</a>
+may contain any number of <a href="#target-directory"><em>target directories</em></a> that are
+provided for dependant projects.</li>
+<li><a id="requires-directory"></a><a href="#requires-directory">The <code>requires</code> directory</a>
+may contain any number of <a href="#project-submodule"><em>project submodules</em></a> that the
+provided targets depend upon.</li>
+</ul>
+<p><a id="project-submodule"></a><a href="#project-submodule">A project submodule</a> is
+either a <a href="#project">project</a> with a <a href="#provides-directory"><code>provides</code></a> directory
+or just contains a <code>CMakeLists.txt</code> script. In the former case the submodule is
+treated as a cppsm <a href="#project">project</a> whose targets under
+<a href="#provides-directory"><code>provides</code></a> will be added to the build and in the latter
+case the submodule is treated as a foreign CMake project to be added to the
+build.</p>
+<p><a id="target-directory"></a><a href="#target-directory">A target directory</a> simply
+contains a <code>CMakeLists.txt</code> script that defines targets.</p>
+<p>Note that in the common case when only a single target directory is needed under
+<a href="#internals-directory"><code>internals</code></a> or <a href="#provides-directory"><code>provides</code></a>, there
+is no need to create a nested directory for it and the <code>CMakeLists.txt</code> script
+can go directly under the <a href="#internals-directory"><code>internals</code></a> or
+<a href="#provides-directory"><code>provides</code></a> directory.</p>
+<h3><a id="conventional-target-structure"></a> <a href="#contents">≡</a> <a href="#conventional-target-structure">Conventional target structure</a></h3>
+<p>In a cppsm project one may optionally structure targets according to conventions
+codified into functions defined in the
+<a href="#conventional-targets-cmake"><code>conventional-targets.cmake</code></a> script. In that case
+a target directory may simultaneously contain:</p>
+<ul>
+<li><a id="library-target"></a><a href="#library-target">A library</a> in the
+<a href="#conventional-library-versioning"><code>include/${LIBRARY_NAME}_${LIBRARY_VERSION}</code></a>
+and <code>library</code> directories.</li>
+<li><a id="testing-target"></a><a href="#testing-target">Any number of executable tests</a>
+in the <code>testing</code> directory.</li>
+<li><a id="program-target"></a><a href="#program-target">An executable program</a> in the
+<code>program</code> directory.</li>
+</ul>
+<h3><a id="conventional-project-versioning"></a> <a href="#contents">≡</a> <a href="#conventional-project-versioning">Conventional project versioning</a></h3>
+<p>C++ submodule manager <a href="#project">projects</a> and
+<a href="#project-submodule">project submodules</a> are versioned such that the branches of
+a project are named after their (major) version numbers and the version numbers
+are part of the paths of submodules containing C++ submodule manager projects.</p>
+<p><a id="project-name"></a>The <a href="#project-name"><code>${PROJECT_NAME}</code></a> of a C++
+submodule manager project is taken to be the last (<code>/</code> separated) part of the
+URL of the Git project sans the <code>.git</code> suffix.</p>
+<p><a id="project-version"></a>The <a href="#project-version"><code>${PROJECT_VERSION}</code></a> of a
+cppsm project is the name of a branch.</p>
+<p>When added as a submodule dependency, a cppsm project whose name is
+<a href="#project-name"><code>${PROJECT_NAME}</code></a> and whose version is
+<a href="#project-version"><code>${PROJECT_VERSION}</code></a> goes either to
+<a href="#equipment-directory"><code>equipment/${PROJECT_NAME}/${PROJECT_VERSION}</code></a> or to
+<a href="#requires-directory"><code>requires/${PROJECT_NAME}/${PROJECT_VERSION}</code></a> depending
+on the nature of the dependency.</p>
+<h3><a id="conventional-library-versioning"></a> <a href="#contents">≡</a> <a href="#conventional-library-versioning">Conventional library versioning</a></h3>
+<p>In a cppsm project one may optionally version libraries such that their header
+files start with a directory name of the form <code>${LIBRARY_NAME}_${VERSION}</code>,
+which is also the name of the CMake <a href="#add_conventional_library">library target</a>
+and of the namespace inside of which all the public code of the library resides
+in.</p>
+<p>Note that when combined with the
+<a href="#conventional-project-versioning">project versioning conventions</a> this allows a
+single project to potentially use multiple (major or incompatible) versions of a
+single project or library. This can be very important in large projects composed
+of separately develop subprojects or libraries.</p>
+<p>Note that often <code>LIBRARY_NAME</code> may be the same as
+<a href="#project-name"><code>PROJECT_NAME</code></a> and <code>LIBRARY_VERSION</code> may be the same as
+<a href="#project-version"><code>PROJECT_VERSION</code></a>, but this is not required.</p>
 
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/bash.min.js"></script>
