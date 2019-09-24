@@ -18,7 +18,7 @@
   "homepage": "https://github.com/cppsm/cppsm.github.io#readme",
   "devDependencies": {
     "concurrently": "^4.1.2",
-    "livereload": "^0.8.0",
+    "livereload": "^0.8.1",
     "marked": "^0.7.0",
     "watch-run": "^1.2.5"
   }
