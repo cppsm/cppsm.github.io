@@ -10,17 +10,34 @@
 </head>
 <body class="markdown-body">
 <h1 id="≡-c-submodule-manager-gitter"><a href="#contents">≡</a> <a href="#">C++ submodule manager</a> <a target="_blank" href="https://gitter.im/cppsm/community"><img src="https://badges.gitter.im/cppsm/community.svg" alt="Gitter"></a></h1>
-<p>Poor man&#39;s submodule management, build scripts, and CI integration for simple,
-&quot;conventional&quot; C++ libraries, executable tests, and executable programs on top
-of</p>
+<p>The C++ submodule manager is fundamentally a set of <a href="#conventions">conventions</a>
+for structuring projects with <a target="_blank" href="https://git-scm.com/">Git <i class="fas fa-xs fa-external-link-alt"></i></a> and
+<a target="_blank" href="https://cmake.org/">CMake <i class="fas fa-xs fa-external-link-alt"></i></a> rather than a new tool. The goal is to make it
+economical to compose projects from independently developed packages. You can
+basically spin off a library with CI integration and with dependencies to other
+libraries and have it usable as a manageable dependency in other projects in a
+matter of minutes or less.</p>
+<p>Basic features:</p>
 <ul>
-<li><a target="_blank" href="https://cmake.org/">CMake <i class="fas fa-xs fa-external-link-alt"></i></a>,</li>
-<li><a target="_blank" href="https://git-scm.com/">Git <i class="fas fa-xs fa-external-link-alt"></i></a>,</li>
-<li><a target="_blank" href="https://travis-ci.org/">Travis CI <i class="fas fa-xs fa-external-link-alt"></i></a>, and</li>
-<li><a target="_blank" href="https://codecov.io/">Codecov <i class="fas fa-xs fa-external-link-alt"></i></a>.</li>
+<li>Decentralized package storage via <a target="_blank" href="https://git-scm.com/">Git <i class="fas fa-xs fa-external-link-alt"></i></a></li>
+<li>Deterministic dependencies via <a target="_blank" href="https://git-scm.com/">Git <i class="fas fa-xs fa-external-link-alt"></i></a></li>
+<li>Cross-platform via <a target="_blank" href="https://git-scm.com/">Git <i class="fas fa-xs fa-external-link-alt"></i></a> and <a target="_blank" href="https://cmake.org/">CMake <i class="fas fa-xs fa-external-link-alt"></i></a></li>
 </ul>
-<p>The idea is to minimize boilerplate by relying on simple
-<a href="#conventions">conventions</a> over excessive configuration.</p>
+<p>Additional features:</p>
+<ul>
+<li><a href="#cppsm-command">Command line tool</a> to automate operations on projects<ul>
+<li><a href="#cppsm-init-library">Generate project boilerplate</a></li>
+<li><a href="#cppsm-add">Add</a>, <a href="#cppsm-remove">remove</a>, <a href="#cppsm-upgrade">upgrade</a>
+dependencies</li>
+<li><a href="#cppsm-format">Code formatting</a></li>
+<li><a href="#cppsm-build">Build</a>, <a href="#cppsm-test">test</a>, and <a href="#cppsm-test-watch">watch</a></li>
+<li>...</li>
+</ul>
+</li>
+<li><a href="#cmake">CMake functions to minimize boilerplate</a></li>
+<li><a href="#travis-ci">Travis CI integration</a></li>
+<li><a href="#codecov">Codecov integration</a></li>
+</ul>
 <p>See <a target="_blank" href="https://github.com/topics/cppsm">repositories with the <code>#cppsm</code> topic <i class="fas fa-xs fa-external-link-alt"></i></a>.</p>
 <p><a target="_blank" href="https://github.com/cppsm">GitHub organization <i class="fas fa-xs fa-external-link-alt"></i></a> subprojects:</p>
 <ul>
@@ -142,8 +159,12 @@ of</p>
 </li>
 </ul>
 <h2><a id="cppsm-command"></a> <a href="#contents">≡</a> <a href="#cppsm-command"><code>cppsm</code> command</a></h2>
-<p>The <code>cppsm</code> command automates various operations on projects adhering to the C++
-submodule manager <a href="#conventions">conventions</a>.</p>
+<p>The <code>cppsm</code> command is basically a set of fairly simple scripts that automate
+various operations on projects adhering to the C++ submodule manager
+<a href="#conventions">conventions</a>. All the hard work is already done by
+<a target="_blank" href="https://cmake.org/">CMake <i class="fas fa-xs fa-external-link-alt"></i></a>, <a target="_blank" href="https://git-scm.com/">Git <i class="fas fa-xs fa-external-link-alt"></i></a>, and other tools and
+services used. Any <code>cppsm</code> project can be used without the <code>cppsm</code> command
+itself.</p>
 <h3><a id="installation"></a> <a href="#contents">≡</a> <a href="#installation">Installation</a></h3>
 <p>To install the <code>cppsm</code> command you need to clone its
 <a target="_blank" href="https://github.com/cppsm/cppsm-cli">repository <i class="fas fa-xs fa-external-link-alt"></i></a> and add it to your <code>PATH</code>.</p>
@@ -490,7 +511,7 @@ controls the
 to enable Bash xtrace.</li>
 </ul>
 <h2><a id="conventions"></a> <a href="#contents">≡</a> <a href="#conventions">Conventions</a></h2>
-<p>C++ submodule manager projects adhere to conventions to make it simpler to
+<p>C++ submodule manager projects adhere to conventions to make it simple to
 operate on projects and targets programmatically and also to make room for both
 independently developed projects and different versions of a single project to
 coexist.</p>

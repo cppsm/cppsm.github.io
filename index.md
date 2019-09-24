@@ -1,16 +1,31 @@
 # [≡](#contents) [C++ submodule manager](#) [![Gitter](https://badges.gitter.im/cppsm/community.svg)](https://gitter.im/cppsm/community)
 
-Poor man's submodule management, build scripts, and CI integration for simple,
-"conventional" C++ libraries, executable tests, and executable programs on top
-of
+The C++ submodule manager is fundamentally a set of [conventions](#conventions)
+for structuring projects with [Git](https://git-scm.com/) and
+[CMake](https://cmake.org/) rather than a new tool. The goal is to make it
+economical to compose projects from independently developed packages. You can
+basically spin off a library with CI integration and with dependencies to other
+libraries and have it usable as a manageable dependency in other projects in a
+matter of minutes or less.
 
-- [CMake](https://cmake.org/),
-- [Git](https://git-scm.com/),
-- [Travis CI](https://travis-ci.org/), and
-- [Codecov](https://codecov.io/).
+Basic features:
 
-The idea is to minimize boilerplate by relying on simple
-[conventions](#conventions) over excessive configuration.
+- Decentralized package storage via [Git](https://git-scm.com/)
+- Deterministic dependencies via [Git](https://git-scm.com/)
+- Cross-platform via [Git](https://git-scm.com/) and [CMake](https://cmake.org/)
+
+Additional features:
+
+- [Command line tool](#cppsm-command) to automate operations on projects
+  - [Generate project boilerplate](#cppsm-init-library)
+  - [Add](#cppsm-add), [remove](#cppsm-remove), [upgrade](#cppsm-upgrade)
+    dependencies
+  - [Code formatting](#cppsm-format)
+  - [Build](#cppsm-build), [test](#cppsm-test), and [watch](#cppsm-test-watch)
+  - ...
+- [CMake functions to minimize boilerplate](#cmake)
+- [Travis CI integration](#travis-ci)
+- [Codecov integration](#codecov)
 
 See [repositories with the `#cppsm` topic](https://github.com/topics/cppsm).
 
@@ -99,8 +114,12 @@ See [repositories with the `#cppsm` topic](https://github.com/topics/cppsm).
 
 ## <a id="cppsm-command"></a> [≡](#contents) [`cppsm` command](#cppsm-command)
 
-The `cppsm` command automates various operations on projects adhering to the C++
-submodule manager [conventions](#conventions).
+The `cppsm` command is basically a set of fairly simple scripts that automate
+various operations on projects adhering to the C++ submodule manager
+[conventions](#conventions). All the hard work is already done by
+[CMake](https://cmake.org/), [Git](https://git-scm.com/), and other tools and
+services used. Any `cppsm` project can be used without the `cppsm` command
+itself.
 
 ### <a id="installation"></a> [≡](#contents) [Installation](#installation)
 
@@ -560,7 +579,7 @@ By default scripts do not output trace information to reduce noise. Set
 
 ## <a id="conventions"></a> [≡](#contents) [Conventions](#conventions)
 
-C++ submodule manager projects adhere to conventions to make it simpler to
+C++ submodule manager projects adhere to conventions to make it simple to
 operate on projects and targets programmatically and also to make room for both
 independently developed projects and different versions of a single project to
 coexist.
