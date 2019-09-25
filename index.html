@@ -162,9 +162,9 @@ dependencies</li>
 <p>The <code>cppsm</code> command is basically a set of fairly simple scripts that automate
 various operations on projects adhering to the C++ submodule manager
 <a href="#conventions">conventions</a>. All the hard work is already done by
-<a target="_blank" href="https://cmake.org/">CMake <i class="fas fa-xs fa-external-link-alt"></i></a>, <a target="_blank" href="https://git-scm.com/">Git <i class="fas fa-xs fa-external-link-alt"></i></a>, and other tools and
-services used. Any <code>cppsm</code> project can be used without the <code>cppsm</code> command
-itself.</p>
+<a target="_blank" href="https://git-scm.com/">Git <i class="fas fa-xs fa-external-link-alt"></i></a>, <a target="_blank" href="https://cmake.org/">CMake <i class="fas fa-xs fa-external-link-alt"></i></a>, and other tools and
+services used. Any <code>cppsm</code> project can be used and developed without the <code>cppsm</code>
+command itself.</p>
 <h3><a id="installation"></a> <a href="#contents">≡</a> <a href="#installation">Installation</a></h3>
 <p>To install the <code>cppsm</code> command you need to clone its
 <a target="_blank" href="https://github.com/cppsm/cppsm-cli">repository <i class="fas fa-xs fa-external-link-alt"></i></a> and add it to your <code>PATH</code>.</p>
@@ -540,9 +540,9 @@ provided for dependant projects.</li>
 may contain any number of <a href="#project-submodule"><em>project submodules</em></a> that the
 provided targets depend upon.</li>
 </ul>
-<p><a id="project-submodule"></a><a href="#project-submodule">A project submodule</a> is
-either a <a href="#project">project</a> with a <a href="#provides-directory"><code>provides</code></a> directory
-or just contains a <code>CMakeLists.txt</code> script. In the former case the submodule is
+<p><a id="project-submodule"></a><a href="#project-submodule">A project submodule</a> either
+contains a <a href="#project">project</a> with a <a href="#provides-directory"><code>provides</code></a>
+directory or just a <code>CMakeLists.txt</code> script. In the former case the submodule is
 treated as a cppsm <a href="#project">project</a> whose targets under
 <a href="#provides-directory"><code>provides</code></a> will be added to the build and in the latter
 case the submodule is treated as a foreign CMake project to be added to the

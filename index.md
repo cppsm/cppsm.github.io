@@ -117,9 +117,9 @@ See [repositories with the `#cppsm` topic](https://github.com/topics/cppsm).
 The `cppsm` command is basically a set of fairly simple scripts that automate
 various operations on projects adhering to the C++ submodule manager
 [conventions](#conventions). All the hard work is already done by
-[CMake](https://cmake.org/), [Git](https://git-scm.com/), and other tools and
-services used. Any `cppsm` project can be used without the `cppsm` command
-itself.
+[Git](https://git-scm.com/), [CMake](https://cmake.org/), and other tools and
+services used. Any `cppsm` project can be used and developed without the `cppsm`
+command itself.
 
 ### <a id="installation"></a> [≡](#contents) [Installation](#installation)
 
@@ -612,9 +612,9 @@ and four optional directories as follows:
   may contain any number of [_project submodules_](#project-submodule) that the
   provided targets depend upon.
 
-<a id="project-submodule"></a>[A project submodule](#project-submodule) is
-either a [project](#project) with a [`provides`](#provides-directory) directory
-or just contains a `CMakeLists.txt` script. In the former case the submodule is
+<a id="project-submodule"></a>[A project submodule](#project-submodule) either
+contains a [project](#project) with a [`provides`](#provides-directory)
+directory or just a `CMakeLists.txt` script. In the former case the submodule is
 treated as a cppsm [project](#project) whose targets under
 [`provides`](#provides-directory) will be added to the build and in the latter
 case the submodule is treated as a foreign CMake project to be added to the
