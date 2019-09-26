@@ -159,15 +159,15 @@ Optional dependencies:
 
 Here is a quick tour of basic `cppsm` functionality.
 
-Create a new project:
+Create a new empty project:
 
 ```bash
 mkdir PROJECT && cd "$_"
-git init
 cppsm init
 ```
 
-Try the hello world example:
+At this point you could try adding dependencies or writing code, but let's
+actually try the hello world example:
 
 ```bash
 cppsm init-hello
@@ -255,9 +255,10 @@ Formats project files inplace using
 
 #### <a id="cppsm-init"></a> [≡](#contents) [`cppsm init`](#cppsm-init)
 
-Initializes a new C++ project with cppsm configuration files or updates an
-existing project to use the latest configuration files. Run `cppsm init` in the
-top-level directory of a fresh git project.
+Initializes a new project with cppsm configuration files when run in an empty
+directory or updates an existing project to use the latest configuration files.
+See also [`cppsm init-hello`](#cppsm-init-hello) and
+[`cppsm init-library`](#cppsm-init-library).
 
 Configuration variables:
 
@@ -265,12 +266,13 @@ Configuration variables:
   the project and defaults to the name of the current directory.
 
 - <a id="init-version"></a>[`VERSION='v1'|'...'`](#init-version) specifies the
-  version suffix for the project.
+  branch and version suffix for the project.
 
 #### <a id="cppsm-init-hello"></a> [≡](#contents) [`cppsm init-hello`](#cppsm-init-hello)
 
-Creates an example "Hello, world!" program in a freshly initialized project
-directory.
+Initializes a new project with an example "Hello, world!" program. This is only
+intended for educational purposes. See also [`cppsm init`](#cppsm-init) and
+[`cppsm init-library`](#cppsm-init-library).
 
     CMakeLists.txt
     equipment/
@@ -299,8 +301,9 @@ directory.
 
 #### <a id="cppsm-init-library"></a> [≡](#contents) [`cppsm init-library`](#cppsm-init-library)
 
-Creates boilerplate for a simple library project with tests in a freshly
-initialized project directory.
+Initializes a new project with boilerplate for a simple library project in an
+empty directory. See also [`cppsm init`](#cppsm-init) and
+[`cppsm init-hello`](#cppsm-init-hello).
 
     CMakeLists.txt
     internals/

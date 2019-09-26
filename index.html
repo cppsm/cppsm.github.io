@@ -192,11 +192,11 @@ in path.</p>
 </ul>
 <h3><a id="quick-tour"></a> <a href="#contents">≡</a> <a href="#quick-tour">Quick tour</a></h3>
 <p>Here is a quick tour of basic <code>cppsm</code> functionality.</p>
-<p>Create a new project:</p>
+<p>Create a new empty project:</p>
 <pre><code class="hljs lang-bash">mkdir PROJECT &amp;&amp; cd &quot;$_&quot;
-git init
 cppsm init</code></pre>
-<p>Try the hello world example:</p>
+<p>At this point you could try adding dependencies or writing code, but let&#39;s
+actually try the hello world example:</p>
 <pre><code class="hljs lang-bash">cppsm init-hello
 cppsm test
 .build*/internals/hello</code></pre>
@@ -239,21 +239,23 @@ build the project on any changes to project files. See
 <a target="_blank" href="https://clang.llvm.org/docs/ClangFormat.html">clang-format <i class="fas fa-xs fa-external-link-alt"></i></a> and
 <a target="_blank" href="https://prettier.io/">prettier <i class="fas fa-xs fa-external-link-alt"></i></a>.</p>
 <h4><a id="cppsm-init"></a> <a href="#contents">≡</a> <a href="#cppsm-init"><code>cppsm init</code></a></h4>
-<p>Initializes a new C++ project with cppsm configuration files or updates an
-existing project to use the latest configuration files. Run <code>cppsm init</code> in the
-top-level directory of a fresh git project.</p>
+<p>Initializes a new project with cppsm configuration files when run in an empty
+directory or updates an existing project to use the latest configuration files.
+See also <a href="#cppsm-init-hello"><code>cppsm init-hello</code></a> and
+<a href="#cppsm-init-library"><code>cppsm init-library</code></a>.</p>
 <p>Configuration variables:</p>
 <ul>
 <li><p><a id="init-name"></a><a href="#init-name"><code>NAME=&#39;...&#39;</code></a> specifies the base name for
 the project and defaults to the name of the current directory.</p>
 </li>
 <li><p><a id="init-version"></a><a href="#init-version"><code>VERSION=&#39;v1&#39;|&#39;...&#39;</code></a> specifies the
-version suffix for the project.</p>
+branch and version suffix for the project.</p>
 </li>
 </ul>
 <h4><a id="cppsm-init-hello"></a> <a href="#contents">≡</a> <a href="#cppsm-init-hello"><code>cppsm init-hello</code></a></h4>
-<p>Creates an example &quot;Hello, world!&quot; program in a freshly initialized project
-directory.</p>
+<p>Initializes a new project with an example &quot;Hello, world!&quot; program. This is only
+intended for educational purposes. See also <a href="#cppsm-init"><code>cppsm init</code></a> and
+<a href="#cppsm-init-library"><code>cppsm init-library</code></a>.</p>
 <pre><code>CMakeLists.txt
 equipment/
   testing.cpp/
@@ -278,8 +280,9 @@ provides/
       hello.hpp
   library/
     hello.cpp</code></pre><h4><a id="cppsm-init-library"></a> <a href="#contents">≡</a> <a href="#cppsm-init-library"><code>cppsm init-library</code></a></h4>
-<p>Creates boilerplate for a simple library project with tests in a freshly
-initialized project directory.</p>
+<p>Initializes a new project with boilerplate for a simple library project in an
+empty directory. See also <a href="#cppsm-init"><code>cppsm init</code></a> and
+<a href="#cppsm-init-hello"><code>cppsm init-hello</code></a>.</p>
 <pre><code>CMakeLists.txt
 internals/
   CMakeLists.txt
