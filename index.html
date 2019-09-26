@@ -354,9 +354,8 @@ containing a<code>CMakeLists.txt</code> script and adds those
 <a href="#project-submodule">project submodule</a> directories and adds those submodules to
 the project.</p>
 <ul>
-<li>If a project submodule contains a <code>.cppsm</code> directory and a
-<a href="#provides-directory"><code>provides</code></a> directory, then the <code>provides</code> directory is
-added with the
+<li>If a project submodule contains a <code>.cppsm</code> directory, then the <code>provides</code>
+directory of the submodule is added with the
 <a href="#add_conventional_targets_under"><code>add_conventional_targets_under</code></a> function.</li>
 </ul>
 <ul>
@@ -541,9 +540,8 @@ may contain any number of <a href="#project-submodule"><em>project submodules</e
 provided targets depend upon.</li>
 </ul>
 <p><a id="project-submodule"></a><a href="#project-submodule">A project submodule</a> either
-contains a <a href="#project">project</a> with a <a href="#provides-directory"><code>provides</code></a>
-directory or just a <code>CMakeLists.txt</code> script. In the former case the submodule is
-treated as a cppsm <a href="#project">project</a> whose targets under
+contains a <a href="#project">project</a> or just a <code>CMakeLists.txt</code> script. In the former
+case the submodule is treated as a cppsm <a href="#project">project</a> whose targets under
 <a href="#provides-directory"><code>provides</code></a> will be added to the build and in the latter
 case the submodule is treated as a foreign CMake project to be added to the
 build.</p>

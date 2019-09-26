@@ -399,9 +399,8 @@ Recursively descends into the specified directory tree stopping at
 [project submodule](#project-submodule) directories and adds those submodules to
 the project.
 
-- If a project submodule contains a `.cppsm` directory and a
-  [`provides`](#provides-directory) directory, then the `provides` directory is
-  added with the
+- If a project submodule contains a `.cppsm` directory, then the `provides`
+  directory of the submodule is added with the
   [`add_conventional_targets_under`](#add_conventional_targets_under) function.
 
 * Otherwise when a project submodule contains a `CMakeLists.txt` script, then
@@ -613,9 +612,8 @@ and four optional directories as follows:
   provided targets depend upon.
 
 <a id="project-submodule"></a>[A project submodule](#project-submodule) either
-contains a [project](#project) with a [`provides`](#provides-directory)
-directory or just a `CMakeLists.txt` script. In the former case the submodule is
-treated as a cppsm [project](#project) whose targets under
+contains a [project](#project) or just a `CMakeLists.txt` script. In the former
+case the submodule is treated as a cppsm [project](#project) whose targets under
 [`provides`](#provides-directory) will be added to the build and in the latter
 case the submodule is treated as a foreign CMake project to be added to the
 build.
