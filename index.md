@@ -2,11 +2,11 @@
 
 The C++ submodule manager is fundamentally a set of [conventions](#conventions)
 for structuring projects with [Git](https://git-scm.com/) and
-[CMake](https://cmake.org/) rather than a new tool. The goal is to make it
-economical to compose projects from independently developed packages. You can
-basically spin off a library with CI integration and with dependencies to other
-libraries and have it usable as a manageable dependency in other projects in a
-matter of minutes or less.
+[CMake](https://cmake.org/) rather than just [a new tool](#cppsm-command). The
+goal is to make it economical to compose projects from independently developed
+packages. You can basically spin off a library with CI integration and with
+dependencies to other libraries and have it usable as a manageable dependency in
+other projects in a matter of minutes or less.
 
 Basic features:
 
@@ -137,7 +137,7 @@ Add to your `.bash_profile`:
 ```bash
 CPPSM="path to cppsm-cli directory"
 export PATH="$CPPSM/bin:$PATH"
-. "$CPPSM/bash_completion"
+. "$CPPSM/bash_completion"        # NOTE: This installs optional Bash completion
 ```
 
 Optional dependencies:
@@ -428,7 +428,7 @@ and, when called from the top-level of a CMake source tree, also calls
 
 [`conventional-targets.cmake`](https://github.com/cppsm/cppsm-boilerplate/blob/master/conventional-targets.cmake)
 is a CMake script that (only) defines a number of CMake functions for defining
-target that adhere to the
+targets that adhere to the
 [conventional target structure](#conventional-target-structure).
 
 #### <a id="add_conventional_executable"></a> [≡](#contents) [`add_conventional_executable(name)`](#add_conventional_executable)

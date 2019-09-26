@@ -12,11 +12,11 @@
 <h1 id="≡-c-submodule-manager-gitter"><a href="#contents">≡</a> <a href="#">C++ submodule manager</a> <a target="_blank" href="https://gitter.im/cppsm/community"><img src="https://badges.gitter.im/cppsm/community.svg" alt="Gitter"></a></h1>
 <p>The C++ submodule manager is fundamentally a set of <a href="#conventions">conventions</a>
 for structuring projects with <a target="_blank" href="https://git-scm.com/">Git <i class="fas fa-xs fa-external-link-alt"></i></a> and
-<a target="_blank" href="https://cmake.org/">CMake <i class="fas fa-xs fa-external-link-alt"></i></a> rather than a new tool. The goal is to make it
-economical to compose projects from independently developed packages. You can
-basically spin off a library with CI integration and with dependencies to other
-libraries and have it usable as a manageable dependency in other projects in a
-matter of minutes or less.</p>
+<a target="_blank" href="https://cmake.org/">CMake <i class="fas fa-xs fa-external-link-alt"></i></a> rather than just <a href="#cppsm-command">a new tool</a>. The
+goal is to make it economical to compose projects from independently developed
+packages. You can basically spin off a library with CI integration and with
+dependencies to other libraries and have it usable as a manageable dependency in
+other projects in a matter of minutes or less.</p>
 <p>Basic features:</p>
 <ul>
 <li>Decentralized package storage via <a target="_blank" href="https://git-scm.com/">Git <i class="fas fa-xs fa-external-link-alt"></i></a></li>
@@ -173,7 +173,7 @@ command itself.</p>
 <p>Add to your <code>.bash_profile</code>:</p>
 <pre><code class="hljs lang-bash">CPPSM=&quot;path to cppsm-cli directory&quot;
 export PATH=&quot;$CPPSM/bin:$PATH&quot;
-. &quot;$CPPSM/bash_completion&quot;</code></pre>
+. &quot;$CPPSM/bash_completion&quot;        # NOTE: This installs optional Bash completion</code></pre>
 <p>Optional dependencies:</p>
 <ul>
 <li><p><a id="for-optional-code-formatting"></a><a href="#for-optional-code-formatting">For optional code formatting</a>
@@ -381,7 +381,7 @@ and</li>
 <h3><a id="conventional-targets-cmake"></a> <a href="#contents">≡</a> <a href="#conventional-targets-cmake"><code>conventional-targets.cmake</code></a></h3>
 <p><a target="_blank" href="https://github.com/cppsm/cppsm-boilerplate/blob/master/conventional-targets.cmake"><code>conventional-targets.cmake</code> <i class="fas fa-xs fa-external-link-alt"></i></a>
 is a CMake script that (only) defines a number of CMake functions for defining
-target that adhere to the
+targets that adhere to the
 <a href="#conventional-target-structure">conventional target structure</a>.</p>
 <h4><a id="add_conventional_executable"></a> <a href="#contents">≡</a> <a href="#add_conventional_executable"><code>add_conventional_executable(name)</code></a></h4>
 <p>Adds an executable target with the given name. Assumes that the target directory
