@@ -1,4 +1,4 @@
-# [≡](#contents) [C++ submodule manager](#) [![Gitter](https://badges.gitter.im/cppsm/community.svg)](https://gitter.im/cppsm/community)
+# [≡](#contents) [C++ submodule manager](#) [![Gitter](https://badges.gitter.im/cppsm/community.svg)](https://gitter.im/cppsm/community) [![Build Status](https://travis-ci.org/cppsm/cppsm-cli.svg?branch=master)](https://travis-ci.org/cppsm/cppsm-cli) [![Code Coverage](https://img.shields.io/codecov/c/github/cppsm/cppsm-cli/master.svg)](https://codecov.io/github/cppsm/cppsm-cli?branch=master)
 
 The C++ submodule manager is fundamentally a set of [conventions](#conventions)
 for structuring projects with [Git](https://git-scm.com/) and
@@ -22,7 +22,7 @@ Additional features:
     dependencies
   - [Code formatting](#cppsm-format)
   - [Build](#cppsm-build), [test](#cppsm-test), and [watch](#cppsm-test-watch)
-  - ...
+  - …
 - [CMake functions to minimize boilerplate](#cmake)
 - [Travis CI integration](#travis-ci)
 - [Codecov integration](#codecov)
@@ -33,14 +33,14 @@ See [repositories with the `#cppsm` topic](https://github.com/topics/cppsm).
 
 - [Issues](https://github.com/cppsm/cppsm.github.io/issues)
 - [Command-line interface](https://github.com/cppsm/cppsm-cli)
-  [![Build Status](https://travis-ci.org/cppsm/cppsm-cli.svg?branch=master)](https://travis-ci.org/cppsm/cppsm-cli)
-  [![Code Coverage](https://img.shields.io/codecov/c/github/cppsm/cppsm-cli/master.svg)](https://codecov.io/github/cppsm/cppsm-cli?branch=master)
 - [Per project boilerplate](https://github.com/cppsm/cppsm-boilerplate)
 
 ## <a id="contents"></a> [≡](#contents) [Contents](#contents)
 
 - [`cppsm` command](#cppsm-command)
   - [Installation](#installation)
+    - [Automated installation](#automated-installation)
+    - [Manual installation](#manual-installation)
     - [For optional code formatting](#for-optional-code-formatting)
     - [For optional auto completion](#for-optional-auto-completion)
     - [For optional watch commands](#for-optional-watch-commands)
@@ -124,18 +124,32 @@ command itself.
 ### <a id="installation"></a> [≡](#contents) [Installation](#installation)
 
 To install the `cppsm` command you need to clone its
-[repository](https://github.com/cppsm/cppsm-cli) and add it to your `PATH`.
+[repository](https://github.com/cppsm/cppsm-cli) and add its `bin` directory to
+your `PATH`.
 
-Clone the `cppsm-cli` somewhere:
+<a id="automated-installation"></a>[Automated installation](#automated-installation)
+using the [`install`](https://github.com/cppsm/cppsm-cli/blob/master/install)
+script is as easy as running the following [`curl`](https://curl.haxx.se/) to
+Bash pipe:
 
 ```bash
-git clone https://github.com/cppsm/cppsm-cli.git
+curl -o- https://raw.githubusercontent.com/cppsm/cppsm-cli/master/install | bash
 ```
 
-Add to your `.bash_profile`:
+<a id="manual-installation"></a>[Manual installation](#manual-installation) is
+not hard either. Just clone the
+[`cppsm-cli`](https://github.com/cppsm/cppsm-cli) repository somewhere, e.g.
+`$HOME/.cppsm`:
 
 ```bash
-CPPSM="path to cppsm-cli directory"
+git clone https://github.com/cppsm/cppsm-cli.git "$HOME/.cppsm"
+```
+
+And add the following lines to your
+[`$HOME/.bashrc` or `$HOME/.bash_profile`](https://www.gnu.org/software/bash/manual/html_node/Bash-Startup-Files.html):
+
+```bash
+CPPSM="$HOME/.cppsm"
 export PATH="$CPPSM/bin:$PATH"
 . "$CPPSM/bash_completion"        # NOTE: This installs optional Bash completion
 ```

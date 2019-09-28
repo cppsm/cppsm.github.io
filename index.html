@@ -9,7 +9,7 @@
 <title>C++ submodule manager</title>
 </head>
 <body class="markdown-body">
-<h1 id="≡-c-submodule-manager-gitter"><a href="#contents">≡</a> <a href="#">C++ submodule manager</a> <a target="_blank" href="https://gitter.im/cppsm/community"><img src="https://badges.gitter.im/cppsm/community.svg" alt="Gitter"></a></h1>
+<h1 id="≡-c-submodule-manager-gitter-build-status-code-coverage"><a href="#contents">≡</a> <a href="#">C++ submodule manager</a> <a target="_blank" href="https://gitter.im/cppsm/community"><img src="https://badges.gitter.im/cppsm/community.svg" alt="Gitter"></a> <a target="_blank" href="https://travis-ci.org/cppsm/cppsm-cli"><img src="https://travis-ci.org/cppsm/cppsm-cli.svg?branch=master" alt="Build Status"></a> <a target="_blank" href="https://codecov.io/github/cppsm/cppsm-cli?branch=master"><img src="https://img.shields.io/codecov/c/github/cppsm/cppsm-cli/master.svg" alt="Code Coverage"></a></h1>
 <p>The C++ submodule manager is fundamentally a set of <a href="#conventions">conventions</a>
 for structuring projects with <a target="_blank" href="https://git-scm.com/">Git <i class="fas fa-xs fa-external-link-alt"></i></a> and
 <a target="_blank" href="https://cmake.org/">CMake <i class="fas fa-xs fa-external-link-alt"></i></a> rather than just <a href="#cppsm-command">a new tool</a>. The
@@ -31,7 +31,7 @@ other projects in a matter of minutes or less.</p>
 dependencies</li>
 <li><a href="#cppsm-format">Code formatting</a></li>
 <li><a href="#cppsm-build">Build</a>, <a href="#cppsm-test">test</a>, and <a href="#cppsm-test-watch">watch</a></li>
-<li>...</li>
+<li>…</li>
 </ul>
 </li>
 <li><a href="#cmake">CMake functions to minimize boilerplate</a></li>
@@ -42,15 +42,15 @@ dependencies</li>
 <p><a target="_blank" href="https://github.com/cppsm">GitHub organization <i class="fas fa-xs fa-external-link-alt"></i></a> subprojects:</p>
 <ul>
 <li><a target="_blank" href="https://github.com/cppsm/cppsm.github.io/issues">Issues <i class="fas fa-xs fa-external-link-alt"></i></a></li>
-<li><a target="_blank" href="https://github.com/cppsm/cppsm-cli">Command-line interface <i class="fas fa-xs fa-external-link-alt"></i></a>
-<a target="_blank" href="https://travis-ci.org/cppsm/cppsm-cli"><img src="https://travis-ci.org/cppsm/cppsm-cli.svg?branch=master" alt="Build Status"></a>
-<a target="_blank" href="https://codecov.io/github/cppsm/cppsm-cli?branch=master"><img src="https://img.shields.io/codecov/c/github/cppsm/cppsm-cli/master.svg" alt="Code Coverage"></a></li>
+<li><a target="_blank" href="https://github.com/cppsm/cppsm-cli">Command-line interface <i class="fas fa-xs fa-external-link-alt"></i></a></li>
 <li><a target="_blank" href="https://github.com/cppsm/cppsm-boilerplate">Per project boilerplate <i class="fas fa-xs fa-external-link-alt"></i></a></li>
 </ul>
 <h2><a id="contents"></a> <a href="#contents">≡</a> <a href="#contents">Contents</a></h2>
 <ul>
 <li><a href="#cppsm-command"><code>cppsm</code> command</a><ul>
 <li><a href="#installation">Installation</a><ul>
+<li><a href="#automated-installation">Automated installation</a></li>
+<li><a href="#manual-installation">Manual installation</a></li>
 <li><a href="#for-optional-code-formatting">For optional code formatting</a></li>
 <li><a href="#for-optional-auto-completion">For optional auto completion</a></li>
 <li><a href="#for-optional-watch-commands">For optional watch commands</a></li>
@@ -167,11 +167,21 @@ services used. Any <code>cppsm</code> project can be used and developed without 
 command itself.</p>
 <h3><a id="installation"></a> <a href="#contents">≡</a> <a href="#installation">Installation</a></h3>
 <p>To install the <code>cppsm</code> command you need to clone its
-<a target="_blank" href="https://github.com/cppsm/cppsm-cli">repository <i class="fas fa-xs fa-external-link-alt"></i></a> and add it to your <code>PATH</code>.</p>
-<p>Clone the <code>cppsm-cli</code> somewhere:</p>
-<pre><code class="hljs lang-bash">git clone https://github.com/cppsm/cppsm-cli.git</code></pre>
-<p>Add to your <code>.bash_profile</code>:</p>
-<pre><code class="hljs lang-bash">CPPSM=&quot;path to cppsm-cli directory&quot;
+<a target="_blank" href="https://github.com/cppsm/cppsm-cli">repository <i class="fas fa-xs fa-external-link-alt"></i></a> and add its <code>bin</code> directory to
+your <code>PATH</code>.</p>
+<p><a id="automated-installation"></a><a href="#automated-installation">Automated installation</a>
+using the <a target="_blank" href="https://github.com/cppsm/cppsm-cli/blob/master/install"><code>install</code> <i class="fas fa-xs fa-external-link-alt"></i></a>
+script is as easy as running the following <a target="_blank" href="https://curl.haxx.se/"><code>curl</code> <i class="fas fa-xs fa-external-link-alt"></i></a> to
+Bash pipe:</p>
+<pre><code class="hljs lang-bash">curl -o- https://raw.githubusercontent.com/cppsm/cppsm-cli/master/install | bash</code></pre>
+<p><a id="manual-installation"></a><a href="#manual-installation">Manual installation</a> is
+not hard either. Just clone the
+<a target="_blank" href="https://github.com/cppsm/cppsm-cli"><code>cppsm-cli</code> <i class="fas fa-xs fa-external-link-alt"></i></a> repository somewhere, e.g.
+<code>$HOME/.cppsm</code>:</p>
+<pre><code class="hljs lang-bash">git clone https://github.com/cppsm/cppsm-cli.git &quot;$HOME/.cppsm&quot;</code></pre>
+<p>And add the following lines to your
+<a target="_blank" href="https://www.gnu.org/software/bash/manual/html_node/Bash-Startup-Files.html"><code>$HOME/.bashrc</code> or <code>$HOME/.bash_profile</code> <i class="fas fa-xs fa-external-link-alt"></i></a>:</p>
+<pre><code class="hljs lang-bash">CPPSM=&quot;$HOME/.cppsm&quot;
 export PATH=&quot;$CPPSM/bin:$PATH&quot;
 . &quot;$CPPSM/bash_completion&quot;        # NOTE: This installs optional Bash completion</code></pre>
 <p>Optional dependencies:</p>
