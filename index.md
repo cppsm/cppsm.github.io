@@ -150,7 +150,7 @@ not hard either. Just clone the
 `$HOME/.cppsm`:
 
 ```bash
-git clone https://github.com/cppsm/cppsm-cli.git "$HOME/.cppsm"
+git clone --single-branch https://github.com/cppsm/cppsm-cli.git "$HOME/.cppsm"
 ```
 
 And add the following lines to your
