@@ -46,6 +46,7 @@ See [repositories with the `#cppsm` topic](https://github.com/topics/cppsm).
     - [For optional watch commands](#for-optional-watch-commands)
   - [Quick tour](#quick-tour)
   - [Subcommands](#subcommands)
+    - [`cppsm`](#cppsm)
     - [`cppsm add (requires|equipment) <url> <branch>`](#cppsm-add)
     - [`cppsm build`](#cppsm-build)
     - [`cppsm build-watch`](#cppsm-build-watch)
@@ -248,6 +249,11 @@ cppsm upgrade
 Below is reference documentation for each `cppsm` subcommand. Each subcommand
 also prints out short instructions to the console in case the invocation is
 incorrect.
+
+#### <a id="cppsm"></a> [≡](#contents) [`cppsm`](#cppsm)
+
+When invoked without specifying a subcommand, `cppsm` displays a brief usage
+instruction and `cppsm` version information.
 
 #### <a id="cppsm-add"></a> [≡](#contents) [`cppsm add (requires|equipment) <url> <branch>`](#cppsm-add)
 

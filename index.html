@@ -58,6 +58,7 @@ dependencies</li>
 </li>
 <li><a href="#quick-tour">Quick tour</a></li>
 <li><a href="#subcommands">Subcommands</a><ul>
+<li><a href="#cppsm"><code>cppsm</code></a></li>
 <li><a href="#cppsm-add"><code>cppsm add (requires|equipment) &lt;url&gt; &lt;branch&gt;</code></a></li>
 <li><a href="#cppsm-build"><code>cppsm build</code></a></li>
 <li><a href="#cppsm-build-watch"><code>cppsm build-watch</code></a></li>
@@ -235,6 +236,9 @@ git submodule update --init     # NOTE: non-recursive</code></pre>
 <p>Below is reference documentation for each <code>cppsm</code> subcommand. Each subcommand
 also prints out short instructions to the console in case the invocation is
 incorrect.</p>
+<h4><a id="cppsm"></a> <a href="#contents">≡</a> <a href="#cppsm"><code>cppsm</code></a></h4>
+<p>When invoked without specifying a subcommand, <code>cppsm</code> displays a brief usage
+instruction and <code>cppsm</code> version information.</p>
 <h4><a id="cppsm-add"></a> <a href="#contents">≡</a> <a href="#cppsm-add"><code>cppsm add (requires|equipment) &lt;url&gt; &lt;branch&gt;</code></a></h4>
 <p>Adds a new cppsm compatible submodule and recursively the submodules it requires
 to the project. This command is idempotent and can be run to e.g. add new
