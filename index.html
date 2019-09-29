@@ -171,9 +171,11 @@ command itself.</p>
 your <code>PATH</code>.</p>
 <p><a id="automated-installation"></a><a href="#automated-installation">Automated installation</a>
 using the <a target="_blank" href="https://github.com/cppsm/cppsm-cli/blob/master/install"><code>install</code> <i class="fas fa-xs fa-external-link-alt"></i></a>
-script is as easy as running the following <a target="_blank" href="https://curl.haxx.se/"><code>curl</code> <i class="fas fa-xs fa-external-link-alt"></i></a> to
-Bash pipe:</p>
-<pre><code class="hljs lang-bash">curl -o- https://raw.githubusercontent.com/cppsm/cppsm-cli/master/install | bash</code></pre>
+script is as easy as running the pipe</p>
+<pre><code class="hljs lang-bash">curl -s https://raw.githubusercontent.com/cppsm/cppsm-cli/master/install | bash</code></pre>
+<p>using <a target="_blank" href="https://curl.haxx.se/"><code>curl</code> <i class="fas fa-xs fa-external-link-alt"></i></a> or the pipe</p>
+<pre><code class="hljs lang-bash">wget -qO- https://raw.githubusercontent.com/cppsm/cppsm-cli/master/install | bash</code></pre>
+<p>using <a target="_blank" href="https://www.gnu.org/software/wget/"><code>wget</code> <i class="fas fa-xs fa-external-link-alt"></i></a>.</p>
 <p><a id="manual-installation"></a><a href="#manual-installation">Manual installation</a> is
 not hard either. Just clone the
 <a target="_blank" href="https://github.com/cppsm/cppsm-cli"><code>cppsm-cli</code> <i class="fas fa-xs fa-external-link-alt"></i></a> repository somewhere, e.g.

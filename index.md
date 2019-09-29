@@ -129,12 +129,19 @@ your `PATH`.
 
 <a id="automated-installation"></a>[Automated installation](#automated-installation)
 using the [`install`](https://github.com/cppsm/cppsm-cli/blob/master/install)
-script is as easy as running the following [`curl`](https://curl.haxx.se/) to
-Bash pipe:
+script is as easy as running the pipe
 
 ```bash
-curl -o- https://raw.githubusercontent.com/cppsm/cppsm-cli/master/install | bash
+curl -s https://raw.githubusercontent.com/cppsm/cppsm-cli/master/install | bash
 ```
+
+using [`curl`](https://curl.haxx.se/) or the pipe
+
+```bash
+wget -qO- https://raw.githubusercontent.com/cppsm/cppsm-cli/master/install | bash
+```
+
+using [`wget`](https://www.gnu.org/software/wget/).
 
 <a id="manual-installation"></a>[Manual installation](#manual-installation) is
 not hard either. Just clone the
