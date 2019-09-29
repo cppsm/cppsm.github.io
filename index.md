@@ -169,8 +169,10 @@ Optional dependencies:
   [`prettier`](https://prettier.io/) commands in path.
 
 - <a id="for-optional-auto-completion"></a>[For optional auto completion](#for-optional-auto-completion)
-  of git urls you must have both [`curl`](https://curl.haxx.se/) and
-  [`jq`](https://stedolan.github.io/jq/) commands in path.
+  of [GitHub](https://github.com/) urls you must have either
+  [`curl`](https://curl.haxx.se/) or
+  [`wget`](https://www.gnu.org/software/wget/) command and
+  [`jq`](https://stedolan.github.io/jq/) command in path.
 
 - <a id="for-optional-watch-commands"></a>[For optional watch commands](#for-optional-watch-commands)
   you must have the [`fswatch`](http://emcrisostomo.github.io/fswatch/) command
