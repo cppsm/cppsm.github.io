@@ -48,6 +48,7 @@ dependencies</li>
 <h2><a id="contents"></a> <a href="#contents">≡</a> <a href="#contents">Contents</a></h2>
 <ul>
 <li><a href="#cppsm-command"><code>cppsm</code> command</a><ul>
+<li><a href="#cppsm-supported-platforms">Supported platforms</a></li>
 <li><a href="#installation">Installation</a><ul>
 <li><a href="#automated-installation">Automated installation</a></li>
 <li><a href="#manual-installation">Manual installation</a></li>
@@ -160,12 +161,27 @@ dependencies</li>
 </li>
 </ul>
 <h2><a id="cppsm-command"></a> <a href="#contents">≡</a> <a href="#cppsm-command"><code>cppsm</code> command</a></h2>
-<p>The <code>cppsm</code> command is basically a set of fairly simple scripts that automate
+<p>The <code>cppsm</code> command is basically a set of fairly simple
+<a target="_blank" href="https://en.wikipedia.org/wiki/Bash_(Unix_shell)">Bash <i class="fas fa-xs fa-external-link-alt"></i></a> scripts that automate
 various operations on projects adhering to the C++ submodule manager
 <a href="#conventions">conventions</a>. All the hard work is already done by
 <a target="_blank" href="https://git-scm.com/">Git <i class="fas fa-xs fa-external-link-alt"></i></a>, <a target="_blank" href="https://cmake.org/">CMake <i class="fas fa-xs fa-external-link-alt"></i></a>, and other tools and
 services used. Any <code>cppsm</code> project can be used and developed without the <code>cppsm</code>
 command itself.</p>
+<p><a id="cppsm-supported-platforms"></a>The <code>cppsm</code> command has been developed
+with <a target="_blank" href="https://en.wikipedia.org/wiki/Bash_(Unix_shell)">Bash <i class="fas fa-xs fa-external-link-alt"></i></a> and used at least
+under <a target="_blank" href="https://www.apple.com/macos/">macOS <i class="fas fa-xs fa-external-link-alt"></i></a>,
+<a target="_blank" href="https://www.linux.org/">Linux <i class="fas fa-xs fa-external-link-alt"></i></a> (<a target="_blank" href="https://ubuntu.com/">Ubuntu <i class="fas fa-xs fa-external-link-alt"></i></a>),
+<a target="_blank" href="https://www.cygwin.com/">Cygwin <i class="fas fa-xs fa-external-link-alt"></i></a>, and <a target="_blank" href="https://gitforwindows.org/">Git BASH <i class="fas fa-xs fa-external-link-alt"></i></a>.</p>
+<p>There currently is no &quot;native&quot; Windows support. I personally have no need for
+such support as I&#39;m comfortable using <a target="_blank" href="https://www.cygwin.com/">Cygwin <i class="fas fa-xs fa-external-link-alt"></i></a> and
+<a target="_blank" href="https://gitforwindows.org/">Git BASH <i class="fas fa-xs fa-external-link-alt"></i></a>. If you&#39;d like to work on native Windows
+support, or support for some other platform, then you are welcome to contribute
+to the project!</p>
+<p>At the moment the <code>cppsm</code> scripts have only been tested under
+<a target="_blank" href="https://en.wikipedia.org/wiki/Bash_(Unix_shell)">Bash <i class="fas fa-xs fa-external-link-alt"></i></a> (compatible) shell
+implementations. I would like to support other shells in the future.
+Contributions in that regard are also welcome!</p>
 <h3><a id="installation"></a> <a href="#contents">≡</a> <a href="#installation">Installation</a></h3>
 <p>To install the <code>cppsm</code> command you need to clone its
 <a target="_blank" href="https://github.com/cppsm/cppsm-cli">repository <i class="fas fa-xs fa-external-link-alt"></i></a> and add its <code>bin</code> directory to

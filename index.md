@@ -38,6 +38,7 @@ See [repositories with the `#cppsm` topic](https://github.com/topics/cppsm).
 ## <a id="contents"></a> [≡](#contents) [Contents](#contents)
 
 - [`cppsm` command](#cppsm-command)
+  - [Supported platforms](#cppsm-supported-platforms)
   - [Installation](#installation)
     - [Automated installation](#automated-installation)
     - [Manual installation](#manual-installation)
@@ -115,12 +116,30 @@ See [repositories with the `#cppsm` topic](https://github.com/topics/cppsm).
 
 ## <a id="cppsm-command"></a> [≡](#contents) [`cppsm` command](#cppsm-command)
 
-The `cppsm` command is basically a set of fairly simple scripts that automate
+The `cppsm` command is basically a set of fairly simple
+[Bash](<https://en.wikipedia.org/wiki/Bash_(Unix_shell)>) scripts that automate
 various operations on projects adhering to the C++ submodule manager
 [conventions](#conventions). All the hard work is already done by
 [Git](https://git-scm.com/), [CMake](https://cmake.org/), and other tools and
 services used. Any `cppsm` project can be used and developed without the `cppsm`
 command itself.
+
+<a id="cppsm-supported-platforms"></a>The `cppsm` command has been developed
+with [Bash](<https://en.wikipedia.org/wiki/Bash_(Unix_shell)>) and used at least
+under [macOS](https://www.apple.com/macos/),
+[Linux](https://www.linux.org/) ([Ubuntu](https://ubuntu.com/)),
+[Cygwin](https://www.cygwin.com/), and [Git BASH](https://gitforwindows.org/).
+
+There currently is no "native" Windows support. I personally have no need for
+such support as I'm comfortable using [Cygwin](https://www.cygwin.com/) and
+[Git BASH](https://gitforwindows.org/). If you'd like to work on native Windows
+support, or support for some other platform, then you are welcome to contribute
+to the project!
+
+At the moment the `cppsm` scripts have only been tested under
+[Bash](<https://en.wikipedia.org/wiki/Bash_(Unix_shell)>) (compatible) shell
+implementations. I would like to support other shells in the future.
+Contributions in that regard are also welcome!
 
 ### <a id="installation"></a> [≡](#contents) [Installation](#installation)
 
