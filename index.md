@@ -126,9 +126,9 @@ command itself.
 
 <a id="cppsm-supported-platforms"></a>The `cppsm` command has been developed
 with [Bash](<https://en.wikipedia.org/wiki/Bash_(Unix_shell)>) and used at least
-under [macOS](https://www.apple.com/macos/),
-[Linux](https://www.linux.org/) ([Ubuntu](https://ubuntu.com/)),
-[Cygwin](https://www.cygwin.com/), and [Git BASH](https://gitforwindows.org/).
+under [macOS](https://www.apple.com/macos/), [Linux](https://www.linux.org/)
+([Ubuntu](https://ubuntu.com/)), [Cygwin](https://www.cygwin.com/), and
+[Git BASH](https://gitforwindows.org/).
 
 There currently is no "native" Windows support. I personally have no need for
 such support as I'm comfortable using [Cygwin](https://www.cygwin.com/) and
@@ -195,8 +195,8 @@ Optional dependencies:
   [`jq`](https://stedolan.github.io/jq/) command in path.
 
 - <a id="for-optional-watch-commands"></a>[For optional watch commands](#for-optional-watch-commands)
-  you must have the [`fswatch`](http://emcrisostomo.github.io/fswatch/) command
-  in path.
+  you must have either [`fswatch`](http://emcrisostomo.github.io/fswatch/) or
+  [`watchexec`](https://github.com/watchexec/watchexec) command in path.
 
 ### <a id="quick-tour"></a> [≡](#contents) [Quick tour](#quick-tour)
 
