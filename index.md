@@ -1,4 +1,4 @@
-# [≡](#contents) [C++ submodule manager](#) [![Gitter](https://badges.gitter.im/cppsm/community.svg)](https://gitter.im/cppsm/community) [![Build Status](https://travis-ci.org/cppsm/cppsm-cli.svg?branch=master)](https://travis-ci.org/cppsm/cppsm-cli) [![Code Coverage](https://img.shields.io/codecov/c/github/cppsm/cppsm-cli/master.svg)](https://codecov.io/github/cppsm/cppsm-cli?branch=master)
+# [≡](#contents) [C++ submodule manager](#) [![GitHub stars](https://img.shields.io/github/stars/cppsm/cppsm.github.io.svg?style=social)](https://github.com/cppsm/cppsm.github.io) [![Gitter](https://badges.gitter.im/cppsm/community.svg)](https://gitter.im/cppsm/community) [![Build Status](https://travis-ci.org/cppsm/cppsm-cli.svg?branch=master)](https://travis-ci.org/cppsm/cppsm-cli) [![Code Coverage](https://img.shields.io/codecov/c/github/cppsm/cppsm-cli/master.svg)](https://codecov.io/github/cppsm/cppsm-cli?branch=master)
 
 The C++ submodule manager is fundamentally a set of [conventions](#conventions)
 for structuring projects with [Git](https://git-scm.com/) and
@@ -28,12 +28,6 @@ Additional features:
 - [Codecov integration](#codecov)
 
 See [repositories with the `#cppsm` topic](https://github.com/topics/cppsm).
-
-[GitHub organization](https://github.com/cppsm) subprojects:
-
-- [Issues](https://github.com/cppsm/cppsm.github.io/issues)
-- [Command-line interface](https://github.com/cppsm/cppsm-cli)
-- [Per project boilerplate](https://github.com/cppsm/cppsm-boilerplate)
 
 ## <a id="contents"></a> [≡](#contents) [Contents](#contents)
 
