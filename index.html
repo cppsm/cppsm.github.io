@@ -104,6 +104,7 @@ dependencies</li>
 <li><a href="#codecov"><code>CODECOV=0|1</code></a></li>
 <li><a href="#format_check"><code>FORMAT_CHECK=1|0</code></a></li>
 <li><a href="#install_wait"><code>INSTALL_WAIT=0|1</code></a></li>
+<li><a href="#upgrade_check"><code>UPGRADE_CHECK=1|0</code></a></li>
 </ul>
 </li>
 <li><a href="#variables">Variables</a><ul>
@@ -451,7 +452,8 @@ different targets (and their major versions).</p>
 <h2 id="-≡-travis-ci"><a id="travis-ci"></a> <a href="#contents">≡</a> <a href="#travis-ci">Travis CI</a></h2>
 <p>A <a target="_blank" href="https://travis-ci-ci.org/">Travis CI <i class="fas fa-xs fa-external-link-alt"></i></a>
 <a target="_blank" href="https://github.com/cppsm/cppsm-cli/blob/master/.travis.yml">configuration file <i class="fas fa-xs fa-external-link-alt"></i></a>
-is provided to build and test both <code>Debug</code> and <code>Release</code> builds on various OS
+and <a target="_blank" href="https://github.com/cppsm/cppsm-cli/blob/master/travis-ci">CI script <i class="fas fa-xs fa-external-link-alt"></i></a> is
+provided to build and test both <code>Debug</code> and <code>Release</code> builds on various OS
 (Linux, OS X, Windows) and compiler configurations
 (<a target="_blank" href="https://clang.llvm.org/">Clang <i class="fas fa-xs fa-external-link-alt"></i></a>, <a target="_blank" href="https://gcc.gnu.org/">GCC <i class="fas fa-xs fa-external-link-alt"></i></a>,
 <a target="_blank" href="https://docs.microsoft.com/en-us/cpp/">Visual C++ <i class="fas fa-xs fa-external-link-alt"></i></a>). Just add your project to
@@ -473,22 +475,29 @@ Travis CI.</p>
 </ul>
 </li>
 </ul>
-<h3 id="-≡-codecov01"><a id="codecov"></a> <a href="#contents">≡</a> <a href="#codecov"><code>CODECOV=0|1</code></a></h3>
-<p>By default the
-<a target="_blank" href="https://github.com/cppsm/cppsm-cli/blob/master/travis-ci">CI script <i class="fas fa-xs fa-external-link-alt"></i></a> does not
-generate and push code coverage results to <a target="_blank" href="https://codecov.io/">Codecov <i class="fas fa-xs fa-external-link-alt"></i></a>. Set
-<code>CODECOV=1</code> to enable code coverage.</p>
-<h3 id="-≡-format_check10"><a id="format_check"></a> <a href="#contents">≡</a> <a href="#format_check"><code>FORMAT_CHECK=1|0</code></a></h3>
-<p>By default the
-<a target="_blank" href="https://github.com/cppsm/cppsm-cli/blob/master/travis-ci">CI script <i class="fas fa-xs fa-external-link-alt"></i></a> checks
-that source files have been formatted as with <code>cppsm format</code>. Set
-<code>FORMAT_CHECK=0</code> explicitly to disable the format check.</p>
-<h3 id="-≡-install_wait01"><a id="install_wait"></a> <a href="#contents">≡</a> <a href="#install_wait"><code>INSTALL_WAIT=0|1</code></a></h3>
-<p>By default the
-<a target="_blank" href="https://github.com/cppsm/cppsm-cli/blob/master/travis-ci">CI script <i class="fas fa-xs fa-external-link-alt"></i></a> performs
-installation of additional packages concurrently with builds when possible. Set
-<code>INSTALL_WAIT=1</code> to wait for installations to complete before starting any
-builds.</p>
+<p>Configuration variables:</p>
+<ul>
+<li><p><a id="codecov"></a><a href="#codecov"><code>CODECOV=0|1</code></a> specifies whether a code
+coverage test is executed and results are pushed to
+<a target="_blank" href="https://codecov.io/">Codecov <i class="fas fa-xs fa-external-link-alt"></i></a>. Set <code>CODECOV=1</code> explicitly to enable code
+coverage.</p>
+</li>
+<li><p><a id="format_check"></a><a href="#format_check"><code>FORMAT_CHECK=1|0</code></a> specifies whether
+to check that source files are formatted as with
+<a href="#cppsm-format"><code>cppsm format</code></a>. Set <code>FORMAT_CHECK=0</code> explicitly to disable
+the format check.</p>
+</li>
+<li><p><a id="install_wait"></a><a href="#install_wait"><code>INSTALL_WAIT=0|1</code></a> specifies whether
+installation of additional packages is performed concurrently with builds when
+possible. Set <code>INSTALL_WAIT=1</code> explicitly to wait for installations to
+complete before starting any builds.</p>
+</li>
+<li><p><a id="upgrade_check"></a><a href="#upgrade_check"><code>UPGRADE_CHECK=1|0</code></a> specifies
+whether, after running tests, a <a href="#cppsm-upgrade"><code>cppsm upgrade</code></a> is performed
+and, if something is upgraded, tests are rerun. Set <code>UPGRADE_CHECK=0</code>
+explicitly to skip the upgrade and conditional rerun of tests.</p>
+</li>
+</ul>
 <h2 id="-≡-variables"><a id="variables"></a> <a href="#contents">≡</a> <a href="#variables">Variables</a></h2>
 <p>Several environment variables can be set to change the default behavior of one
 or more cppsm commands. These variables can be used both on the <a href="#travis-ci">CI</a>

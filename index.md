@@ -78,6 +78,7 @@ See [repositories with the `#cppsm` topic](https://github.com/topics/cppsm).
   - [`CODECOV=0|1`](#codecov)
   - [`FORMAT_CHECK=1|0`](#format_check)
   - [`INSTALL_WAIT=0|1`](#install_wait)
+  - [`UPGRADE_CHECK=1|0`](#upgrade_check)
 - [Variables](#variables)
   - [`CTEST_OUTPUT_ON_FAILURE=1|0`](#ctest_output_on_failure)
   - [`QUIET=1|0`](#quiet)
@@ -523,7 +524,8 @@ different targets (and their major versions).
 
 A [Travis CI](https://travis-ci-ci.org/)
 [configuration file](https://github.com/cppsm/cppsm-cli/blob/master/.travis.yml)
-is provided to build and test both `Debug` and `Release` builds on various OS
+and [CI script](https://github.com/cppsm/cppsm-cli/blob/master/travis-ci) is
+provided to build and test both `Debug` and `Release` builds on various OS
 (Linux, OS X, Windows) and compiler configurations
 ([Clang](https://clang.llvm.org/), [GCC](https://gcc.gnu.org/),
 [Visual C++](https://docs.microsoft.com/en-us/cpp/)). Just add your project to
@@ -539,27 +541,27 @@ Travis CI.
   - [MinGW](http://www.mingw.org/) [GCC](https://gcc.gnu.org/) (8)
   - [Visual C++](https://docs.microsoft.com/en-us/cpp/) (2017, 2019)
 
-### <a id="codecov"></a> [≡](#contents) [`CODECOV=0|1`](#codecov)
+Configuration variables:
 
-By default the
-[CI script](https://github.com/cppsm/cppsm-cli/blob/master/travis-ci) does not
-generate and push code coverage results to [Codecov](https://codecov.io/). Set
-`CODECOV=1` to enable code coverage.
+- <a id="codecov"></a>[`CODECOV=0|1`](#codecov) specifies whether a code
+  coverage test is executed and results are pushed to
+  [Codecov](https://codecov.io/). Set `CODECOV=1` explicitly to enable code
+  coverage.
 
-### <a id="format_check"></a> [≡](#contents) [`FORMAT_CHECK=1|0`](#format_check)
+- <a id="format_check"></a>[`FORMAT_CHECK=1|0`](#format_check) specifies whether
+  to check that source files are formatted as with
+  [`cppsm format`](#cppsm-format). Set `FORMAT_CHECK=0` explicitly to disable
+  the format check.
 
-By default the
-[CI script](https://github.com/cppsm/cppsm-cli/blob/master/travis-ci) checks
-that source files have been formatted as with `cppsm format`. Set
-`FORMAT_CHECK=0` explicitly to disable the format check.
+- <a id="install_wait"></a>[`INSTALL_WAIT=0|1`](#install_wait) specifies whether
+  installation of additional packages is performed concurrently with builds when
+  possible. Set `INSTALL_WAIT=1` explicitly to wait for installations to
+  complete before starting any builds.
 
-### <a id="install_wait"></a> [≡](#contents) [`INSTALL_WAIT=0|1`](#install_wait)
-
-By default the
-[CI script](https://github.com/cppsm/cppsm-cli/blob/master/travis-ci) performs
-installation of additional packages concurrently with builds when possible. Set
-`INSTALL_WAIT=1` to wait for installations to complete before starting any
-builds.
+- <a id="upgrade_check"></a>[`UPGRADE_CHECK=1|0`](#upgrade_check) specifies
+  whether, after running tests, a [`cppsm upgrade`](#cppsm-upgrade) is performed
+  and, if something is upgraded, tests are rerun. Set `UPGRADE_CHECK=0`
+  explicitly to skip the upgrade and conditional rerun of tests.
 
 ## <a id="variables"></a> [≡](#contents) [Variables](#variables)
 
