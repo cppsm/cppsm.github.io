@@ -39,7 +39,7 @@ dependencies</li>
 <li><a href="#codecov">Codecov integration</a></li>
 </ul>
 <p>See <a target="_blank" href="https://github.com/topics/cppsm">repositories with the <code>#cppsm</code> topic <i class="fas fa-xs fa-external-link-alt"></i></a>.</p>
-<h2><a id="contents"></a> <a href="#contents">≡</a> <a href="#contents">Contents</a></h2>
+<h2 id="-≡-contents"><a id="contents"></a> <a href="#contents">≡</a> <a href="#contents">Contents</a></h2>
 <ul>
 <li><a href="#cppsm-command"><code>cppsm</code> command</a><ul>
 <li><a href="#cppsm-supported-platforms">Supported platforms</a></li>
@@ -154,7 +154,7 @@ dependencies</li>
 </ul>
 </li>
 </ul>
-<h2><a id="cppsm-command"></a> <a href="#contents">≡</a> <a href="#cppsm-command"><code>cppsm</code> command</a></h2>
+<h2 id="-≡-cppsm-command"><a id="cppsm-command"></a> <a href="#contents">≡</a> <a href="#cppsm-command"><code>cppsm</code> command</a></h2>
 <p>The <code>cppsm</code> command is basically a set of fairly simple
 <a target="_blank" href="https://en.wikipedia.org/wiki/Bash_(Unix_shell)">Bash <i class="fas fa-xs fa-external-link-alt"></i></a> scripts that automate
 various operations on projects adhering to the C++ submodule manager
@@ -176,7 +176,7 @@ to the project!</p>
 <a target="_blank" href="https://en.wikipedia.org/wiki/Bash_(Unix_shell)">Bash <i class="fas fa-xs fa-external-link-alt"></i></a> (compatible) shell
 implementations. I would like to support other shells in the future.
 Contributions in that regard are also welcome!</p>
-<h3><a id="installation"></a> <a href="#contents">≡</a> <a href="#installation">Installation</a></h3>
+<h3 id="-≡-installation"><a id="installation"></a> <a href="#contents">≡</a> <a href="#installation">Installation</a></h3>
 <p>To install the <code>cppsm</code> command you need to clone its
 <a target="_blank" href="https://github.com/cppsm/cppsm-cli">repository <i class="fas fa-xs fa-external-link-alt"></i></a> and add its <code>bin</code> directory to
 your <code>PATH</code>.</p>
@@ -215,7 +215,7 @@ you must have either <a target="_blank" href="http://emcrisostomo.github.io/fswa
 <a target="_blank" href="https://github.com/watchexec/watchexec"><code>watchexec</code> <i class="fas fa-xs fa-external-link-alt"></i></a> command in path.</p>
 </li>
 </ul>
-<h3><a id="quick-tour"></a> <a href="#contents">≡</a> <a href="#quick-tour">Quick tour</a></h3>
+<h3 id="-≡-quick-tour"><a id="quick-tour"></a> <a href="#contents">≡</a> <a href="#quick-tour">Quick tour</a></h3>
 <p>Here is a quick tour of basic <code>cppsm</code> functionality.</p>
 <p>Create a new empty project:</p>
 <pre><code class="hljs lang-bash">mkdir PROJECT &amp;&amp; cd &quot;$_&quot;
@@ -242,31 +242,31 @@ git submodule update --init     # NOTE: non-recursive</code></pre>
 <pre><code class="hljs lang-bash">cppsm remove requires/NAME/BRANCH</code></pre>
 <p>Upgrade all required libraries:</p>
 <pre><code class="hljs lang-bash">cppsm upgrade</code></pre>
-<h3><a id="subcommands"></a> <a href="#contents">≡</a> <a href="#subcommands">Subcommands</a></h3>
+<h3 id="-≡-subcommands"><a id="subcommands"></a> <a href="#contents">≡</a> <a href="#subcommands">Subcommands</a></h3>
 <p>Below is reference documentation for each <code>cppsm</code> subcommand. Each subcommand
 also prints out short instructions to the console in case the invocation is
 incorrect.</p>
-<h4><a id="cppsm"></a> <a href="#contents">≡</a> <a href="#cppsm"><code>cppsm</code></a></h4>
+<h4 id="-≡-cppsm"><a id="cppsm"></a> <a href="#contents">≡</a> <a href="#cppsm"><code>cppsm</code></a></h4>
 <p>When invoked without specifying a subcommand, <code>cppsm</code> displays a brief usage
 instruction and <code>cppsm</code> version information.</p>
-<h4><a id="cppsm-add"></a> <a href="#contents">≡</a> <a href="#cppsm-add"><code>cppsm add (requires|equipment) &lt;url&gt; &lt;branch&gt;</code></a></h4>
+<h4 id="-≡-cppsm-add-requiresequipment-url-branch"><a id="cppsm-add"></a> <a href="#contents">≡</a> <a href="#cppsm-add"><code>cppsm add (requires|equipment) &lt;url&gt; &lt;branch&gt;</code></a></h4>
 <p>Adds a new cppsm compatible submodule and recursively the submodules it requires
 to the project. This command is idempotent and can be run to e.g. add new
 transitive dependencies after updating submodules.</p>
-<h4><a id="cppsm-build"></a> <a href="#contents">≡</a> <a href="#cppsm-build"><code>cppsm build</code></a></h4>
+<h4 id="-≡-cppsm-build"><a id="cppsm-build"></a> <a href="#contents">≡</a> <a href="#cppsm-build"><code>cppsm build</code></a></h4>
 <p>Sets up a build directory and builds the project. See
 <a href="#cppsm-setup"><code>cppsm setup</code></a> for the configuration variables.</p>
-<h4><a id="cppsm-build-watch"></a> <a href="#contents">≡</a> <a href="#cppsm-build-watch"><code>cppsm build-watch</code></a></h4>
+<h4 id="-≡-cppsm-build-watch"><a id="cppsm-build-watch"></a> <a href="#contents">≡</a> <a href="#cppsm-build-watch"><code>cppsm build-watch</code></a></h4>
 <p>Sets up a build directory, builds the project, and starts a file system watch to
 build the project on any changes to project files. See
 <a href="#cppsm-setup"><code>cppsm setup</code></a> for the configuration variables.</p>
-<h4><a id="cppsm-clone"></a> <a href="#contents">≡</a> <a href="#cppsm-clone"><code>cppsm clone &lt;url&gt; &lt;branch&gt;</code></a></h4>
+<h4 id="-≡-cppsm-clone-url-branch"><a id="cppsm-clone"></a> <a href="#contents">≡</a> <a href="#cppsm-clone"><code>cppsm clone &lt;url&gt; &lt;branch&gt;</code></a></h4>
 <p>Clones the specified cppsm compatible repository and its dependencies.</p>
-<h4><a id="cppsm-format"></a> <a href="#contents">≡</a> <a href="#cppsm-format"><code>cppsm format</code></a></h4>
+<h4 id="-≡-cppsm-format"><a id="cppsm-format"></a> <a href="#contents">≡</a> <a href="#cppsm-format"><code>cppsm format</code></a></h4>
 <p>Formats project files inplace using
 <a target="_blank" href="https://clang.llvm.org/docs/ClangFormat.html">clang-format <i class="fas fa-xs fa-external-link-alt"></i></a> and
 <a target="_blank" href="https://prettier.io/">prettier <i class="fas fa-xs fa-external-link-alt"></i></a>.</p>
-<h4><a id="cppsm-init"></a> <a href="#contents">≡</a> <a href="#cppsm-init"><code>cppsm init</code></a></h4>
+<h4 id="-≡-cppsm-init"><a id="cppsm-init"></a> <a href="#contents">≡</a> <a href="#cppsm-init"><code>cppsm init</code></a></h4>
 <p>Initializes a new project with cppsm configuration files when run in an empty
 directory or updates an existing project to use the latest configuration files.
 See also <a href="#cppsm-init-hello"><code>cppsm init-hello</code></a> and
@@ -280,7 +280,7 @@ the project and defaults to the name of the current directory.</p>
 branch and version suffix for the project.</p>
 </li>
 </ul>
-<h4><a id="cppsm-init-hello"></a> <a href="#contents">≡</a> <a href="#cppsm-init-hello"><code>cppsm init-hello</code></a></h4>
+<h4 id="-≡-cppsm-init-hello"><a id="cppsm-init-hello"></a> <a href="#contents">≡</a> <a href="#cppsm-init-hello"><code>cppsm init-hello</code></a></h4>
 <p>Initializes a new project with an example &quot;Hello, world!&quot; program. This is only
 intended for educational purposes. See also <a href="#cppsm-init"><code>cppsm init</code></a> and
 <a href="#cppsm-init-library"><code>cppsm init-library</code></a>.</p>
@@ -307,7 +307,8 @@ provides/
     message_v1/
       hello.hpp
   library/
-    hello.cpp</code></pre><h4><a id="cppsm-init-library"></a> <a href="#contents">≡</a> <a href="#cppsm-init-library"><code>cppsm init-library</code></a></h4>
+    hello.cpp</code></pre>
+<h4 id="-≡-cppsm-init-library"><a id="cppsm-init-library"></a> <a href="#contents">≡</a> <a href="#cppsm-init-library"><code>cppsm init-library</code></a></h4>
 <p>Initializes a new project with boilerplate for a simple library project in an
 empty directory. See also <a href="#cppsm-init"><code>cppsm init</code></a> and
 <a href="#cppsm-init-hello"><code>cppsm init-hello</code></a>.</p>
@@ -320,13 +321,14 @@ provides/
   CMakeLists.txt
   include/
     ${LIBRARY_NAME}_${LIBRARY_VERSION}/
-      synopsis.hpp</code></pre><h4><a id="cppsm-list"></a> <a href="#contents">≡</a> <a href="#cppsm-list"><code>cppsm list</code></a></h4>
+      synopsis.hpp</code></pre>
+<h4 id="-≡-cppsm-list"><a id="cppsm-list"></a> <a href="#contents">≡</a> <a href="#cppsm-list"><code>cppsm list</code></a></h4>
 <p>Prints out a dependency tree of submodules. This command exits with an error
 code in case any problems are found in the dependency tree.</p>
-<h4><a id="cppsm-remove"></a> <a href="#contents">≡</a> <a href="#cppsm-remove"><code>cppsm remove &lt;path&gt;</code></a></h4>
+<h4 id="-≡-cppsm-remove-path"><a id="cppsm-remove"></a> <a href="#contents">≡</a> <a href="#cppsm-remove"><code>cppsm remove &lt;path&gt;</code></a></h4>
 <p>Removes a previously required submodule. Note that this command does not remove
 submodules transitively.</p>
-<h4><a id="cppsm-setup"></a> <a href="#contents">≡</a> <a href="#cppsm-setup"><code>cppsm setup</code></a></h4>
+<h4 id="-≡-cppsm-setup"><a id="cppsm-setup"></a> <a href="#contents">≡</a> <a href="#cppsm-setup"><code>cppsm setup</code></a></h4>
 <p>Sets up a build directory. The build directory name is determined based on the
 configuration variables.</p>
 <p>Configuration variables:</p>
@@ -352,35 +354,35 @@ is only supported on <a target="_blank" href="https://gcc.gnu.org/">GCC <i class
 <a target="_blank" href="https://clang.llvm.org/">Clang <i class="fas fa-xs fa-external-link-alt"></i></a>.</p>
 </li>
 </ul>
-<h4><a id="cppsm-test"></a> <a href="#contents">≡</a> <a href="#cppsm-test"><code>cppsm test</code></a></h4>
+<h4 id="-≡-cppsm-test"><a id="cppsm-test"></a> <a href="#contents">≡</a> <a href="#cppsm-test"><code>cppsm test</code></a></h4>
 <p>Sets up a build directory, builds the project, and runs the tests. See
 <a href="#cppsm-setup"><code>cppsm setup</code></a> for the configuration variables.</p>
-<h4><a id="cppsm-test-watch"></a> <a href="#contents">≡</a> <a href="#cppsm-test-watch"><code>cppsm test-watch</code></a></h4>
+<h4 id="-≡-cppsm-test-watch"><a id="cppsm-test-watch"></a> <a href="#contents">≡</a> <a href="#cppsm-test-watch"><code>cppsm test-watch</code></a></h4>
 <p>Sets up a build directory, builds the project, runs the tests, and starts a file
 system watch to build and test the project on any changes to project files. See
 <a href="#cppsm-setup"><code>cppsm setup</code></a> for the configuration variables.</p>
-<h4><a id="cppsm-update"></a> <a href="#contents">≡</a> <a href="#cppsm-update"><code>cppsm update</code></a></h4>
+<h4 id="-≡-cppsm-update"><a id="cppsm-update"></a> <a href="#contents">≡</a> <a href="#cppsm-update"><code>cppsm update</code></a></h4>
 <p>Pulls the current git branch and updates all cppsm managed submodules to the
 versions in the branch.</p>
-<h4><a id="cppsm-upgrade"></a> <a href="#contents">≡</a> <a href="#cppsm-upgrade"><code>cppsm upgrade</code></a></h4>
+<h4 id="-≡-cppsm-upgrade"><a id="cppsm-upgrade"></a> <a href="#contents">≡</a> <a href="#cppsm-upgrade"><code>cppsm upgrade</code></a></h4>
 <p>Upgrades all cppsm managed submodules to latest remote versions and runs
 <a href="#cppsm-init"><code>cppsm init</code></a> to update configuration files.</p>
-<h2><a id="cmake"></a> <a href="#contents">≡</a> <a href="#cmake">CMake</a></h2>
+<h2 id="-≡-cmake"><a id="cmake"></a> <a href="#contents">≡</a> <a href="#cmake">CMake</a></h2>
 <p>CMake boilerplate is provided for projects and simple libraries, tests, and
 executables.</p>
-<h3><a id="conventional-project-cmake"></a> <a href="#contents">≡</a> <a href="#conventional-project-cmake"><code>conventional-project.cmake</code></a></h3>
+<h3 id="-≡-conventional-projectcmake"><a id="conventional-project-cmake"></a> <a href="#contents">≡</a> <a href="#conventional-project-cmake"><code>conventional-project.cmake</code></a></h3>
 <p><a target="_blank" href="https://github.com/cppsm/cppsm-boilerplate/blob/master/conventional-project.cmake"><code>conventional-project.cmake</code> <i class="fas fa-xs fa-external-link-alt"></i></a>
 is a CMake script that (only) defines a number of CMake functions for projects
 that adhere to the <a href="#conventional-project-structure">project structure</a>.</p>
 <p>Typically, when using the C++ submodule manager, one does not directly call
 these functions as they are called by the automatically generated boilerplate
 code.</p>
-<h4><a id="add_conventional_targets_under"></a> <a href="#contents">≡</a> <a href="#add_conventional_targets_under"><code>add_conventional_targets_under(directory)</code></a></h4>
+<h4 id="-≡-add_conventional_targets_underdirectory"><a id="add_conventional_targets_under"></a> <a href="#contents">≡</a> <a href="#add_conventional_targets_under"><code>add_conventional_targets_under(directory)</code></a></h4>
 <p>Recursively descends into the specified directory tree stopping at directories
 containing a<code>CMakeLists.txt</code> script and adds those
 <a href="#target-directory">target directories</a> to the project with
 <a target="_blank" href="https://cmake.org/cmake/help/latest/command/add_subdirectory.html"><code>add_subdirectory</code> <i class="fas fa-xs fa-external-link-alt"></i></a>.</p>
-<h4><a id="add_conventional_targets_provided_under"></a> <a href="#contents">≡</a> <a href="#add_conventional_targets_provided_under"><code>add_conventional_targets_provided_under(directory)</code></a></h4>
+<h4 id="-≡-add_conventional_targets_provided_underdirectory"><a id="add_conventional_targets_provided_under"></a> <a href="#contents">≡</a> <a href="#add_conventional_targets_provided_under"><code>add_conventional_targets_provided_under(directory)</code></a></h4>
 <p>Recursively descends into the specified directory tree stopping at
 <a href="#project-submodule">project submodule</a> directories and adds those submodules to
 the project.</p>
@@ -394,7 +396,7 @@ directory of the submodule is added with the
 the directory is added to the project with
 <a target="_blank" href="https://cmake.org/cmake/help/latest/command/add_subdirectory.html"><code>add_subdirectory</code> <i class="fas fa-xs fa-external-link-alt"></i></a>.</li>
 </ul>
-<h4><a id="add_conventional_targets"></a> <a href="#contents">≡</a> <a href="#add_conventional_targets"><code>add_conventional_targets()</code></a></h4>
+<h4 id="-≡-add_conventional_targets"><a id="add_conventional_targets"></a> <a href="#contents">≡</a> <a href="#add_conventional_targets"><code>add_conventional_targets()</code></a></h4>
 <p>Adds conventional targets into a <a href="#project">project</a>.</p>
 <p>Specifically, calls</p>
 <ul>
@@ -408,27 +410,29 @@ and</li>
 and</li>
 <li><a href="#internals-directory"><code>add_conventional_targets_under(internals)</code></a>.</li>
 </ul>
-<h3><a id="conventional-targets-cmake"></a> <a href="#contents">≡</a> <a href="#conventional-targets-cmake"><code>conventional-targets.cmake</code></a></h3>
+<h3 id="-≡-conventional-targetscmake"><a id="conventional-targets-cmake"></a> <a href="#contents">≡</a> <a href="#conventional-targets-cmake"><code>conventional-targets.cmake</code></a></h3>
 <p><a target="_blank" href="https://github.com/cppsm/cppsm-boilerplate/blob/master/conventional-targets.cmake"><code>conventional-targets.cmake</code> <i class="fas fa-xs fa-external-link-alt"></i></a>
 is a CMake script that (only) defines a number of CMake functions for defining
 targets that adhere to the
 <a href="#conventional-target-structure">conventional target structure</a>.</p>
-<h4><a id="add_conventional_executable"></a> <a href="#contents">≡</a> <a href="#add_conventional_executable"><code>add_conventional_executable(name)</code></a></h4>
+<h4 id="-≡-add_conventional_executablename"><a id="add_conventional_executable"></a> <a href="#contents">≡</a> <a href="#add_conventional_executable"><code>add_conventional_executable(name)</code></a></h4>
 <p>Adds an executable target with the given name. Assumes that the target directory
 has implementation files matching the pattern <code>program/*.{cpp,hpp}</code>.</p>
 <pre><code>CMakeLists.txt
 program/
-  *.{cpp,hpp}</code></pre><p>Add dependencies using
+  *.{cpp,hpp}</code></pre>
+<p>Add dependencies using
 <a target="_blank" href="https://cmake.org/cmake/help/latest/command/target_link_libraries.html"><code>target_link_libraries</code> <i class="fas fa-xs fa-external-link-alt"></i></a>
 separately.</p>
-<h4><a id="add_conventional_executable_tests"></a> <a href="#contents">≡</a> <a href="#add_conventional_executable_tests"><code>add_conventional_executable_tests(...)</code></a></h4>
+<h4 id="-≡-add_conventional_executable_tests"><a id="add_conventional_executable_tests"></a> <a href="#contents">≡</a> <a href="#add_conventional_executable_tests"><code>add_conventional_executable_tests(...)</code></a></h4>
 <p>Adds an executable test target per file matching pattern <code>testing/*.cpp</code>. The
 arguments given to <code>add_conventional_executable_tests</code> are passed to
 <a target="_blank" href="https://cmake.org/cmake/help/latest/command/target_link_libraries.html"><code>target_link_libraries</code> <i class="fas fa-xs fa-external-link-alt"></i></a>
 for each added test target.</p>
 <pre><code>CMakeLists.txt
 testing/
-  *.cpp</code></pre><h4><a id="add_conventional_library"></a> <a href="#contents">≡</a> <a href="#add_conventional_library"><code>add_conventional_library(${LIBRARY_NAME}_${LIBRARY_VERSION})</code></a></h4>
+  *.cpp</code></pre>
+<h4 id="-≡-add_conventional_librarylibrary_name_library_version"><a id="add_conventional_library"></a> <a href="#contents">≡</a> <a href="#add_conventional_library"><code>add_conventional_library(${LIBRARY_NAME}_${LIBRARY_VERSION})</code></a></h4>
 <p>Adds a library target with the given name. Assumes that the target directory has
 public header files matching the pattern
 <a href="#conventional-library-versioning"><code>include/${LIBRARY_NAME}_${LIBRARY_VERSION}/*.hpp</code></a>
@@ -438,12 +442,13 @@ include/
   ${LIBRARY_NAME}_${LIBRARY_VERSION}/
     *.hpp
 library/
-  *.(cpp|hpp)</code></pre><p>Note that inside <code>include</code> there is a directory whose name
+  *.(cpp|hpp)</code></pre>
+<p>Note that inside <code>include</code> there is a directory whose name
 <a href="#conventional-library-versioning"><code>${LIBRARY_NAME}_${LIBRARY_VERSION}</code></a>
 suggests that it should include both the library name and its major version. The
 intention of the directory is to differentiate between the header files of
 different targets (and their major versions).</p>
-<h2><a id="travis-ci"></a> <a href="#contents">≡</a> <a href="#travis-ci">Travis CI</a></h2>
+<h2 id="-≡-travis-ci"><a id="travis-ci"></a> <a href="#contents">≡</a> <a href="#travis-ci">Travis CI</a></h2>
 <p>A <a target="_blank" href="https://travis-ci-ci.org/">Travis CI <i class="fas fa-xs fa-external-link-alt"></i></a>
 <a target="_blank" href="https://github.com/cppsm/cppsm-cli/blob/master/.travis.yml">configuration file <i class="fas fa-xs fa-external-link-alt"></i></a>
 is provided to build and test both <code>Debug</code> and <code>Release</code> builds on various OS
@@ -468,31 +473,31 @@ Travis CI.</p>
 </ul>
 </li>
 </ul>
-<h3><a id="codecov"></a> <a href="#contents">≡</a> <a href="#codecov"><code>CODECOV=0|1</code></a></h3>
+<h3 id="-≡-codecov01"><a id="codecov"></a> <a href="#contents">≡</a> <a href="#codecov"><code>CODECOV=0|1</code></a></h3>
 <p>By default the
 <a target="_blank" href="https://github.com/cppsm/cppsm-cli/blob/master/travis-ci">CI script <i class="fas fa-xs fa-external-link-alt"></i></a> does not
 generate and push code coverage results to <a target="_blank" href="https://codecov.io/">Codecov <i class="fas fa-xs fa-external-link-alt"></i></a>. Set
 <code>CODECOV=1</code> to enable code coverage.</p>
-<h3><a id="format_check"></a> <a href="#contents">≡</a> <a href="#format_check"><code>FORMAT_CHECK=1|0</code></a></h3>
+<h3 id="-≡-format_check10"><a id="format_check"></a> <a href="#contents">≡</a> <a href="#format_check"><code>FORMAT_CHECK=1|0</code></a></h3>
 <p>By default the
 <a target="_blank" href="https://github.com/cppsm/cppsm-cli/blob/master/travis-ci">CI script <i class="fas fa-xs fa-external-link-alt"></i></a> checks
 that source files have been formatted as with <code>cppsm format</code>. Set
 <code>FORMAT_CHECK=0</code> explicitly to disable the format check.</p>
-<h3><a id="install_wait"></a> <a href="#contents">≡</a> <a href="#install_wait"><code>INSTALL_WAIT=0|1</code></a></h3>
+<h3 id="-≡-install_wait01"><a id="install_wait"></a> <a href="#contents">≡</a> <a href="#install_wait"><code>INSTALL_WAIT=0|1</code></a></h3>
 <p>By default the
 <a target="_blank" href="https://github.com/cppsm/cppsm-cli/blob/master/travis-ci">CI script <i class="fas fa-xs fa-external-link-alt"></i></a> performs
 installation of additional packages concurrently with builds when possible. Set
 <code>INSTALL_WAIT=1</code> to wait for installations to complete before starting any
 builds.</p>
-<h2><a id="variables"></a> <a href="#contents">≡</a> <a href="#variables">Variables</a></h2>
+<h2 id="-≡-variables"><a id="variables"></a> <a href="#contents">≡</a> <a href="#variables">Variables</a></h2>
 <p>Several environment variables can be set to change the default behavior of one
 or more cppsm commands. These variables can be used both on the <a href="#travis-ci">CI</a>
 and also when using <code>cppsm</code> commands locally.</p>
-<h3><a id="ctest_output_on_failure"></a> <a href="#contents">≡</a> <a href="#ctest_output_on_failure"><code>CTEST_OUTPUT_ON_FAILURE=1|0</code></a></h3>
+<h3 id="-≡-ctest_output_on_failure10"><a id="ctest_output_on_failure"></a> <a href="#contents">≡</a> <a href="#ctest_output_on_failure"><code>CTEST_OUTPUT_ON_FAILURE=1|0</code></a></h3>
 <p>By default CTest is configured to
 <a target="_blank" href="https://cmake.org/cmake/help/latest/envvar/CTEST_OUTPUT_ON_FAILURE.html">log output in case a test fails <i class="fas fa-xs fa-external-link-alt"></i></a>.
 Set <code>CTEST_OUTPUT_ON_FAILURE=0</code> explicitly to override the default.</p>
-<h3><a id="quiet"></a> <a href="#contents">≡</a> <a href="#quiet"><code>QUIET=1|0</code></a></h3>
+<h3 id="-≡-quiet10"><a id="quiet"></a> <a href="#contents">≡</a> <a href="#quiet"><code>QUIET=1|0</code></a></h3>
 <p>By default various commands are invoked with quiet settings to reduce noise. Set
 <code>QUIET=0</code> explicitly to see more output from various commands.</p>
 <ul>
@@ -514,7 +519,7 @@ command. If <code>XCODE_VERBOSITY</code> is not explicitly set and <code>QUIET=1
 <code>XCODE_VERBOSITY</code> will be set to <code>quiet</code>.</p>
 </li>
 </ul>
-<h3><a id="number_of_processors"></a> <a href="#contents">≡</a> <a href="#number_of_processors"><code>NUMBER_OF_PROCESSORS=1|2|...</code></a></h3>
+<h3 id="-≡-number_of_processors12"><a id="number_of_processors"></a> <a href="#contents">≡</a> <a href="#number_of_processors"><code>NUMBER_OF_PROCESSORS=1|2|...</code></a></h3>
 <p>By default the number of processors is auto detected and parallelism is set
 based on the number of processors. Set <code>NUMBER_OF_PROCESSORS</code> explicitly to
 desired number to override the default.</p>
@@ -532,7 +537,7 @@ controls the
 <a target="_blank" href="https://git-scm.com/docs/git-submodule#Documentation/git-submodule.txt---jobsltngt"><code>--jobs</code> option of <code>git submodule update</code> <i class="fas fa-xs fa-external-link-alt"></i></a>.</p>
 </li>
 </ul>
-<h3><a id="trace"></a> <a href="#contents">≡</a> <a href="#trace"><code>TRACE=0|1</code></a></h3>
+<h3 id="-≡-trace01"><a id="trace"></a> <a href="#contents">≡</a> <a href="#trace"><code>TRACE=0|1</code></a></h3>
 <p>By default scripts do not output trace information to reduce noise. Set
 <code>TRACE=1</code> explicitly to see trace output.</p>
 <ul>
@@ -540,7 +545,7 @@ controls the
 <a target="_blank" href="https://www.gnu.org/software/bash/manual/bash.html#The-Set-Builtin"><code>set -x</code> <i class="fas fa-xs fa-external-link-alt"></i></a>
 to enable Bash xtrace.</li>
 </ul>
-<h2><a id="conventions"></a> <a href="#contents">≡</a> <a href="#conventions">Conventions</a></h2>
+<h2 id="-≡-conventions"><a id="conventions"></a> <a href="#contents">≡</a> <a href="#conventions">Conventions</a></h2>
 <p>C++ submodule manager projects adhere to conventions to make it simple to
 operate on projects and targets programmatically and also to make room for both
 independently developed projects and different versions of a single project to
@@ -548,7 +553,7 @@ coexist.</p>
 <p>In order to understand how these conventions translate into practice, it can be
 helpful to play with an example. The <a href="#cppsm-init-hello"><code>cppsm init-hello</code></a>
 script is written for this purpose to generate a simple example project.</p>
-<h3><a id="conventional-project-structure"></a> <a href="#contents">≡</a> <a href="#conventional-project-structure">Conventional project structure</a></h3>
+<h3 id="-≡-conventional-project-structure"><a id="conventional-project-structure"></a> <a href="#contents">≡</a> <a href="#conventional-project-structure">Conventional project structure</a></h3>
 <p>Every cppsm project must conform to the project structure, whose rules are
 codified into functions defined in the
 <a href="#conventional-project-cmake"><code>conventional-project.cmake</code></a> script and many of
@@ -583,7 +588,7 @@ contains a <code>CMakeLists.txt</code> script that defines targets.</p>
 is no need to create a nested directory for it and the <code>CMakeLists.txt</code> script
 can go directly under the <a href="#internals-directory"><code>internals</code></a> or
 <a href="#provides-directory"><code>provides</code></a> directory.</p>
-<h3><a id="conventional-target-structure"></a> <a href="#contents">≡</a> <a href="#conventional-target-structure">Conventional target structure</a></h3>
+<h3 id="-≡-conventional-target-structure"><a id="conventional-target-structure"></a> <a href="#contents">≡</a> <a href="#conventional-target-structure">Conventional target structure</a></h3>
 <p>In a cppsm project one may optionally structure targets according to conventions
 codified into functions defined in the
 <a href="#conventional-targets-cmake"><code>conventional-targets.cmake</code></a> script. In that case
@@ -597,7 +602,7 @@ in the <code>testing</code> directory.</li>
 <li><a id="program-target"></a><a href="#program-target">An executable program</a> in the
 <code>program</code> directory.</li>
 </ul>
-<h3><a id="conventional-project-versioning"></a> <a href="#contents">≡</a> <a href="#conventional-project-versioning">Conventional project versioning</a></h3>
+<h3 id="-≡-conventional-project-versioning"><a id="conventional-project-versioning"></a> <a href="#contents">≡</a> <a href="#conventional-project-versioning">Conventional project versioning</a></h3>
 <p>C++ submodule manager <a href="#project">projects</a> and
 <a href="#project-submodule">project submodules</a> are versioned such that the branches of
 a project are named after their (major) version numbers and the version numbers
@@ -613,7 +618,7 @@ cppsm project is the name of a branch.</p>
 <a href="#equipment-directory"><code>equipment/${PROJECT_NAME}/${PROJECT_VERSION}</code></a> or to
 <a href="#requires-directory"><code>requires/${PROJECT_NAME}/${PROJECT_VERSION}</code></a> depending
 on the nature of the dependency.</p>
-<h3><a id="conventional-library-versioning"></a> <a href="#contents">≡</a> <a href="#conventional-library-versioning">Conventional library versioning</a></h3>
+<h3 id="-≡-conventional-library-versioning"><a id="conventional-library-versioning"></a> <a href="#contents">≡</a> <a href="#conventional-library-versioning">Conventional library versioning</a></h3>
 <p>In a cppsm project one may optionally version libraries such that their header
 files start with a directory name of the form <code>${LIBRARY_NAME}_${VERSION}</code>,
 which is also the name of the CMake <a href="#add_conventional_library">library target</a>
