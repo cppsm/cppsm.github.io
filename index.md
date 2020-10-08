@@ -531,10 +531,10 @@ Travis CI.
 
 - Linux
   - [Clang](https://clang.llvm.org/) (7)
-  - [GCC](https://gcc.gnu.org/) (8)
+  - [GCC](https://gcc.gnu.org/) (9)
 - OS X
-  - Apple [Clang](https://clang.llvm.org/) (10)
-  - [GCC](https://gcc.gnu.org/) (8)
+  - Apple [Clang](https://clang.llvm.org/) (12)
+  - [GCC](https://gcc.gnu.org/) (10)
 - Windows
   - [MinGW](http://www.mingw.org/) [GCC](https://gcc.gnu.org/) (8)
   - [Visual C++](https://docs.microsoft.com/en-us/cpp/) (2017, 2019)
