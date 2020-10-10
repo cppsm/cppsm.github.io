@@ -103,6 +103,7 @@ dependencies</li>
 </li>
 <li><a href="#travis-ci">Travis CI</a><ul>
 <li><a href="#codecov"><code>CODECOV=0|1</code></a></li>
+<li><a href="#emscripten"><code>EMSCRIPTEN=0|1</code></a></li>
 <li><a href="#format_check"><code>FORMAT_CHECK=1|0</code></a></li>
 <li><a href="#install_wait"><code>INSTALL_WAIT=0|1</code></a></li>
 <li><a href="#upgrade_check"><code>UPGRADE_CHECK=1|0</code></a></li>
@@ -460,8 +461,8 @@ and <a target="_blank" href="https://github.com/cppsm/cppsm-cli/blob/master/trav
 provided to build and test both <code>Debug</code> and <code>Release</code> builds on various OS
 (Linux, OS X, Windows) and compiler configurations
 (<a target="_blank" href="https://clang.llvm.org/">Clang <i class="fas fa-xs fa-external-link-alt"></i></a>, <a target="_blank" href="https://gcc.gnu.org/">GCC <i class="fas fa-xs fa-external-link-alt"></i></a>,
-<a target="_blank" href="https://docs.microsoft.com/en-us/cpp/">Visual C++ <i class="fas fa-xs fa-external-link-alt"></i></a>). Just add your project to
-Travis CI.</p>
+<a target="_blank" href="https://docs.microsoft.com/en-us/cpp/">Visual C++ <i class="fas fa-xs fa-external-link-alt"></i></a>,
+<a target="_blank" href="https://emscripten.org/">Emscripten <i class="fas fa-xs fa-external-link-alt"></i></a>). Just add your project to Travis CI.</p>
 <ul>
 <li>Linux<ul>
 <li><a target="_blank" href="https://clang.llvm.org/">Clang <i class="fas fa-xs fa-external-link-alt"></i></a> (7)</li>
@@ -471,6 +472,7 @@ Travis CI.</p>
 <li>OS X<ul>
 <li>Apple <a target="_blank" href="https://clang.llvm.org/">Clang <i class="fas fa-xs fa-external-link-alt"></i></a> (12)</li>
 <li><a target="_blank" href="https://gcc.gnu.org/">GCC <i class="fas fa-xs fa-external-link-alt"></i></a> (10)</li>
+<li><a target="_blank" href="https://emscripten.org/">Emscripten <i class="fas fa-xs fa-external-link-alt"></i></a> (2)</li>
 </ul>
 </li>
 <li>Windows<ul>
@@ -485,6 +487,10 @@ Travis CI.</p>
 coverage test is executed and results are pushed to
 <a target="_blank" href="https://codecov.io/">Codecov <i class="fas fa-xs fa-external-link-alt"></i></a>. Set <code>CODECOV=1</code> explicitly to enable code
 coverage.</p>
+</li>
+<li><p><a id="emscripten"></a><a href="#emscripten"><code>EMSCRIPTEN=0|1</code></a> specifies whether to
+also build with <a target="_blank" href="https://emscripten.org/">Emscripten <i class="fas fa-xs fa-external-link-alt"></i></a>. Set <code>EMSCRIPTEN=1</code>
+explicitly to build with <a target="_blank" href="https://emscripten.org/">Emscripten <i class="fas fa-xs fa-external-link-alt"></i></a>.</p>
 </li>
 <li><p><a id="format_check"></a><a href="#format_check"><code>FORMAT_CHECK=1|0</code></a> specifies whether
 to check that source files are formatted as with

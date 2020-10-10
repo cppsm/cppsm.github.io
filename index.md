@@ -77,6 +77,7 @@ See [repositories with the `#cppsm` topic](https://github.com/topics/cppsm).
     - [`add_conventional_library(${LIBRARY_NAME}_${LIBRARY_VERSION})`](#add_conventional_library)
 - [Travis CI](#travis-ci)
   - [`CODECOV=0|1`](#codecov)
+  - [`EMSCRIPTEN=0|1`](#emscripten)
   - [`FORMAT_CHECK=1|0`](#format_check)
   - [`INSTALL_WAIT=0|1`](#install_wait)
   - [`UPGRADE_CHECK=1|0`](#upgrade_check)
@@ -532,8 +533,8 @@ and [CI script](https://github.com/cppsm/cppsm-cli/blob/master/travis-ci) is
 provided to build and test both `Debug` and `Release` builds on various OS
 (Linux, OS X, Windows) and compiler configurations
 ([Clang](https://clang.llvm.org/), [GCC](https://gcc.gnu.org/),
-[Visual C++](https://docs.microsoft.com/en-us/cpp/)). Just add your project to
-Travis CI.
+[Visual C++](https://docs.microsoft.com/en-us/cpp/),
+[Emscripten](https://emscripten.org/)). Just add your project to Travis CI.
 
 - Linux
   - [Clang](https://clang.llvm.org/) (7)
@@ -541,6 +542,7 @@ Travis CI.
 - OS X
   - Apple [Clang](https://clang.llvm.org/) (12)
   - [GCC](https://gcc.gnu.org/) (10)
+  - [Emscripten](https://emscripten.org/) (2)
 - Windows
   - [MinGW](http://www.mingw.org/) [GCC](https://gcc.gnu.org/) (8)
   - [Visual C++](https://docs.microsoft.com/en-us/cpp/) (2017, 2019)
@@ -551,6 +553,10 @@ Configuration variables:
   coverage test is executed and results are pushed to
   [Codecov](https://codecov.io/). Set `CODECOV=1` explicitly to enable code
   coverage.
+
+- <a id="emscripten"></a>[`EMSCRIPTEN=0|1`](#emscripten) specifies whether to
+  also build with [Emscripten](https://emscripten.org/). Set `EMSCRIPTEN=1`
+  explicitly to build with [Emscripten](https://emscripten.org/).
 
 - <a id="format_check"></a>[`FORMAT_CHECK=1|0`](#format_check) specifies whether
   to check that source files are formatted as with
