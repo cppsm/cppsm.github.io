@@ -76,11 +76,15 @@ See [repositories with the `#cppsm` topic](https://github.com/topics/cppsm).
     - [`add_conventional_executable_tests(...)`](#add_conventional_executable_tests)
     - [`add_conventional_library(${LIBRARY_NAME}_${LIBRARY_VERSION})`](#add_conventional_library)
 - [Travis CI](#travis-ci)
+  - [`CLANG=1|0`](#clang)
   - [`CODECOV=0|1`](#codecov)
   - [`EMSCRIPTEN=0|1`](#emscripten)
   - [`FORMAT_CHECK=1|0`](#format_check)
+  - [`GCC=1|0`](#gcc)
   - [`INSTALL_WAIT=0|1`](#install_wait)
   - [`UPGRADE_CHECK=1|0`](#upgrade_check)
+  - [`VS2017=1|0`](#vs2017)
+  - [`VS2019=1|0`](#vs2019)
 - [Variables](#variables)
   - [`CTEST_OUTPUT_ON_FAILURE=1|0`](#ctest_output_on_failure)
   - [`QUIET=1|0`](#quiet)
@@ -539,6 +543,7 @@ provided to build and test both `Debug` and `Release` builds on various OS
 - Linux
   - [Clang](https://clang.llvm.org/) (7)
   - [GCC](https://gcc.gnu.org/) (9)
+  - [Emscripten](https://emscripten.org/) (2)
 - OS X
   - Apple [Clang](https://clang.llvm.org/) (12)
   - [GCC](https://gcc.gnu.org/) (10)
@@ -548,6 +553,10 @@ provided to build and test both `Debug` and `Release` builds on various OS
   - [Visual C++](https://docs.microsoft.com/en-us/cpp/) (2017, 2019)
 
 Configuration variables:
+
+- <a id="clang"></a>[`CLANG=1|0`](#clang) specifies whether to build with
+  [Clang](https://clang.llvm.org/). Set `CLANG=0` explicitly to skip building
+  with [Clang](https://clang.llvm.org/).
 
 - <a id="codecov"></a>[`CODECOV=0|1`](#codecov) specifies whether a code
   coverage test is executed and results are pushed to
@@ -563,6 +572,10 @@ Configuration variables:
   [`cppsm format`](#cppsm-format). Set `FORMAT_CHECK=0` explicitly to disable
   the format check.
 
+- <a id="gcc"></a>[`GCC=1|0`](#gcc) specifies whether to build with
+  [GCC](https://gcc.gnu.org/). Set `GCC=0` explicitly to skip building with
+  [GCC](https://gcc.gnu.org/).
+
 - <a id="install_wait"></a>[`INSTALL_WAIT=0|1`](#install_wait) specifies whether
   installation of additional packages is performed concurrently with builds when
   possible. Set `INSTALL_WAIT=1` explicitly to wait for installations to
@@ -572,6 +585,16 @@ Configuration variables:
   whether, after running tests, a [`cppsm upgrade`](#cppsm-upgrade) is performed
   and, if something is upgraded, tests are rerun. Set `UPGRADE_CHECK=0`
   explicitly to skip the upgrade and conditional rerun of tests.
+
+- <a id="vs2017"></a>[`VS2017=1|0`](#vs2017) specifies whether to build with
+  [Visual C++](https://docs.microsoft.com/en-us/cpp/) 2017. Set `VS2017=0`
+  explicitly to skip building with
+  [Visual C++](https://docs.microsoft.com/en-us/cpp/) 2017.
+
+- <a id="vs2019"></a>[`VS2019=1|0`](#vs2019) specifies whether to build with
+  [Visual C++](https://docs.microsoft.com/en-us/cpp/) 2019. Set `VS2019=0`
+  explicitly to skip building with
+  [Visual C++](https://docs.microsoft.com/en-us/cpp/) 2019.
 
 ## <a id="variables"></a> [≡](#contents) [Variables](#variables)
 

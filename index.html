@@ -102,11 +102,15 @@ dependencies</li>
 </ul>
 </li>
 <li><a href="#travis-ci">Travis CI</a><ul>
+<li><a href="#clang"><code>CLANG=1|0</code></a></li>
 <li><a href="#codecov"><code>CODECOV=0|1</code></a></li>
 <li><a href="#emscripten"><code>EMSCRIPTEN=0|1</code></a></li>
 <li><a href="#format_check"><code>FORMAT_CHECK=1|0</code></a></li>
+<li><a href="#gcc"><code>GCC=1|0</code></a></li>
 <li><a href="#install_wait"><code>INSTALL_WAIT=0|1</code></a></li>
 <li><a href="#upgrade_check"><code>UPGRADE_CHECK=1|0</code></a></li>
+<li><a href="#vs2017"><code>VS2017=1|0</code></a></li>
+<li><a href="#vs2019"><code>VS2019=1|0</code></a></li>
 </ul>
 </li>
 <li><a href="#variables">Variables</a><ul>
@@ -467,6 +471,7 @@ provided to build and test both <code>Debug</code> and <code>Release</code> buil
 <li>Linux<ul>
 <li><a target="_blank" href="https://clang.llvm.org/">Clang <i class="fas fa-xs fa-external-link-alt"></i></a> (7)</li>
 <li><a target="_blank" href="https://gcc.gnu.org/">GCC <i class="fas fa-xs fa-external-link-alt"></i></a> (9)</li>
+<li><a target="_blank" href="https://emscripten.org/">Emscripten <i class="fas fa-xs fa-external-link-alt"></i></a> (2)</li>
 </ul>
 </li>
 <li>OS X<ul>
@@ -483,6 +488,10 @@ provided to build and test both <code>Debug</code> and <code>Release</code> buil
 </ul>
 <p>Configuration variables:</p>
 <ul>
+<li><p><a id="clang"></a><a href="#clang"><code>CLANG=1|0</code></a> specifies whether to build with
+<a target="_blank" href="https://clang.llvm.org/">Clang <i class="fas fa-xs fa-external-link-alt"></i></a>. Set <code>CLANG=0</code> explicitly to skip building
+with <a target="_blank" href="https://clang.llvm.org/">Clang <i class="fas fa-xs fa-external-link-alt"></i></a>.</p>
+</li>
 <li><p><a id="codecov"></a><a href="#codecov"><code>CODECOV=0|1</code></a> specifies whether a code
 coverage test is executed and results are pushed to
 <a target="_blank" href="https://codecov.io/">Codecov <i class="fas fa-xs fa-external-link-alt"></i></a>. Set <code>CODECOV=1</code> explicitly to enable code
@@ -497,6 +506,10 @@ to check that source files are formatted as with
 <a href="#cppsm-format"><code>cppsm format</code></a>. Set <code>FORMAT_CHECK=0</code> explicitly to disable
 the format check.</p>
 </li>
+<li><p><a id="gcc"></a><a href="#gcc"><code>GCC=1|0</code></a> specifies whether to build with
+<a target="_blank" href="https://gcc.gnu.org/">GCC <i class="fas fa-xs fa-external-link-alt"></i></a>. Set <code>GCC=0</code> explicitly to skip building with
+<a target="_blank" href="https://gcc.gnu.org/">GCC <i class="fas fa-xs fa-external-link-alt"></i></a>.</p>
+</li>
 <li><p><a id="install_wait"></a><a href="#install_wait"><code>INSTALL_WAIT=0|1</code></a> specifies whether
 installation of additional packages is performed concurrently with builds when
 possible. Set <code>INSTALL_WAIT=1</code> explicitly to wait for installations to
@@ -506,6 +519,16 @@ complete before starting any builds.</p>
 whether, after running tests, a <a href="#cppsm-upgrade"><code>cppsm upgrade</code></a> is performed
 and, if something is upgraded, tests are rerun. Set <code>UPGRADE_CHECK=0</code>
 explicitly to skip the upgrade and conditional rerun of tests.</p>
+</li>
+<li><p><a id="vs2017"></a><a href="#vs2017"><code>VS2017=1|0</code></a> specifies whether to build with
+<a target="_blank" href="https://docs.microsoft.com/en-us/cpp/">Visual C++ <i class="fas fa-xs fa-external-link-alt"></i></a> 2017. Set <code>VS2017=0</code>
+explicitly to skip building with
+<a target="_blank" href="https://docs.microsoft.com/en-us/cpp/">Visual C++ <i class="fas fa-xs fa-external-link-alt"></i></a> 2017.</p>
+</li>
+<li><p><a id="vs2019"></a><a href="#vs2019"><code>VS2019=1|0</code></a> specifies whether to build with
+<a target="_blank" href="https://docs.microsoft.com/en-us/cpp/">Visual C++ <i class="fas fa-xs fa-external-link-alt"></i></a> 2019. Set <code>VS2019=0</code>
+explicitly to skip building with
+<a target="_blank" href="https://docs.microsoft.com/en-us/cpp/">Visual C++ <i class="fas fa-xs fa-external-link-alt"></i></a> 2019.</p>
 </li>
 </ul>
 <h2 id="-≡-variables"><a id="variables"></a> <a href="#contents">≡</a> <a href="#variables">Variables</a></h2>
