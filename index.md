@@ -58,8 +58,8 @@ See [repositories with the `#cppsm` topic](https://github.com/topics/cppsm).
       - [`CMAKE_BUILD_TYPE=Debug|Release`](#cmake_build_type)
       - [`CMAKE_GENERATOR=''|'...'`](#cmake_generator)
       - [`CMAKE_TOOLCHAIN_FILE=''|'...'`](#cmake_toolchain_file)
-      - [`CC=cc|gcc|clang|...`](#cc)
-      - [`CXX=c++|g++|clang++|...`](#cxx)
+      - [`CC=cc|gcc|clang|emcc|...`](#cc)
+      - [`CXX=c++|g++|clang++|emcc|...`](#cxx)
       - [`CLEAN=0|1`](#clean)
       - [`COVERAGE=0|1`](#coverage)
     - [`cppsm test`](#cppsm-test)
@@ -391,10 +391,10 @@ Configuration variables:
 - <a id="cmake_toolchain_file"></a>[`CMAKE_TOOLCHAIN_FILE=''|'...'`](#cmake_toolchain_file)
   [specifies toolchain file to use](https://cmake.org/cmake/help/latest/variable/CMAKE_TOOLCHAIN_FILE.html).
 
-- <a id="cc"></a>[`CC=cc|gcc|clang|...`](#cc)
+- <a id="cc"></a>[`CC=cc|gcc|clang|emcc|...`](#cc)
   [specifies which C compiler to use](https://cmake.org/cmake/help/latest/envvar/CC.html).
 
-- <a id="cxx"></a>[`CXX=c++|g++|clang++|...`](#cxx)
+- <a id="cxx"></a>[`CXX=c++|g++|clang++|emcc|...`](#cxx)
   [specifies which C++ compiler to use](https://cmake.org/cmake/help/latest/envvar/CXX.html).
 
 - <a id="clean"></a>[`CLEAN=0|1`](#clean) specifies whether the build directory
