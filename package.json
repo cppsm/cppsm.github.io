@@ -19,7 +19,7 @@
   "devDependencies": {
     "concurrently": "^5.3.0",
     "livereload": "^0.9.1",
-    "marked": "^1.2.0",
+    "marked": "^2.0.0",
     "watch-run": "^1.2.5"
   }
 }
